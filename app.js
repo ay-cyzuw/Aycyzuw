@@ -810,6 +810,11 @@ function showTab(t) {
   for (var j = 0; j < n.length; j++) n[j].classList.toggle("act", n[j].getAttribute("data-t") === t);
   document.getElementById("s-" + t).classList.add("act");
   document.getElementById("searchBoxMain").style.display = (t === "home") ? "flex" : "none";
+
+  // Ýokarky AÝ-ÇYZUW başlygyny diňe Profilde gizlemek:
+  var hdr = document.querySelector(".hdr");
+  if (hdr) hdr.style.display = (t === "prof") ? "none" : "";
+
   if (t === "fav") renderFavs();
   if (t === "orders") renderOrders();
 }
