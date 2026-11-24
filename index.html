@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>AÝ-ÇYZUW — Kanselýariýa we Okuw Esbaplary</title>
-  <link rel="stylesheet" href="style.css?v=8">
+  <link rel="stylesheet" href="style.css?v=11">
 </head>
 <body>
 
@@ -154,10 +154,17 @@
         <div class="ship-prog-bar"><div class="ship-prog-fill" id="shipProgFill"></div></div>
       </div>
 
-      <div style="margin-bottom:10px">
+      <div style="margin-bottom:12px">
         <label class="flabel" data-tk="Eltip bermek üçin şäheri saýlaň:" data-ru="Выберите город доставки:">Eltip bermek üçin şäheri saýlaň:</label>
-        <select id="citySel" style="margin:0">
-          <option value="arkadag">Arkadag şäheri (200 m-den ýokary mugt / 10 m)</option>
+        <div class="city-chips" id="cityChips">
+          <button type="button" class="c-chip act" data-val="arkadag" onclick="pickCity('arkadag',this)">Arkadag (mugt / 10 m)</button>
+          <button type="button" class="c-chip" data-val="gokdepe" onclick="pickCity('gokdepe',this)">Gökdepe (50 m)</button>
+          <button type="button" class="c-chip" data-val="ashgabat" onclick="pickCity('ashgabat',this)">Aşgabat (70 m)</button>
+          <button type="button" class="c-chip" data-val="anew" onclick="pickCity('anew',this)">Änew (100 m)</button>
+          <button type="button" class="c-chip" data-val="baherden" onclick="pickCity('baherden',this)">Bäherden (100 m)</button>
+        </div>
+        <select id="citySel" style="display:none">
+          <option value="arkadag" selected>Arkadag şäheri (200 m-den ýokary mugt / 10 m)</option>
           <option value="gokdepe">Gökdepe (50 m)</option>
           <option value="ashgabat">Aşgabat şäheri (70 m)</option>
           <option value="anew">Änew (100 m)</option>
@@ -228,41 +235,57 @@
         <span>›</span>
       </div>
     </div>
-<!-- === INDEX.HTML — 3A BÖLEK === -->
-       <div class="store-info-card">
+
+    <div class="store-info-card">
       <div class="si-head">
         <div>
-          <b class="si-brand">AÝ-<span>ÇYZUW</span></b>
+          <div class="si-brand">AÝ-<span>ÇYZUW</span></div>
           <div class="si-sub" data-tk="Mekdep we ofis harytlary dükany" data-ru="Магазин школьных и офисных товаров">Mekdep we ofis harytlary dükany</div>
         </div>
-        <span class="si-badge" data-tk="🟢 Açyk" data-ru="🟢 Открыто">🟢 Açyk</span>
+        <span class="si-badge" data-tk="Açyk" data-ru="Открыто">Açyk</span>
       </div>
 
-      <div class="si-row">
-        <span class="si-lbl" data-tk="📍 Salgymyz:" data-ru="📍 Наш адрес:">📍 Salgymyz:</span>
-        <span class="si-val" data-tk="Arkadag şäheri, Gökdere söwda merkezi, №120 dükan" data-ru="г. Аркадаг, торговый центр «Гёкдере», магазин №120">Arkadag şäheri, Gökdere söwda merkezi, №120 dükan</span>
+      <div class="si-item">
+        <div class="si-ico">📍</div>
+        <div class="si-body">
+          <div class="si-lbl" data-tk="Salgymyz" data-ru="Наш адрес">Salgymyz</div>
+          <div class="si-val" data-tk="Arkadag şäheri, Gökdere söwda merkezi, №120 dükan" data-ru="г. Аркадаг, торговый центр «Гёкдере», магазин №120">Arkadag şäheri, Gökdere söwda merkezi, №120 dükan</div>
+        </div>
       </div>
 
-      <div class="si-row">
-        <span class="si-lbl" data-tk="📞 Telefon:" data-ru="📞 Телефон:">📞 Telefon:</span>
-        <a class="si-val si-link" href="tel:+99365637644">+993 65 63-76-44</a>
+      <div class="si-item">
+        <div class="si-ico">📞</div>
+        <div class="si-body">
+          <div class="si-lbl" data-tk="Telefon belgimiz" data-ru="Номер телефона">Telefon belgimiz</div>
+          <a class="si-val si-link" href="tel:+99365637644">+993 65 63-76-44</a>
+        </div>
       </div>
 
-      <div class="si-row">
-        <span class="si-lbl" data-tk="🕒 Iş wagty:" data-ru="🕒 Режим работы:">🕒 Iş wagty:</span>
-        <span class="si-val" data-tk="Her gün 09:00 – 20:00 (Dynç günsüz)" data-ru="Ежедневно 09:00 – 20:00 (Без выходных)">Her gün 09:00 – 20:00 (Dynç günsüz)</span>
+      <div class="si-item">
+        <div class="si-ico">🕒</div>
+        <div class="si-body">
+          <div class="si-lbl" data-tk="Iş wagty" data-ru="Режим работы">Iş wagty</div>
+          <div class="si-val" data-tk="Her gün 09:00 – 20:00 (Dynç günsüz)" data-ru="Ежедневно 09:00 – 20:00 (Без выходных)">Her gün 09:00 – 20:00 (Dynç günsüz)</div>
+        </div>
       </div>
 
-      <div class="si-row">
-        <span class="si-lbl" data-tk="🚚 Eltip bermek:" data-ru="🚚 Доставка:">🚚 Eltip bermek:</span>
-        <span class="si-val" data-tk="Arkadag şäheri (200 m-den ýokary mugt), Gökdepe, Aşgabat, Änew, Bäherden" data-ru="г. Аркадаг (от 200 м бесплатно), Гёкдепе, Ашхабад, Аннау, Бахерден">Arkadag şäheri (200 m-den ýokary mugt), Gökdepe, Aşgabat, Änew, Bäherden</span>
+      <div class="si-item">
+        <div class="si-ico">🚚</div>
+        <div class="si-body">
+          <div class="si-lbl" data-tk="Eltip bermek hyzmaty" data-ru="Служба доставки">Eltip bermek hyzmaty</div>
+          <div class="si-val" data-tk="Arkadag şäheri (200 m-den ýokary mugt), Gökdepe, Aşgabat, Änew, Bäherden" data-ru="г. Аркадаг (от 200 м бесплатно), Гёкдепе, Ашхабад, Аннау, Бахерден">Arkadag şäheri (200 m-den ýokary mugt), Gökdepe, Aşgabat, Änew, Bäherden</div>
+        </div>
       </div>
 
-      <div class="si-row" style="border:none">
-        <span class="si-lbl" data-tk="✉️ E-poçta:" data-ru="✉️ Эл. почта:">✉️ E-poçta:</span>
-        <a class="si-val si-link" href="mailto:aycyzuw.tm.arkadag@gmail.com">aycyzuw.tm.arkadag@gmail.com</a>
+      <div class="si-item" style="border:none;padding-bottom:0">
+        <div class="si-ico">✉️</div>
+        <div class="si-body">
+          <div class="si-lbl" data-tk="Elektron poçta" data-ru="Электронная почта">Elektron poçta</div>
+          <a class="si-val si-link" href="mailto:aycyzuw.tm.arkadag@gmail.com">aycyzuw.tm.arkadag@gmail.com</a>
+        </div>
       </div>
     </div>
+<!-- === INDEX.HTML — 3A BÖLEK === -->
     <div class="adm-box" id="adminPanel" style="display:none">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
         <b style="color:var(--p)">⚙️ Admin Panel</b>
@@ -482,7 +505,19 @@
 
 <div class="toast-msg" id="toastBox"></div>
 
-<script src="baza.js?v=8"></script>
-<script src="app.js?v=8"></script>
+<script>
+function pickCity(val, el) {
+  var sel = document.getElementById("citySel");
+  if (sel) {
+    sel.value = val;
+    if (typeof updCart === "function") updCart();
+  }
+  var btns = document.querySelectorAll("#cityChips .c-chip");
+  for (var i = 0; i < btns.length; i++) btns[i].classList.remove("act");
+  if (el) el.classList.add("act");
+}
+</script>
+<script src="baza.js?v=11"></script>
+<script src="app.js?v=11"></script>
 </body>
 </html>
