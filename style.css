@@ -311,3 +311,33 @@ select, textarea, input { width: 100%; padding: 11px; border: 1px solid var(--b)
   .hero-grid { grid-template-columns: 1fr; }
   .side-banners { flex-direction: row; }
 }
+.store-info-card {
+  background: var(--c);
+  border: 1px solid var(--b);
+  border-radius: 16px;
+  padding: 15px;
+  max-width: 600px;
+  margin: 12px auto;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
+}
+.si-head {
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1.5px dashed var(--b);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.si-head b { font-size: 16px; color: var(--p); font-weight: 900; }
+.si-head span { font-size: 12px; color: var(--m); font-weight: 600; }
+.si-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--b);
+  font-size: 13px;
+  gap: 10px;
+}
