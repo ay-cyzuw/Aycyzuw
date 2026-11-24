@@ -29,21 +29,36 @@
 <main class="container">
   <section class="sec act" id="s-home">
     <div id="homeTopBlocks">
-      <div class="quick-cats">
+           <div class="quick-cats">
         <div class="qcat-item" onclick="filterByCat('Ofis','')">
-          <div class="qcat-box qc-blue">🗂️</div>
+          <div class="qcat-box qc-blue">
+            <img src="img/q-ofis.png" alt="Ofis" style="width:38px;height:38px;object-fit:contain;" onerror="this.style.display='none';this.nextElementSibling.style.display='inline';">
+            <span style="display:none;">🗂️</span>
+          </div>
           <span data-tk="Ofis" data-ru="Офис">Ofis</span>
         </div>
+
         <div class="qcat-item" onclick="filterByCat('Torba','')">
-          <div class="qcat-box qc-purple">🎒</div>
+          <div class="qcat-box qc-purple">
+            <img src="img/q-mekdep.png" alt="Mekdep" style="width:38px;height:38px;object-fit:contain;" onerror="this.style.display='none';this.nextElementSibling.style.display='inline';">
+            <span style="display:none;">🎒</span>
+          </div>
           <span data-tk="Mekdep" data-ru="Школа">Mekdep</span>
         </div>
+
         <div class="qcat-item" onclick="filterByCat('Döredijilik','')">
-          <div class="qcat-box qc-green">🎨</div>
+          <div class="qcat-box qc-green">
+            <img src="img/q-doredijilik.png" alt="Döredijilik" style="width:38px;height:38px;object-fit:contain;" onerror="this.style.display='none';this.nextElementSibling.style.display='inline';">
+            <span style="display:none;">🎨</span>
+          </div>
           <span data-tk="Döredijilik" data-ru="Творчество">Döredijilik</span>
         </div>
+
         <div class="qcat-item" onclick="filterByCat('Kitap','')">
-          <div class="qcat-box qc-orange">📚</div>
+          <div class="qcat-box qc-orange">
+            <img src="img/q-kitaplar.png" alt="Kitaplar" style="width:38px;height:38px;object-fit:contain;" onerror="this.style.display='none';this.nextElementSibling.style.display='inline';">
+            <span style="display:none;">📚</span>
+          </div>
           <span data-tk="Kitaplar" data-ru="Книги">Kitaplar</span>
         </div>
       </div>
