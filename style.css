@@ -58,7 +58,6 @@ body {
 .sec { display: none; padding: 14px 15px 110px; }
 .sec.act { display: block; }
 
-/* Ynamdar stili: 4 sany tiz geçiş kartoçkasy */
 .quick-cats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 14px; }
 .qcat-item { text-align: center; cursor: pointer; }
 .qcat-box { width: 100%; aspect-ratio: 1/1; max-height: 76px; margin: 0 auto 6px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06); transition: transform 0.15s; }
@@ -92,18 +91,16 @@ body {
 
 .stitle { font-size: 18px; font-weight: 800; margin: 10px 0 12px; display: flex; justify-content: space-between; align-items: center; }
 
-/* Ynamdar stili: Tegelek brendler */
 .brand-circles { display: flex; gap: 12px; overflow-x: auto; padding: 4px 2px 12px; margin-bottom: 10px; scrollbar-width: none; }
 .brand-circles::-webkit-scrollbar { display: none; }
 .bcircle-item { display: flex; flex-direction: column; align-items: center; gap: 6px; min-width: 76px; cursor: pointer; flex-shrink: 0; }
-/* Tegelek brendler (tegelegiň içini doly doldurýar) */
 .bcircle-ring {
   width: 68px;
   height: 68px;
   border-radius: 50%;
   background: #fff;
   border: 2px solid var(--p);
-  padding: 0;
+  padding: 6px;
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -111,35 +108,19 @@ body {
   box-shadow: 0 4px 10px rgba(19, 102, 158, 0.12);
   transition: transform 0.15s;
 }
-.bcircle-ring img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-  display: block;
-}
+.bcircle-item:active .bcircle-ring { transform: scale(0.94); }
+.bcircle-ring img { width: 100%; height: 100%; object-fit: contain; border-radius: 50%; display: block; }
+.bcircle-txt { font-size: 11px; font-weight: 900; color: var(--p); text-align: center; line-height: 1.1; }
+.bcircle-lbl { font-size: 11px; font-weight: 700; color: var(--t); text-align: center; max-width: 76px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-/* Meşhur brendler kartlary (ýokarky bölegi doly doldurýar) */
-.vip-top {
-  height: 74px;
-  background: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  overflow: hidden;
-  position: relative;
-}
-.vip-top img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-.vip-badge { position: absolute; top: 6px; left: 6px; background: rgba(19, 102, 158, 0.12); color: var(--p); font-size: 10px; font-weight: 900; padding: 2px 5px; border-radius: 6px; }
-.vip-bot { background: linear-gradient(135deg, var(--p), #1e88c9); color: #fff; text-align: center; padding: 7px 6px; font-size: 12px; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.vip-brands { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 18px; }
+.vip-card { background: var(--c); border: 1px solid var(--b); border-radius: 14px; overflow: hidden; cursor: pointer; box-shadow: 0 3px 10px rgba(15, 23, 42, 0.05); transition: transform 0.15s; }
+.vip-card:hover { transform: translateY(-2px); border-color: var(--p); }
+.vip-top { height: 70px; background: #fff; display: flex; align-items: center; justify-content: center; padding: 10px; position: relative; overflow: hidden; }
+.vip-top img { max-height: 100%; max-width: 100%; object-fit: contain; display: block; }
+.vip-badge { position: absolute; top: 5px; left: 5px; background: rgba(19, 102, 158, 0.1); color: var(--p); font-size: 9px; font-weight: 900; padding: 2px 5px; border-radius: 5px; }
+.vip-bot { background: linear-gradient(135deg, var(--p), #1e88c9); color: #fff; text-align: center; padding: 6px; font-size: 11.5px; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-/* 5-nji suratdaky ýaly reňkli kategoriýa kartlary */
 .cat-colorful-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
 .ccol-card { border-radius: 18px; padding: 14px; height: 128px; position: relative; overflow: hidden; cursor: pointer; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08); transition: transform 0.15s; }
 .ccol-card:active { transform: scale(0.97); }
@@ -228,7 +209,6 @@ body {
 .pitem-l svg { width: 19px; height: 19px; stroke: var(--p); fill: none; stroke-width: 2; }
 .pitem:last-child { border-bottom: none; }
 
-/* 8-nji suratdaky ýaly boş sebet görnüşi */
 .empty-box { text-align: center; padding: 65px 20px; color: var(--m); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; }
 .empty-box svg { width: 95px; height: 95px; opacity: 0.85; }
 .empty-box p { font-size: 16px; font-weight: 700; color: var(--m); }
