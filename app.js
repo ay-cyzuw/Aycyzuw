@@ -754,7 +754,56 @@ function updCart() {
     document.getElementById("invGrand").innerText = grandTot.toFixed(2) + " m";
   }
 }
-/* === APP.JS — 6A BÖLEK === */
+/* === APP.JS — 6A BÖLEK (TÄZELENEN) === */
+function toggleCityDrop(e) {
+  if (e) e.stopPropagation();
+  var w = document.getElementById("cityDropWrap");
+  if (w) w.classList.toggle("open");
+}
+
+function selectCityOpt(val, el) {
+  var inp = document.getElementById("citySel");
+  var txt = document.getElementById("cityDropText");
+  var wrap = document.getElementById("cityDropWrap");
+  if (inp) inp.value = val;
+  if (txt && el) {
+    var sp = el.querySelector("span");
+    txt.innerText = sp ? sp.innerText : el.innerText;
+  }
+  var opts = document.querySelectorAll("#cityDropList .csel-opt");
+  for (var i = 0; i < opts.length; i++) opts[i].classList.remove("act");
+  if (el) el.classList.add("act");
+  if (wrap) wrap.classList.remove("open");
+  updCart();
+}
+
+document.addEventListener("click", function (e) {
+  var wrap = document.getElementById("cityDropWrap");
+  if (wrap && !wrap.contains(e.target)) wrap.classList.remove("open");
+});
+
+function validateTmPhone(forceShow) {
+  var inp = document.getElementById("ph");
+  var wrap = document.getElementById("phFieldWrap");
+  if (!inp || !wrap) return false;
+  var raw = inp.value.replace(/\D/g, "");
+  if (raw.indexOf("993") === 0 && raw.length > 8) raw = raw.slice(3);
+  if (raw.length > 8) raw = raw.slice(0, 8);
+  inp.value = raw.length > 2 ? (raw.slice(0, 2) + " " + raw.slice(2)) : raw;
+
+  var isValid = /^(61|62|63|64|65|71)\d{6}$/.test(raw);
+  if (raw.length === 0 && !forceShow) {
+    wrap.classList.remove("invalid");
+    return false;
+  }
+  if (!isValid) {
+    wrap.classList.add("invalid");
+    return false;
+  }
+  wrap.classList.remove("invalid");
+  return true;
+}
+
 function showTab(t) {
   var s = document.querySelectorAll(".sec"), n = document.querySelectorAll(".nbtn");
   for (var i = 0; i < s.length; i++) s[i].classList.remove("act");
@@ -771,6 +820,7 @@ function setL(l) {
   for (var i = 0; i < els.length; i++) els[i].innerText = els[i].getAttribute("data-" + l);
   document.getElementById("q").placeholder = l === "tk" ? "Haryt ady boýunça gözleg..." : "Поиск товара...";
   initF(); render(); updCart();
+  if (typeof updShopStatus === "function") updShopStatus();
   showToast(l === "tk" ? "🇹🇲 Dil: Türkmençe" : "🇷🇺 Язык: Русский");
 }
 
@@ -789,7 +839,10 @@ document.getElementById("btnClearCart").onclick = function () {
 };
 document.getElementById("btnOpenCheckout").onclick = function () {
   if (userAddr.nm && !document.getElementById("nm").value) document.getElementById("nm").value = userAddr.nm;
-  if (userAddr.ph && !document.getElementById("ph").value) document.getElementById("ph").value = userAddr.ph;
+  if (userAddr.ph && !document.getElementById("ph").value) {
+    document.getElementById("ph").value = userAddr.ph;
+    validateTmPhone(false);
+  }
   if (userAddr.ad && !document.getElementById("ad").value) document.getElementById("ad").value = userAddr.ad;
   updCart();
   document.getElementById("chkPage").classList.add("open");
@@ -833,13 +886,19 @@ document.getElementById("btnImport").onclick = function () {
 
 document.getElementById("btnOrd").onclick = function () {
   var nm = document.getElementById("nm").value.trim();
-  var ph = document.getElementById("ph").value.trim();
   var ad = document.getElementById("ad").value.trim();
   var nt = document.getElementById("nt").value.trim();
-  if (!nm || !ph || !ad) {
-    showToast(lang === "tk" ? "⚠️ Adyňyzy, telefonyňyzy we salgyňyzy ýazyň!" : "⚠️ Заполните имя, телефон и адрес!");
+  var phOk = validateTmPhone(true);
+  if (!nm || !ad) {
+    showToast(lang === "tk" ? "⚠️ Adyňyzy we salgyňyzy ýazyň!" : "⚠️ Заполните имя и адрес!");
     return;
   }
+  if (!phOk) {
+    showToast(lang === "tk" ? "⚠️ Dogry telefon belgi giriziň!" : "⚠️ Введите правильный номер телефона!");
+    document.getElementById("ph").focus();
+    return;
+  }
+  var ph = "+993 " + document.getElementById("ph").value.trim();
 
   var btn = this; btn.disabled = true; btn.innerText = lang === "tk" ? "Iberilýär..." : "Отправка...";
   var cleanDet = "", subTot = 0, mailItems = [];
@@ -859,7 +918,8 @@ document.getElementById("btnOrd").onclick = function () {
 
   var cityEl = document.getElementById("citySel");
   var cityVal = cityEl ? cityEl.value : "arkadag";
-  var cityLabel = (cityEl && cityEl.selectedIndex >= 0) ? cityEl.options[cityEl.selectedIndex].text.split("(")[0].trim() : "Arkadag şäheri";
+  var cityNames = { arkadag: "Arkadag şäheri", gokdepe: "Gökdepe", ashgabat: "Aşgabat şäheri", anew: "Änew", baherden: "Bäherden" };
+  var cityLabel = cityNames[cityVal] || "Arkadag şäheri";
   var delivCost = 0;
   if (subTot > 0) {
     if (cityVal === "arkadag") delivCost = subTot >= 200 ? 0 : 10;
@@ -897,14 +957,14 @@ document.getElementById("btnOrd").onclick = function () {
       totStr: totStr
     })
   }).catch(function () {}).finally(function () {
-    btn.disabled = false; btn.innerText = lang === "tk" ? "✅ Sargydy tassykla" : "✅ Подтвердить заказ";
+    btn.disabled = false; btn.innerText = lang === "tk" ? "✅ Sargyt et" : "✅ Оформить заказ";
     document.getElementById("chkPage").classList.remove("open");
     cart = []; updCart(); render();
     showToast(lang === "tk" ? "✅ Sargydyňyz kabul edildi! (Faktura № " + invNo + ")" : "✅ Ваш заказ принят! (Фактура № " + invNo + ")");
     showTab("orders");
   });
 };
-/* === APP.JS — 6B BÖLEK === */
+/* === APP.JS — 6B BÖLEK (TÄZELENEN) === */
 document.getElementById("detBack").onclick = function () { document.getElementById("detPage").classList.remove("open"); };
 document.getElementById("logoBtn").onclick = function () {
   taps++; clearTimeout(tt); tt = setTimeout(function () { taps = 0; }, 800);
@@ -988,12 +1048,19 @@ document.getElementById("btnCopyGit").onclick = function () {
   }
 };
 
-var citySelEl = document.getElementById("citySel");
-if (citySelEl) citySelEl.onchange = updCart;
-
 var nbtns = document.querySelectorAll(".nbtn");
 for (var i = 0; i < nbtns.length; i++) nbtns[i].onclick = function () { showTab(this.getAttribute("data-t")); };
 var clsBtns = document.querySelectorAll(".cls");
 for (var j = 0; j < clsBtns.length; j++) clsBtns[j].onclick = function () { document.getElementById(this.getAttribute("data-m")).classList.remove("open"); };
 
-initF(); render(); updCart();
+function updShopStatus() {
+  var b = document.getElementById("shopStatusBadge");
+  if (!b) return;
+  var h = new Date().getHours();
+  var isOpen = (h >= 9 && h < 21);
+  b.classList.toggle("closed", !isOpen);
+  b.innerText = isOpen ? (lang === "tk" ? "Açyk" : "Открыто") : (lang === "tk" ? "Ýapyk" : "Закрыто");
+}
+
+initF(); render(); updCart(); updShopStatus();
+setInterval(updShopStatus, 60000);

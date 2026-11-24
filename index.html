@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>AÝ-ÇYZUW — Kanselýariýa we Okuw Esbaplary</title>
-  <link rel="stylesheet" href="style.css?v=11">
+  <link rel="stylesheet" href="style.css?v=15">
 </head>
 <body>
 
@@ -156,20 +156,20 @@
 
       <div style="margin-bottom:12px">
         <label class="flabel" data-tk="Eltip bermek üçin şäheri saýlaň:" data-ru="Выберите город доставки:">Eltip bermek üçin şäheri saýlaň:</label>
-        <div class="city-chips" id="cityChips">
-          <button type="button" class="c-chip act" data-val="arkadag" onclick="pickCity('arkadag',this)">Arkadag (mugt / 10 m)</button>
-          <button type="button" class="c-chip" data-val="gokdepe" onclick="pickCity('gokdepe',this)">Gökdepe (50 m)</button>
-          <button type="button" class="c-chip" data-val="ashgabat" onclick="pickCity('ashgabat',this)">Aşgabat (70 m)</button>
-          <button type="button" class="c-chip" data-val="anew" onclick="pickCity('anew',this)">Änew (100 m)</button>
-          <button type="button" class="c-chip" data-val="baherden" onclick="pickCity('baherden',this)">Bäherden (100 m)</button>
+        <div class="csel-wrap" id="cityDropWrap">
+          <button type="button" class="csel-btn" id="cityDropBtn" onclick="toggleCityDrop(event)">
+            <span id="cityDropText">Arkadag şäheri (200 m-den ýokary mugt / 10 m)</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
+          <div class="csel-list" id="cityDropList">
+            <div class="csel-opt act" data-val="arkadag" onclick="selectCityOpt('arkadag',this)"><span>Arkadag şäheri (200 m-den ýokary mugt)</span><b>10 m / 0 m</b></div>
+            <div class="csel-opt" data-val="gokdepe" onclick="selectCityOpt('gokdepe',this)"><span>Gökdepe</span><b>50 m</b></div>
+            <div class="csel-opt" data-val="ashgabat" onclick="selectCityOpt('ashgabat',this)"><span>Aşgabat şäheri</span><b>70 m</b></div>
+            <div class="csel-opt" data-val="anew" onclick="selectCityOpt('anew',this)"><span>Änew</span><b>100 m</b></div>
+            <div class="csel-opt" data-val="baherden" onclick="selectCityOpt('baherden',this)"><span>Bäherden</span><b>100 m</b></div>
+          </div>
         </div>
-        <select id="citySel" style="display:none">
-          <option value="arkadag" selected>Arkadag şäheri (200 m-den ýokary mugt / 10 m)</option>
-          <option value="gokdepe">Gökdepe (50 m)</option>
-          <option value="ashgabat">Aşgabat şäheri (70 m)</option>
-          <option value="anew">Änew (100 m)</option>
-          <option value="baherden">Bäherden (100 m)</option>
-        </select>
+        <input type="hidden" id="citySel" value="arkadag">
       </div>
 
       <div id="clist"></div>
@@ -242,7 +242,7 @@
           <div class="si-brand">AÝ-<span>ÇYZUW</span></div>
           <div class="si-sub" data-tk="Mekdep we ofis harytlary dükany" data-ru="Магазин школьных и офисных товаров">Mekdep we ofis harytlary dükany</div>
         </div>
-        <span class="si-badge" data-tk="Açyk" data-ru="Открыто">Açyk</span>
+        <span class="si-badge" id="shopStatusBadge">Açyk</span>
       </div>
 
       <div class="si-item">
@@ -265,7 +265,7 @@
         <div class="si-ico">🕒</div>
         <div class="si-body">
           <div class="si-lbl" data-tk="Iş wagty" data-ru="Режим работы">Iş wagty</div>
-          <div class="si-val" data-tk="Her gün 09:00 – 20:00 (Dynç günsüz)" data-ru="Ежедневно 09:00 – 20:00 (Без выходных)">Her gün 09:00 – 20:00 (Dynç günsüz)</div>
+          <div class="si-val" data-tk="Her gün 09:00 – 21:00 (Dynç günsüz)" data-ru="Ежедневно 09:00 – 21:00 (Без выходных)">Her gün 09:00 – 21:00 (Dynç günsüz)</div>
         </div>
       </div>
 
@@ -285,7 +285,7 @@
         </div>
       </div>
     </div>
-<!-- === INDEX.HTML — 3A BÖLEK === -->
+<!-- === INDEX.HTML — 3-NJI BÖLEK === -->
     <div class="adm-box" id="adminPanel" style="display:none">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
         <b style="color:var(--p)">⚙️ Admin Panel</b>
@@ -383,21 +383,40 @@
     <div class="sim-scroll" id="detSim"></div>
   </div>
 </div>
-<!-- === INDEX.HTML — 3B BÖLEK === -->
+<!-- === INDEX.HTML — 4-NJI BÖLEK === -->
 <div class="chk-page" id="chkPage">
   <div class="det-top">
     <button class="det-back" id="chkBack">‹</button>
-    <div class="det-title-bar" data-tk="Sargydy tassyklamak" data-ru="Подтверждение заказа">Sargydy tassyklamak</div>
+    <div class="det-title-bar" data-tk="Sargyt et" data-ru="Оформление заказа">Sargyt et</div>
   </div>
 
   <div class="chk-box">
-    <label class="flabel" data-tk="Adyňyz *" data-ru="Ваше имя *">Adyňyz *</label>
-    <input type="text" id="nm" placeholder="Meselem: Aman">
-    <label class="flabel" data-tk="Telefon belgiňiz *" data-ru="Ваш телефон *">Telefon belgiňiz *</label>
-    <input type="tel" id="ph" placeholder="+993 6X XXXXXX">
+    <div class="chk-sec-title" data-tk="Töleg şekili" data-ru="Способ оплаты">Töleg şekili</div>
+    <div class="pay-card">
+      <div>
+        <b data-tk="Nagt" data-ru="Наличными">Nagt</b>
+        <span data-tk="Sargydy alan wagtyňyz nagt hasaplaşmak" data-ru="Оплата наличными при получении заказа">Sargydy alan wagtyňyz nagt hasaplaşmak</span>
+      </div>
+      <div class="radio-dot"></div>
+    </div>
+  </div>
+
+  <div class="chk-box">
+    <label class="flabel" data-tk="Doly adyňyz *" data-ru="Ваше полное имя *">Doly adyňyz *</label>
+    <input type="text" id="nm" placeholder="Meselem: Aman Amanow">
+
+    <label class="flabel" data-tk="Telefon belgiňiz *" data-ru="Ваш номер телефона *">Telefon belgiňiz *</label>
+    <div class="ph-field" id="phFieldWrap">
+      <span class="ph-prefix">+993</span>
+      <input type="tel" id="ph" maxlength="9" placeholder="65 637644" oninput="validateTmPhone(false)">
+      <span class="ph-err-ico" id="phErrIco">!</span>
+    </div>
+    <div class="ph-err-txt" id="phErrTxt" data-tk="Dogry telefon belgi girizmegiňizi haýyş edýäris! (6x xxxxxx)" data-ru="Пожалуйста, введите правильный номер телефона! (6x xxxxxx)">Dogry telefon belgi girizmegiňizi haýyş edýäris! (6x xxxxxx)</div>
+
     <label class="flabel" data-tk="Salgyňyz (köçe, jaý, öý) *" data-ru="Адрес (улица, дом, кв.) *">Salgyňyz (köçe, jaý, öý) *</label>
     <input type="text" id="ad" placeholder="Köçe, jaý, öý belgisi...">
-    <label class="flabel" data-tk="Goşmaça bellik" data-ru="Комментарий к заказу">Goşmaça bellik</label>
+
+    <label class="flabel" data-tk="Bellik" data-ru="Примечание">Bellik</label>
     <input type="text" id="nt" placeholder="Islege görä...">
   </div>
 
@@ -415,12 +434,11 @@
     <div class="inv-row"><span data-tk="Harytlar:" data-ru="Товары:">Harytlar:</span><b id="invSub">0.00 m</b></div>
     <div class="inv-row"><span data-tk="Eltip bermek:" data-ru="Доставка:">Eltip bermek:</span><b id="invDel">0.00 m</b></div>
     <div class="inv-row grand"><span data-tk="JEMI TÖLEG:" data-ru="ИТОГО:">JEMI TÖLEG:</span><span id="invGrand">0.00 m</span></div>
-    <div class="inv-foot-note" data-tk="Töleg haryt gowşurylanda nagt görnüşinde kabul edilýär" data-ru="Оплата наличными при получении заказа">Töleg haryt gowşurylanda nagt görnüşinde kabul edilýär</div>
   </div>
 
   <div class="chk-foot">
     <div style="max-width:560px;margin:0 auto">
-      <button class="btn1" id="btnOrd" data-tk="✅ Sargydy tassykla" data-ru="✅ Подтвердить заказ">✅ Sargydy tassykla</button>
+      <button class="btn1" id="btnOrd" data-tk="✅ Sargyt et" data-ru="✅ Оформить заказ">✅ Sargyt et</button>
     </div>
   </div>
 </div>
@@ -482,7 +500,7 @@
   <div class="mbox">
     <b style="display:block;margin-bottom:8px;font-size:16px" data-tk="Hemişelik salgym" data-ru="Мой адрес">Hemişelik salgym</b>
     <input type="text" id="svNm" placeholder="Adyňyz">
-    <input type="tel" id="svPh" placeholder="Telefon belgiňiz">
+    <input type="tel" id="svPh" placeholder="65 637644">
     <input type="text" id="svAd" placeholder="Salgyňyz">
     <button class="btn1" id="btnSaveAddr" data-tk="Ýatda sakla" data-ru="Сохранить">Ýatda sakla</button>
     <button class="btn2 cls" data-m="addrModal" data-tk="Ýap" data-ru="Закрыть">Ýap</button>
@@ -505,19 +523,7 @@
 
 <div class="toast-msg" id="toastBox"></div>
 
-<script>
-function pickCity(val, el) {
-  var sel = document.getElementById("citySel");
-  if (sel) {
-    sel.value = val;
-    if (typeof updCart === "function") updCart();
-  }
-  var btns = document.querySelectorAll("#cityChips .c-chip");
-  for (var i = 0; i < btns.length; i++) btns[i].classList.remove("act");
-  if (el) el.classList.add("act");
-}
-</script>
-<script src="baza.js?v=11"></script>
-<script src="app.js?v=11"></script>
+<script src="baza.js?v=15"></script>
+<script src="app.js?v=15"></script>
 </body>
 </html>
