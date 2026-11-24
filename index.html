@@ -17,37 +17,11 @@
         <div id="logoTxt">AÝ-<span>ÇYZUW</span></div>
       </div>
 
-      <div class="hdr-nav-btns">
-        <button class="mega-btn" id="btnMegaCat">
-          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-          <span data-tk="Kategoriýalar" data-ru="Категории">Kategoriýalar</span>
-        </button>
-        <button class="mega-btn" id="btnMegaBrand">
-          <svg viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
-          <span data-tk="Brendler" data-ru="Бренды">Brendler</span>
-        </button>
-      </div>
-<!-- === INDEX.HTML — 2-NJI BÖLEK === -->
       <div class="sbox desktop-search" id="searchBoxMain">
         <input type="text" id="q" placeholder="Haryt ady boýunça gözleg...">
         <span class="clr-q" id="clrQ">✕</span>
         <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
       </div>
-
-      <div class="top-r">
-        <div class="lsw">
-          <div class="lopt act" id="ltm">TM</div>
-          <div class="lopt" id="lru">RU</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="mega-drop" id="megaDrop">
-      <div class="mega-head">
-        <b id="megaTitle">Kategoriýalar</b>
-        <button class="citem-del" id="closeMega">✕</button>
-      </div>
-      <div id="megaBody"></div>
     </div>
   </div>
 </header>
@@ -55,6 +29,25 @@
 <main class="container">
   <section class="sec act" id="s-home">
     <div id="homeTopBlocks">
+      <div class="quick-cats">
+        <div class="qcat-item" onclick="filterByCat('Ofis','')">
+          <div class="qcat-box qc-blue">🗂️</div>
+          <span data-tk="Ofis" data-ru="Офис">Ofis</span>
+        </div>
+        <div class="qcat-item" onclick="filterByCat('Torba','')">
+          <div class="qcat-box qc-purple">🎒</div>
+          <span data-tk="Mekdep" data-ru="Школа">Mekdep</span>
+        </div>
+        <div class="qcat-item" onclick="filterByCat('Döredijilik','')">
+          <div class="qcat-box qc-green">🎨</div>
+          <span data-tk="Döredijilik" data-ru="Творчество">Döredijilik</span>
+        </div>
+        <div class="qcat-item" onclick="filterByCat('Kitap','')">
+          <div class="qcat-box qc-orange">📚</div>
+          <span data-tk="Kitaplar" data-ru="Книги">Kitaplar</span>
+        </div>
+      </div>
+
       <div class="hero-grid">
         <div class="slider" onclick="goSlide((curSlide+1)%3)">
           <div class="slides" id="slideTrack">
@@ -86,7 +79,7 @@
             <span class="sdot" onclick="event.stopPropagation();goSlide(2)"></span>
           </div>
         </div>
-<!-- === INDEX.HTML — 3-NJI BÖLEK === -->
+
         <div class="side-banners">
           <div class="sbanner sb-1" onclick="filterByCat('Torba','')">
             <img src="img/sb1.jpg" alt="" onerror="this.style.display='none'">
@@ -105,18 +98,14 @@
         </div>
       </div>
 
-      <div class="stitle">
-        <span data-tk="Kategoriýalar" data-ru="Категории">Kategoriýalar</span>
-        <span class="all" onclick="showTab('menu')" data-tk="Ählisi ›" data-ru="Все ›">Ählisi ›</span>
-      </div>
-      <div class="cgrid" id="cgrid1"></div>
+      <div class="brand-circles" id="brandCirclesRow"></div>
 
       <div class="stitle" id="homeBrandTitle">
         <span data-tk="Meşhur brendler" data-ru="Популярные бренды">Meşhur brendler</span>
       </div>
-      <div class="brand-strip" id="homeBrandStrip"></div>
+      <div class="vip-brands" id="homeVipBrands"></div>
     </div>
-
+<!-- === INDEX.HTML — 2-NJI BÖLEK === -->
     <div class="cat-banner" id="catBanner">
       <div class="cat-banner-l" id="catBannerTitle"></div>
       <button class="ctrl-btn" id="btnExitCat" data-tk="✕ Arassala" data-ru="✕ Сбросить">✕ Arassala</button>
@@ -146,13 +135,9 @@
       <button class="btn2" id="btnLoadMore">Ýene görkez</button>
     </div>
   </section>
-<!-- === INDEX.HTML — 4-NJI BÖLEK === -->
-  <section class="sec" id="s-menu">
-    <div class="stitle"><span data-tk="Ähli kategoriýalar" data-ru="Все категории">Ähli kategoriýalar</span></div>
-    <div class="cgrid" id="cgrid2"></div>
 
-    <div class="stitle" id="menuBrandTitle"><span data-tk="Brendler" data-ru="Бренды">Brendler</span></div>
-    <div class="mega-brand-grid" id="menuBrandGrid"></div>
+  <section class="sec" id="s-menu">
+    <div class="cat-colorful-grid" id="cgrid2"></div>
   </section>
 
   <section class="sec" id="s-cart">
@@ -196,14 +181,14 @@
       <button class="btn1" id="btnOpenCheckout" style="margin-top:12px" data-tk="Sargydy resmileşdir ›" data-ru="Оформить заказ ›">Sargydy resmileşdir ›</button>
     </div>
   </section>
-<!-- === INDEX.HTML — 5-NJI BÖLEK === -->
+
   <section class="sec" id="s-fav">
     <div class="stitle"><span data-tk="Halanan harytlar" data-ru="Избранные товары">Halanan harytlar</span></div>
     <div class="pgrid" id="fgrid"></div>
   </section>
 
   <section class="sec" id="s-prof">
-    <div class="stitle"><span data-tk="Şahsy otag" data-ru="Личный кабинет">Şahsy otag</span></div>
+    <div class="stitle"><span data-tk="Profil" data-ru="Профиль">Profil</span></div>
     <div class="plist">
       <div class="pitem" id="goOrd">
         <div class="pitem-l">
@@ -248,7 +233,7 @@
         <span>›</span>
       </div>
     </div>
-<!-- === INDEX.HTML — 6-NJY BÖLEK === -->
+<!-- === INDEX.HTML — 3A BÖLEK === -->
     <div class="adm-box" id="adminPanel" style="display:none">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
         <b style="color:var(--p)">⚙️ Admin Panel</b>
@@ -296,8 +281,8 @@
     <span data-tk="Baş sahypa" data-ru="Главная">Baş sahypa</span>
   </button>
   <button class="nbtn" data-t="menu">
-    <svg viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-    <span data-tk="Katalog" data-ru="Каталог">Katalog</span>
+    <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+    <span data-tk="Kategoriýalar" data-ru="Категории">Kategoriýalar</span>
   </button>
   <button class="nbtn" data-t="cart" id="navCartBtn">
     <span class="cbdg" id="cnt">0</span>
@@ -313,7 +298,7 @@
     <span data-tk="Profil" data-ru="Профиль">Profil</span>
   </button>
 </nav>
-<!-- === INDEX.HTML — 7-NJI BÖLEK === -->
+
 <div class="det-page" id="detPage">
   <div class="det-top">
     <button class="det-back" id="detBack">‹</button>
@@ -346,7 +331,7 @@
     <div class="sim-scroll" id="detSim"></div>
   </div>
 </div>
-
+<!-- === INDEX.HTML — 3B BÖLEK === -->
 <div class="chk-page" id="chkPage">
   <div class="det-top">
     <button class="det-back" id="chkBack">‹</button>
@@ -387,7 +372,7 @@
     </div>
   </div>
 </div>
-<!-- === INDEX.HTML — 8-NJI BÖLEK === -->
+
 <div class="modal" id="qtyModal">
   <div class="mbox">
     <b id="qtyItemTitle" style="display:block;margin-bottom:8px;font-size:14px"></b>

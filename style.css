@@ -49,41 +49,25 @@ body {
 .brand span { color: var(--a); }
 .brand img { height: 36px; max-width: 155px; object-fit: contain; border-radius: 4px; display: none; }
 
-.hdr-nav-btns { display: flex; gap: 6px; }
-.mega-btn { display: flex; align-items: center; gap: 6px; background: var(--g); border: 1px solid var(--b); color: var(--t); padding: 8px 12px; border-radius: 10px; font-size: 13px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
-.mega-btn svg { width: 16px; height: 16px; stroke: var(--p); fill: none; stroke-width: 2.2; }
-.mega-btn.act, .mega-btn:hover { background: var(--p); color: #fff; border-color: var(--p); }
-.mega-btn.act svg, .mega-btn:hover svg { stroke: #fff; }
-
-.sbox { display: flex; align-items: center; gap: 8px; background: var(--g); padding: 0 12px; border-radius: 11px; height: 40px; border: 1.5px solid transparent; flex: 1; min-width: 220px; }
+.sbox { display: flex; align-items: center; gap: 8px; background: var(--g); padding: 0 12px; border-radius: 12px; height: 42px; border: 1.5px solid transparent; flex: 1; min-width: 220px; }
 .sbox:focus-within { border-color: var(--p); background: var(--c); }
 .sbox svg { width: 18px; height: 18px; stroke: var(--m); fill: none; stroke-width: 2; flex-shrink: 0; }
 .sbox input { flex: 1; background: none; border: none; outline: none; font-size: 14px; color: var(--t); margin: 0; padding: 0; }
 .clr-q { color: var(--m); font-size: 15px; cursor: pointer; display: none; padding: 0 4px; }
 
-.top-r { display: flex; align-items: center; gap: 8px; }
-.lsw { display: flex; background: var(--g); padding: 3px; border-radius: 9px; }
-.lopt { padding: 4px 9px; border-radius: 7px; font-size: 11.5px; font-weight: 700; cursor: pointer; color: var(--m); }
-.lopt.act { background: var(--p); color: #fff; }
-/* === STYLE.CSS — 2-NJI BÖLEK === */
-.mega-drop { display: none; position: absolute; left: 15px; right: 15px; top: 100%; background: var(--c); border: 1px solid var(--b); border-radius: 16px; box-shadow: 0 15px 35px rgba(15, 23, 42, 0.14); padding: 16px; z-index: 40; max-height: 72vh; overflow-y: auto; }
-.mega-drop.open { display: block; }
-.mega-head { display: flex; justify-content: space-between; align-items: center; padding-bottom: 10px; margin-bottom: 12px; border-bottom: 1px solid var(--b); font-size: 16px; color: var(--p); }
-.mega-cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; }
-.mega-cat-card { background: var(--g); border: 1px solid var(--b); border-radius: 12px; padding: 12px; }
-.mega-cat-title { font-size: 14px; font-weight: 800; color: var(--p); margin-bottom: 8px; cursor: pointer; display: flex; align-items: center; gap: 6px; }
-.mega-sub-list { display: flex; flex-direction: column; gap: 5px; }
-.mega-sub-item { font-size: 12.5px; color: var(--t); cursor: pointer; padding: 3px 0; }
-.mega-sub-item:hover { color: var(--p); font-weight: 700; }
-.mega-brand-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 10px; }
-.mbrand-card { background: #fff; border: 1px solid var(--b); border-radius: 12px; padding: 12px 8px; text-align: center; cursor: pointer; transition: transform 0.15s, border-color 0.15s; }
-.mbrand-card:hover { border-color: var(--p); transform: translateY(-2px); }
-.mbrand-logo { height: 44px; display: flex; align-items: center; justify-content: center; margin-bottom: 6px; font-weight: 900; font-size: 14px; color: var(--p); }
-.mbrand-logo img { max-height: 100%; max-width: 100%; object-fit: contain; }
-.mbrand-card span { font-size: 12px; font-weight: 700; color: #0f172a; }
-
 .sec { display: none; padding: 14px 15px 110px; }
 .sec.act { display: block; }
+
+/* Ynamdar stili: 4 sany tiz geçiş kartoçkasy */
+.quick-cats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 14px; }
+.qcat-item { text-align: center; cursor: pointer; }
+.qcat-box { width: 100%; aspect-ratio: 1/1; max-height: 76px; margin: 0 auto 6px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 30px; box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06); transition: transform 0.15s; }
+.qcat-item:active .qcat-box { transform: scale(0.95); }
+.qc-blue { background: linear-gradient(135deg, #e0f2fe, #bae6fd); }
+.qc-purple { background: linear-gradient(135deg, #f3e8ff, #e9d5ff); }
+.qc-green { background: linear-gradient(135deg, #dcfce7, #bbf7d0); }
+.qc-orange { background: linear-gradient(135deg, #ffedd5, #fed7aa); }
+.qcat-item span { font-size: 12px; font-weight: 700; color: var(--t); display: block; }
 
 .hero-grid { display: grid; grid-template-columns: 2.2fr 1fr; gap: 12px; margin-bottom: 16px; }
 .slider { position: relative; border-radius: 18px; overflow: hidden; aspect-ratio: 16/7.5; background: linear-gradient(125deg, #0b3b66 0%, #13669e 60%, #1e88c9 100%); cursor: pointer; }
@@ -96,7 +80,7 @@ body {
 .sdots { position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%); display: flex; gap: 6px; z-index: 3; background: rgba(0, 0, 0, 0.25); padding: 4px 8px; border-radius: 12px; }
 .sdot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255, 255, 255, 0.5); cursor: pointer; }
 .sdot.act { width: 18px; border-radius: 6px; background: #fff; }
-
+/* === STYLE.CSS — 2-NJI BÖLEK === */
 .side-banners { display: flex; flex-direction: column; gap: 12px; }
 .sbanner { flex: 1; border-radius: 16px; padding: 14px 16px; color: #fff; display: flex; align-items: center; position: relative; overflow: hidden; cursor: pointer; min-height: 85px; }
 .sb-1 { background: linear-gradient(135deg, #13669e 0%, #0284c7 100%); }
@@ -107,15 +91,43 @@ body {
 .sb-txt span { font-size: 12px; opacity: 0.92; }
 
 .stitle { font-size: 18px; font-weight: 800; margin: 10px 0 12px; display: flex; justify-content: space-between; align-items: center; }
-.all { font-size: 13px; font-weight: 700; color: var(--p); cursor: pointer; }
-.cgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(105px, 1fr)); gap: 10px; margin-bottom: 18px; }
-.ccard { text-align: center; font-size: 12.5px; font-weight: 600; cursor: pointer; }
-.cbox { width: 100%; aspect-ratio: 1/1; background: #fff; border: 1px solid var(--b); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 34px; margin-bottom: 6px; overflow: hidden; transition: transform 0.15s; }
-.ccard:hover .cbox { transform: translateY(-2px); border-color: var(--p); }
-.cbox img { width: 100%; height: 100%; object-fit: contain; padding: 6px; }
-.brand-strip { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 8px; margin-bottom: 16px; scrollbar-width: none; }
-.brand-pill { min-width: 110px; background: #fff; border: 1px solid var(--b); border-radius: 12px; padding: 10px 12px; text-align: center; cursor: pointer; flex-shrink: 0; font-weight: 800; font-size: 13px; color: #0f172a; }
-.brand-pill:hover { border-color: var(--p); color: var(--p); }
+
+/* Ynamdar stili: Tegelek brendler */
+.brand-circles { display: flex; gap: 12px; overflow-x: auto; padding: 4px 2px 12px; margin-bottom: 10px; scrollbar-width: none; }
+.brand-circles::-webkit-scrollbar { display: none; }
+.bcircle-item { display: flex; flex-direction: column; align-items: center; gap: 6px; min-width: 76px; cursor: pointer; flex-shrink: 0; }
+.bcircle-ring { width: 68px; height: 68px; border-radius: 50%; background: #fff; border: 2px solid var(--p); padding: 4px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(19, 102, 158, 0.12); transition: transform 0.15s; }
+.bcircle-item:active .bcircle-ring { transform: scale(0.94); }
+.bcircle-ring img { width: 100%; height: 100%; object-fit: contain; border-radius: 50%; }
+.bcircle-txt { font-size: 11px; font-weight: 900; color: var(--p); text-align: center; line-height: 1.1; }
+.bcircle-lbl { font-size: 11px; font-weight: 700; color: var(--t); text-align: center; max-width: 76px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* Meşhur brendler kartlary */
+.vip-brands { display: grid; grid-template-columns: repeat(auto-fill, minmax(112px, 1fr)); gap: 10px; margin-bottom: 18px; }
+.vip-card { background: var(--c); border: 1px solid var(--b); border-radius: 16px; overflow: hidden; cursor: pointer; box-shadow: 0 3px 10px rgba(15, 23, 42, 0.04); transition: transform 0.15s; }
+.vip-card:hover { transform: translateY(-2px); border-color: var(--p); }
+.vip-top { height: 74px; background: #fff; display: flex; align-items: center; justify-content: center; padding: 8px; position: relative; }
+.vip-top img { max-height: 100%; max-width: 100%; object-fit: contain; }
+.vip-badge { position: absolute; top: 6px; left: 6px; background: rgba(19, 102, 158, 0.12); color: var(--p); font-size: 10px; font-weight: 900; padding: 2px 5px; border-radius: 6px; }
+.vip-bot { background: linear-gradient(135deg, var(--p), #1e88c9); color: #fff; text-align: center; padding: 7px 6px; font-size: 12px; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* 5-nji suratdaky ýaly reňkli kategoriýa kartlary */
+.cat-colorful-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.ccol-card { border-radius: 18px; padding: 14px; height: 128px; position: relative; overflow: hidden; cursor: pointer; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08); transition: transform 0.15s; }
+.ccol-card:active { transform: scale(0.97); }
+.ccol-title { font-size: 15px; font-weight: 800; color: #fff; z-index: 2; max-width: 72%; line-height: 1.25; text-shadow: 0 1px 4px rgba(0, 0, 0, 0.25); }
+.ccol-img { position: absolute; right: -6px; bottom: -6px; width: 92px; height: 92px; object-fit: contain; border-radius: 14px; z-index: 1; background: rgba(255, 255, 255, 0.92); padding: 6px; box-shadow: -4px -4px 14px rgba(0, 0, 0, 0.12); }
+.ccol-ico { position: absolute; right: 12px; bottom: 10px; font-size: 46px; z-index: 1; opacity: 0.95; }
+
+.grad-0 { background: linear-gradient(135deg, #0284c7, #38bdf8); }
+.grad-1 { background: linear-gradient(135deg, #e11d48, #fb7185); }
+.grad-2 { background: linear-gradient(135deg, #d97706, #fbbf24); }
+.grad-3 { background: linear-gradient(135deg, #2563eb, #60a5fa); }
+.grad-4 { background: linear-gradient(135deg, #059669, #34d399); }
+.grad-5 { background: linear-gradient(135deg, #7c3aed, #a78bfa); }
+.grad-6 { background: linear-gradient(135deg, #db2777, #f472b6); }
+.grad-7 { background: linear-gradient(135deg, #ea580c, #fb923c); }
+.grad-8 { background: linear-gradient(135deg, #0d9488, #2dd4bf); }
 /* === STYLE.CSS — 3-NJI BÖLEK === */
 .cat-banner { background: var(--c); border: 1px solid var(--b); border-radius: 12px; padding: 10px 14px; margin-bottom: 12px; display: none; justify-content: space-between; align-items: center; }
 .cat-banner-l { font-weight: 800; font-size: 15px; color: var(--p); }
@@ -187,7 +199,12 @@ body {
 .pitem-l { display: flex; align-items: center; gap: 10px; font-weight: 600; }
 .pitem-l svg { width: 19px; height: 19px; stroke: var(--p); fill: none; stroke-width: 2; }
 .pitem:last-child { border-bottom: none; }
-.empty-box { text-align: center; padding: 40px 20px; color: var(--m); }
+
+/* 8-nji suratdaky ýaly boş sebet görnüşi */
+.empty-box { text-align: center; padding: 65px 20px; color: var(--m); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; }
+.empty-box svg { width: 95px; height: 95px; opacity: 0.85; }
+.empty-box p { font-size: 16px; font-weight: 700; color: var(--m); }
+
 .adm-box { background: var(--c); border: 1.5px solid var(--p); border-radius: 14px; padding: 15px; max-width: 600px; margin: 12px auto 0; }
 .adm-row { display: flex; justify-content: space-between; align-items: center; padding: 7px 0; border-bottom: 1px solid var(--b); font-size: 12.5px; }
 
@@ -221,7 +238,7 @@ select, textarea, input { width: 100%; padding: 11px; border: 1px solid var(--b)
 .nbtn.act { color: var(--p); font-weight: 700; }
 .nbtn svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 1.8; margin-bottom: 3px; }
 .cbdg { position: absolute; top: -2px; right: 25%; background: var(--err); color: #fff; font-size: 9px; font-weight: 800; padding: 1px 5px; border-radius: 8px; }
-/* === STYLE.CSS — 5-NJI BÖLEK === */
+
 .det-page { display: none; position: fixed; inset: 0; background: var(--bg); z-index: 45; overflow-y: auto; padding-bottom: 30px; }
 .det-page.open { display: block; }
 .det-top { position: sticky; top: 0; background: var(--c); padding: 10px 14px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--b); z-index: 10; gap: 10px; }

@@ -23,6 +23,7 @@ var hSvg1 = '<svg width="16" height="16" viewBox="0 0 24 24" fill="#f43f5e" stro
 var eyeSvg = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#13669e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>';
 var shSvg = '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>';
 var phSvg = '<div class="p-ph"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>AÝ-ÇYZUW</span></div>';
+var emptyBoxSvg = '<svg viewBox="0 0 64 64" fill="none"><path d="M10 22L32 10L54 22V46L32 58L10 46V22Z" fill="#e2e8f0" stroke="#94a3b8" stroke-width="2"/><path d="M10 22L32 34L54 22" stroke="#94a3b8" stroke-width="2"/><path d="M32 34V58" stroke="#94a3b8" stroke-width="2"/><path d="M21 16L43 28" stroke="#cbd5e1" stroke-width="2"/><rect x="16" y="35" width="8" height="6" rx="1" fill="#f59e0b"/></svg>';
 
 var lImg = document.getElementById("logoImg");
 if (lImg) {
@@ -46,28 +47,30 @@ var cats = [
 ];
 
 var knownBrands = ["Double A", "Dolphin", "Pensan", "Hatber", "CASIO", "Maped", "Faber-Castell", "ErichKrause", "Berlingo", "Koh-i-Noor", "Attache", "Brauberg", "Centrum", "Deli", "Pilot", "Bic"];
-/* === APP.JS — 2-NJI BÖLEK === */
+
 var dictPairs = [
   { ru: "шариковая ручка", tk: "şarikli ruçka" }, { ru: "гелевая ручка", tk: "gelli ruçka" },
   { ru: "простой карандаш", tk: "ýönekeý galam" }, { ru: "цветные карандаши", tk: "reňkli galamlar" },
   { ru: "офисная бумага", tk: "ofis kagyzy" }, { ru: "школьная тетрадь", tk: "mekdep depderi" },
-  { ru: "альбом для рисования", tk: "surat albomy" }, { ru: "тетрадь", tk: "depder" },
+  { ru: "альбом для рисования", tk: "surat albomy" }, { ru: "тетрадь", tk: "depder" }, { ru: "тетрад", tk: "depder" },
   { ru: "ручка", tk: "ruçka" }, { ru: "шариковая", tk: "şarikli" }, { ru: "гелевая", tk: "gelli" },
-  { ru: "карандаш", tk: "galam" }, { ru: "простой", tk: "ýönekeý" }, { ru: "цветные", tk: "reňkli" },
-  { ru: "ластик", tk: "pozgyç" }, { ru: "точилка", tk: "uçlaýjy" }, { ru: "линейка", tk: "çyzgyç" },
+  { ru: "карандаш", tk: "galam" }, { ru: "арандаш", tk: "galam" }, { ru: "простой", tk: "ýönekeý" }, { ru: "цветные", tk: "reňkli" },
+  { ru: "ластик", tk: "pozgyç" }, { ru: "стиралка", tk: "pozgyç" }, { ru: "точилка", tk: "uçlaýjy" }, { ru: "линейка", tk: "çyzgyç" },
   { ru: "циркуль", tk: "sirkul" }, { ru: "маркер", tk: "marker" }, { ru: "бумага", tk: "kagyz" },
-  { ru: "альбом", tk: "albom" }, { ru: "дневник", tk: "gündelik" }, { ru: "блокнот", tk: "bloknot" },
+  { ru: "альбом", tk: "albom" }, { ru: "албом", tk: "albom" }, { ru: "дневник", tk: "gündelik" },
+  { ru: "блокнот", tk: "bloknot" }, { ru: "блакнот", tk: "bloknot" }, { ru: "влокнот", tk: "bloknot" },
   { ru: "папка", tk: "papka" }, { ru: "файл", tk: "faýl" }, { ru: "степлер", tk: "stepler" },
-  { ru: "скобы", tk: "skoba" }, { ru: "ножницы", tk: "gaýçy" }, { ru: "клей", tk: "ýelim" },
-  { ru: "калькулятор", tk: "kalkulýator" }, { ru: "пенал", tk: "penal" }, { ru: "рюкзак", tk: "rukzak" },
-  { ru: "краски", tk: "boýaglar" }, { ru: "акварель", tk: "akwarel" }, { ru: "гуашь", tk: "guaş" },
+  { ru: "скобы", tk: "skoba" }, { ru: "ножницы", tk: "gaýçy" }, { ru: "ножници", tk: "gaýçy" }, { ru: "клей", tk: "ýelim" },
+  { ru: "калькулятор", tk: "kalkulýator" }, { ru: "калкулятор", tk: "kalkulýator" }, { ru: "пенал", tk: "penal" },
+  { ru: "рюкзак", tk: "rukzak" }, { ru: "юкзак", tk: "rukzak" }, { ru: "портфель", tk: "portfel" }, { ru: "портфел", tk: "portfel" },
+  { ru: "краски", tk: "boýaglar" }, { ru: "акварель", tk: "akwarel" }, { ru: "гуашь", tk: "guaş" }, { ru: "гуаш", tk: "guaş" },
   { ru: "кисть", tk: "çotga" }, { ru: "пластилин", tk: "plastilin" }, { ru: "книга", tk: "kitap" },
   { ru: "скотч", tk: "skoç" }, { ru: "черная", tk: "gara" }, { ru: "синяя", tk: "gök" },
   { ru: "красная", tk: "gyzyl" }, { ru: "зеленая", tk: "ýaşyl" }, { ru: "белая", tk: "ak" },
   { ru: "клетку", tk: "gözenek" }, { ru: "линию", tk: "çyzykly" }, { ru: "лист", tk: "list" },
-  { ru: "набор", tk: "toplum" }, { ru: "стикер", tk: "stiker" }
+  { ru: "набор", tk: "toplum" }, { ru: "стикер", tk: "stiker" }, { ru: "часи", tk: "sagat" }, { ru: "часы", tk: "sagat" }
 ];
-
+/* === APP.JS — 2-NJI BÖLEK === */
 function trText(str, targetLang) {
   if (!str) return "";
   var res = String(str);
@@ -87,25 +90,25 @@ function trText(str, targetLang) {
 function detectCatSub(name) {
   var s = String(name).toLowerCase();
   if (/ручк|ruck|ruçk/.test(s)) return { c: "Ýazuw", sub: /гел|gel/.test(s) ? "Gelli ruçkalar" : "Şarikli ruçkalar" };
-  if (/карандаш|galam/.test(s)) return { c: "Ýazuw", sub: /цвет|reňk/.test(s) ? "Reňkli galamlar" : "Ýönekeý galamlar" };
+  if (/карандаш|арандаш|galam/.test(s)) return { c: "Ýazuw", sub: /цвет|reňk/.test(s) ? "Reňkli galamlar" : "Ýönekeý galamlar" };
   if (/ластик|стиралк|pozgy|точилк|uçla|tocil/.test(s)) return { c: "Ýazuw", sub: "Pozgyç we uçlaýjylar" };
-  if (/линейк|çyzgy|liney|циркуль|sirkul|транспортир|угольник/.test(s)) return { c: "Ýazuw", sub: "Çyzuw esbaplary" };
-  if (/маркер|marker|корректор|замазк|zamask|выделител|layner|hayla/.test(s)) return { c: "Ýazuw", sub: "Marker we korrektorlar" };
-  if (/тетрад|depder/.test(s)) return { c: "Kagyz", sub: "Mekdep depderleri" };
-  if (/бумаг|kagyz|a4|а4|ватман|картон|стикер|stiker|zametka/.test(s)) return { c: "Kagyz", sub: "Printer, stiker we reňkli kagyz" };
-  if (/блокнот|bloknot|дневник|gündelik|gundelik|ежедневник/.test(s)) return { c: "Kagyz", sub: "Gündelik we bloknotlar" };
-  if (/альбом|albom|скетчбук|sketch/.test(s)) return { c: "Döredijilik", sub: "Surat albomlary" };
-  if (/краск|boýag|гуаш|акварел|кист|çotga|çotka|пластилин|холст|holst|мел|фломастер|палитр|palitra/.test(s)) return { c: "Döredijilik", sub: "Boýag, çotga we plastilin" };
+  if (/линейк|çyzgy|liney|циркуль|сиркул|sirkul|транспортир|угольник/.test(s)) return { c: "Ýazuw", sub: "Çyzuw esbaplary" };
+  if (/маркер|marker|корректор|замазк|zamask|выделител|layner|hayla|haýla/.test(s)) return { c: "Ýazuw", sub: "Marker we korrektorlar" };
+  if (/тетрад|етрад|depder/.test(s)) return { c: "Kagyz", sub: "Mekdep depderleri" };
+  if (/бумаг|бумг|kagyz|a4|а4|ватман|картон|стикер|тикер|stiker|zametka/.test(s)) return { c: "Kagyz", sub: "Printer, stiker we reňkli kagyz" };
+  if (/блокнот|блакнот|влокнот|bloknot|дневник|gündelik|gundelik|ежедневник/.test(s)) return { c: "Kagyz", sub: "Gündelik we bloknotlar" };
+  if (/альбом|албом|albom|скетчбук|sketch/.test(s)) return { c: "Döredijilik", sub: "Surat albomlary" };
+  if (/краск|boýag|гуаш|акварел|кист|çotga|çotka|пластилин|холст|holst|мел|фломастер|пломастер|палитр|palitra/.test(s)) return { c: "Döredijilik", sub: "Boýag, çotga we plastilin" };
   if (/папк|papka|файл|faýl|скоросшиват|планшет/.test(s)) return { c: "Ofis", sub: "Faýl we papkalar" };
-  if (/калькулятор|kalkulýator|kalkulyator/.test(s)) return { c: "Ofis", sub: "Kalkulýatorlar" };
-  if (/степлер|stepler|скоб|дырокол|dyrakol|скотч|skoç|ножниц|gaýçy|gaycy|клей|ýelim|kley|скрепк|skrepk|кнопк|подставк|органайзер|organa/.test(s)) return { c: "Ofis", sub: "Ofis esbaplary" };
-  if (/пенал|penal|рюкзак|rukzak|портфел|portfel|сумк|sumka|обложк|мешок|ланч/.test(s)) return { c: "Torba", sub: "Mekdep torba, penal we daşlyk" };
+  if (/калькулятор|калкулятор|kalkulýator|kalkulyator/.test(s)) return { c: "Ofis", sub: "Kalkulýatorlar" };
+  if (/степлер|stepler|скоб|дырокол|дыракол|dyrakol|скотч|skoç|ножниц|gaýçy|gaycy|клей|ýelim|kley|скрепк|skrepk|кнопк|подставк|органайзер|organa/.test(s)) return { c: "Ofis", sub: "Ofis esbaplary" };
+  if (/пенал|penal|рюкзак|юкзак|rukzak|портфел|portfel|сумк|sumka|обложк|мешок|ланч/.test(s)) return { c: "Torba", sub: "Mekdep torba, penal we daşlyk" };
   if (/книг|kitap|сказк|словарь|sözlük|sozluk|пропис|атлас|глобус|globus|энциклопед/.test(s)) return { c: "Kitap", sub: "Okuw kitaplary we gollanmalar" };
   if (/лего|lego|кукл|gurjak|машин|masyn|пазл|pazl|шахмат|küşt|kust|игра|oýun|мяч|top|конструктор/.test(s)) return { c: "Oýunjak", sub: "Çaga oýunjaklary" };
   if (/шар|şar|свеч|подар|лента|lenta|конверт|konwert|веревк|ýüp|бант|открытк|пакет|happy birthday/.test(s)) return { c: "Baýramçylyk", sub: "Baýramçylyk we sowgat bezegleri" };
   return { c: "Umumy", sub: "Beýleki harytlar" };
 }
-/* === APP.JS — 3-NJI BÖLEK === */
+
 function autoCategorizeAll(list) {
   if (!Array.isArray(list)) return [];
   for (var i = 0; i < list.length; i++) {
@@ -233,7 +236,7 @@ function addCart(p, btnEl) {
   setExactQty(p, cur + 1);
   if (btnEl) flyToCart(btnEl, getProdImgUrl(p));
 }
-/* === APP.JS — 4-NJI BÖLEK === */
+/* === APP.JS — 3-NJI BÖLEK === */
 function toggleFav(id) {
   var idx = favs.indexOf(id);
   if (idx > -1) favs.splice(idx, 1); else favs.push(id);
@@ -332,7 +335,7 @@ function openDet(x) {
 
 document.getElementById("closeZoom").onclick = function () { document.getElementById("zoomModal").classList.remove("open"); };
 document.getElementById("zoomModal").onclick = function (e) { if (e.target === this) this.classList.remove("open"); };
-/* === APP.JS — 5-NJI BÖLEK === */
+
 function makeCard(x) {
   var card = document.createElement("div"); card.className = "card";
   card.onclick = function () { openDet(x); };
@@ -381,13 +384,12 @@ function makeCard(x) {
   card.appendChild(pimg); card.appendChild(info);
   return card;
 }
-
+/* === APP.JS — 4-NJI BÖLEK === */
 window.filterByCat = function (cid, subName) {
   document.getElementById("fcat").value = cid || "";
   document.getElementById("fsub").value = subName || "";
   fBrand = "";
   displayLimit = 40;
-  document.getElementById("megaDrop").classList.remove("open");
   showTab("home");
   render();
   window.scrollTo({ top: 0, behavior: "smooth" });
@@ -398,113 +400,74 @@ window.filterByBrand = function (bname) {
   document.getElementById("fsub").value = "";
   fBrand = bname || "";
   displayLimit = 40;
-  document.getElementById("megaDrop").classList.remove("open");
   showTab("home");
   render();
   window.scrollTo({ top: 0, behavior: "smooth" });
 };
 
-function openMegaMenu(mode) {
-  var drop = document.getElementById("megaDrop");
-  var body = document.getElementById("megaBody");
-  var title = document.getElementById("megaTitle");
-  if (drop.classList.contains("open") && drop.dataset.mode === mode) {
-    drop.classList.remove("open");
-    return;
-  }
-  drop.dataset.mode = mode;
-  body.innerHTML = "";
+function makeColorfulCatCard(c, idx) {
+  var d = document.createElement("div");
+  d.className = "ccol-card grad-" + (idx % 9);
+  var title = document.createElement("div");
+  title.className = "ccol-title";
+  title.innerText = c[lang];
+  d.appendChild(title);
 
-  if (mode === "cat") {
-    title.innerText = lang === "tk" ? "Kategoriýalar" : "Категории";
-    var grid = document.createElement("div"); grid.className = "mega-cat-grid";
-    for (var i = 0; i < cats.length; i++) {
-      var c = cats[i];
-      var card = document.createElement("div"); card.className = "mega-cat-card";
-      var ct = document.createElement("div"); ct.className = "mega-cat-title";
-      ct.innerText = c.i + " " + c[lang];
-      (function (cid) { ct.onclick = function () { filterByCat(cid, ""); }; })(c.id);
-      card.appendChild(ct);
-
-      var subs = {};
-      for (var j = 0; j < db.length; j++) if (db[j].c === c.id && db[j].sub) subs[db[j].sub] = 1;
-      var slist = document.createElement("div"); slist.className = "mega-sub-list";
-      Object.keys(subs).forEach(function (sn) {
-        var si = document.createElement("div"); si.className = "mega-sub-item";
-        si.innerText = "• " + trText(sn, lang);
-        si.onclick = function () { filterByCat(c.id, sn); };
-        slist.appendChild(si);
-      });
-      card.appendChild(slist);
-      grid.appendChild(card);
-    }
-    body.appendChild(grid);
-  } else {
-    title.innerText = lang === "tk" ? "Brendler" : "Бренды";
-    var brands = getActiveBrands();
-    if (!brands.length) {
-      body.innerHTML = '<div style="padding:15px;color:var(--m)">' + (lang === "tk" ? "Häzirlikçe brendler ýüklenmedik" : "Бренды пока не загружены") + '</div>';
-    } else {
-      var bgrid = document.createElement("div"); bgrid.className = "mega-brand-grid";
-      brands.forEach(function (bn) {
-        var bc = document.createElement("div"); bc.className = "mbrand-card";
-        var slug = bn.toLowerCase().replace(/[^a-z0-9]/g, "");
-        bc.innerHTML = '<div class="mbrand-logo"><img src="img/brands/' + slug + '.png" onerror="this.parentElement.innerText=\'' + escapeHtml(bn) + '\'"></div><span>' + escapeHtml(bn) + '</span>';
-        bc.onclick = function () { filterByBrand(bn); };
-        bgrid.appendChild(bc);
-      });
-      body.appendChild(bgrid);
-    }
-  }
-  drop.classList.add("open");
-}
-
-document.getElementById("btnMegaCat").onclick = function () { openMegaMenu("cat"); };
-document.getElementById("btnMegaBrand").onclick = function () { openMegaMenu("brand"); };
-document.getElementById("closeMega").onclick = function () { document.getElementById("megaDrop").classList.remove("open"); };
-/* === APP.JS — 6-NJI BÖLEK === */
-function makeCatCard(c) {
-  var d = document.createElement("div"); d.className = "ccard";
-  var box = document.createElement("div"); box.className = "cbox";
   if (c.img) {
-    var im = document.createElement("img"); im.src = c.img; im.alt = c[lang];
-    im.onerror = function () { box.innerHTML = c.i; };
-    box.appendChild(im);
-  } else box.innerHTML = c.i;
-  var sp = document.createElement("span"); sp.innerText = c[lang];
-  d.appendChild(box); d.appendChild(sp);
+    var im = document.createElement("img");
+    im.className = "ccol-img";
+    im.src = c.img;
+    im.alt = c[lang];
+    im.onerror = function () {
+      this.remove();
+      var sp = document.createElement("div");
+      sp.className = "ccol-ico";
+      sp.innerText = c.i;
+      d.appendChild(sp);
+    };
+    d.appendChild(im);
+  } else {
+    var sp = document.createElement("div");
+    sp.className = "ccol-ico";
+    sp.innerText = c.i;
+    d.appendChild(sp);
+  }
   d.onclick = function () { filterByCat(c.id, ""); };
   return d;
 }
 
 function renderBrandsUI() {
   var brands = getActiveBrands();
-  var hStrip = document.getElementById("homeBrandStrip");
+  var cRow = document.getElementById("brandCirclesRow");
+  var vGrid = document.getElementById("homeVipBrands");
   var hTitle = document.getElementById("homeBrandTitle");
-  var mGrid = document.getElementById("menuBrandGrid");
-  var mTitle = document.getElementById("menuBrandTitle");
+
   if (!brands.length) {
+    if (cRow) cRow.style.display = "none";
+    if (vGrid) vGrid.style.display = "none";
     if (hTitle) hTitle.style.display = "none";
-    if (mTitle) mTitle.style.display = "none";
     return;
   }
+
+  if (cRow) { cRow.style.display = "flex"; cRow.innerHTML = ""; }
+  if (vGrid) { vGrid.style.display = "grid"; vGrid.innerHTML = ""; }
   if (hTitle) hTitle.style.display = "flex";
-  if (mTitle) mTitle.style.display = "flex";
-  if (hStrip) hStrip.innerHTML = "";
-  if (mGrid) mGrid.innerHTML = "";
+
   brands.forEach(function (bn) {
-    if (hStrip) {
-      var pill = document.createElement("div"); pill.className = "brand-pill";
-      pill.innerText = bn;
-      pill.onclick = function () { filterByBrand(bn); };
-      hStrip.appendChild(pill);
+    var slug = bn.toLowerCase().replace(/[^a-z0-9]/g, "");
+    if (cRow) {
+      var item = document.createElement("div");
+      item.className = "bcircle-item";
+      item.innerHTML = '<div class="bcircle-ring"><img src="img/brands/' + slug + '.png" onerror="this.parentElement.innerHTML=\'<span class=bcircle-txt>' + escapeHtml(bn) + '</span>\'"></div><span class="bcircle-lbl">' + escapeHtml(bn) + '</span>';
+      item.onclick = function () { filterByBrand(bn); };
+      cRow.appendChild(item);
     }
-    if (mGrid) {
-      var mc = document.createElement("div"); mc.className = "mbrand-card";
-      var slug = bn.toLowerCase().replace(/[^a-z0-9]/g, "");
-      mc.innerHTML = '<div class="mbrand-logo"><img src="img/brands/' + slug + '.png" onerror="this.parentElement.innerText=\'' + escapeHtml(bn) + '\'"></div><span>' + escapeHtml(bn) + '</span>';
-      mc.onclick = function () { filterByBrand(bn); };
-      mGrid.appendChild(mc);
+    if (vGrid) {
+      var vc = document.createElement("div");
+      vc.className = "vip-card";
+      vc.innerHTML = '<div class="vip-top"><span class="vip-badge">★</span><img src="img/brands/' + slug + '.png" onerror="this.parentElement.innerHTML=\'<span class=vip-badge>★</span><b style=color:var(--p);font-size:14px>' + escapeHtml(bn) + '</b>\'"></div><div class="vip-bot">' + escapeHtml(bn) + '</div>';
+      vc.onclick = function () { filterByBrand(bn); };
+      vGrid.appendChild(vc);
     }
   });
 }
@@ -573,17 +536,15 @@ function renderFilterList() {
 }
 
 function initF() {
-  var g1 = document.getElementById("cgrid1"), g2 = document.getElementById("cgrid2");
-  if (g1) g1.innerHTML = "";
-  if (g2) g2.innerHTML = "";
-  for (var i = 0; i < cats.length; i++) {
-    if (g1) g1.appendChild(makeCatCard(cats[i]));
-    if (g2) g2.appendChild(makeCatCard(cats[i]));
+  var g2 = document.getElementById("cgrid2");
+  if (g2) {
+    g2.innerHTML = "";
+    for (var i = 0; i < cats.length; i++) g2.appendChild(makeColorfulCatCard(cats[i], i));
   }
   renderBrandsUI();
   renderFilterList();
 }
-
+/* === APP.JS — 5A BÖLEK === */
 function render() {
   var qv = document.getElementById("q").value.trim(), q = qv.toLowerCase();
   var fc = document.getElementById("fcat").value, fsub = document.getElementById("fsub").value;
@@ -623,7 +584,7 @@ function render() {
 
   if (!matched.length) {
     lmWrap.style.display = "none";
-    pg.innerHTML = '<div class="empty-box" style="grid-column:1/-1"><p>' + (lang === "tk" ? "Haryt tapylmady" : "Товары не найдены") + '</p></div>';
+    pg.innerHTML = '<div class="empty-box" style="grid-column:1/-1">' + emptyBoxSvg + '<p>' + (lang === "tk" ? "Haryt tapylmady" : "Товары не найдены") + '</p></div>';
     return;
   }
 
@@ -653,11 +614,11 @@ function resetAllFilters() {
   displayLimit = 40;
   renderFilterList(); render();
 }
-/* === APP.JS — 7-NJI BÖLEK === */
+
 function renderFavs() {
   var fg = document.getElementById("fgrid"); fg.innerHTML = ""; var found = 0;
   for (var i = 0; i < db.length; i++) if (favs.indexOf(db[i].id) > -1) { fg.appendChild(makeCard(db[i])); found++; }
-  if (!found) fg.innerHTML = '<div class="empty-box" style="grid-column:1/-1"><p>' + (lang === "tk" ? "Halanan haryt ýok" : "Нет избранных товаров") + '</p></div>';
+  if (!found) fg.innerHTML = '<div class="empty-box" style="grid-column:1/-1">' + emptyBoxSvg + '<p>' + (lang === "tk" ? "Halanan haryt ýok" : "Нет избранных товаров") + '</p></div>';
 }
 
 function renderStockList() {
@@ -677,7 +638,7 @@ function renderStockList() {
 
 function renderOrders() {
   var ol = document.getElementById("olist");
-  if (!orders.length) { ol.innerHTML = '<div class="empty-box"><p>' + (lang === "tk" ? "Heniz sargyt ýok" : "Заказов пока нет") + '</p></div>'; return; }
+  if (!orders.length) { ol.innerHTML = '<div class="empty-box">' + emptyBoxSvg + '<p>' + (lang === "tk" ? "Heniz sargyt ýok" : "Заказов пока нет") + '</p></div>'; return; }
   var h = "";
   for (var i = orders.length - 1; i >= 0; i--) {
     var o = orders[i];
@@ -685,7 +646,7 @@ function renderOrders() {
   }
   ol.innerHTML = h;
 }
-
+/* === APP.JS — 5B BÖLEK === */
 function updCart() {
   var c = 0, subTot = 0, cl = document.getElementById("clist");
   var invList = document.getElementById("invItemsList");
@@ -744,7 +705,7 @@ function updCart() {
   var hasItems = cart.length > 0;
   document.getElementById("cartMainCard").style.display = hasItems ? "block" : "none";
   document.getElementById("btnClearCart").style.display = hasItems ? "block" : "none";
-  document.getElementById("cartEmptyWrap").innerHTML = hasItems ? "" : '<div class="empty-box"><p>' + (lang === "tk" ? "Sebediňiz häzir boş" : "Ваша корзина пуста") + '</p></div>';
+  document.getElementById("cartEmptyWrap").innerHTML = hasItems ? "" : '<div class="empty-box">' + emptyBoxSvg + '<p>' + (lang === "tk" ? "Sebediňiz boş" : "Ваша корзина пуста") + '</p></div>';
 
   var cityEl = document.getElementById("citySel");
   var city = cityEl ? cityEl.value : "arkadag";
@@ -793,7 +754,7 @@ function updCart() {
     document.getElementById("invGrand").innerText = grandTot.toFixed(2) + " m";
   }
 }
-/* === APP.JS — 8-NJI BÖLEK === */
+/* === APP.JS — 6A BÖLEK === */
 function showTab(t) {
   var s = document.querySelectorAll(".sec"), n = document.querySelectorAll(".nbtn");
   for (var i = 0; i < s.length; i++) s[i].classList.remove("act");
@@ -806,12 +767,11 @@ function showTab(t) {
 
 function setL(l) {
   lang = l;
-  document.getElementById("ltm").classList.toggle("act", l === "tk");
-  document.getElementById("lru").classList.toggle("act", l === "ru");
   var els = document.querySelectorAll("[data-tk]");
   for (var i = 0; i < els.length; i++) els[i].innerText = els[i].getAttribute("data-" + l);
   document.getElementById("q").placeholder = l === "tk" ? "Haryt ady boýunça gözleg..." : "Поиск товара...";
   initF(); render(); updCart();
+  showToast(l === "tk" ? "🇹🇲 Dil: Türkmençe" : "🇷🇺 Язык: Русский");
 }
 
 var curSlide = 0;
@@ -870,7 +830,7 @@ document.getElementById("btnImport").onclick = function () {
   document.getElementById("pasteBox").value = "";
   showToast("✅ " + added + " sany haryt ýüklendi!");
 };
-/* === APP.JS — 9-NJI BÖLEK === */
+
 document.getElementById("btnOrd").onclick = function () {
   var nm = document.getElementById("nm").value.trim();
   var ph = document.getElementById("ph").value.trim();
@@ -944,7 +904,7 @@ document.getElementById("btnOrd").onclick = function () {
     showTab("orders");
   });
 };
-/* === APP.JS — 10-NJY BÖLEK === */
+/* === APP.JS — 6B BÖLEK === */
 document.getElementById("detBack").onclick = function () { document.getElementById("detPage").classList.remove("open"); };
 document.getElementById("logoBtn").onclick = function () {
   taps++; clearTimeout(tt); tt = setTimeout(function () { taps = 0; }, 800);
@@ -958,8 +918,6 @@ document.getElementById("logoBtn").onclick = function () {
     showTab("home");
   }
 };
-document.getElementById("ltm").onclick = function () { setL("tk"); };
-document.getElementById("lru").onclick = function () { setL("ru"); };
 
 var searchTimer;
 document.getElementById("q").onkeyup = function () {
