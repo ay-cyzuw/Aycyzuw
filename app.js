@@ -1,4 +1,4 @@
-/* === BÖLEK 1/6: IKONKALAR, TOAST WE KATEGORIÝALAR === */
+/* === APP.JS — 1-NJI BÖLEK === */
 var toastTimer;
 function showToast(msg) {
   var tb = document.getElementById("toastBox");
@@ -7,6 +7,15 @@ function showToast(msg) {
   tb.classList.add("show");
   clearTimeout(toastTimer);
   toastTimer = setTimeout(function () { tb.classList.remove("show"); }, 2600);
+}
+
+function escapeHtml(str) {
+  return String(str || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 }
 
 var hSvg0 = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>';
@@ -37,7 +46,7 @@ var cats = [
 ];
 
 var knownBrands = ["Double A", "Dolphin", "Pensan", "Hatber", "CASIO", "Maped", "Faber-Castell", "ErichKrause", "Berlingo", "Koh-i-Noor", "Attache", "Brauberg", "Centrum", "Deli", "Pilot", "Bic"];
-/* === BÖLEK 2/6: TM/RU TERJIME WE AKYLLY KATEGORIÝA === */
+/* === APP.JS — 2-NJI BÖLEK === */
 var dictPairs = [
   { ru: "шариковая ручка", tk: "şarikli ruçka" }, { ru: "гелевая ручка", tk: "gelli ruçka" },
   { ru: "простой карандаш", tk: "ýönekeý galam" }, { ru: "цветные карандаши", tk: "reňkli galamlar" },
@@ -53,17 +62,10 @@ var dictPairs = [
   { ru: "калькулятор", tk: "kalkulýator" }, { ru: "пенал", tk: "penal" }, { ru: "рюкзак", tk: "rukzak" },
   { ru: "краски", tk: "boýaglar" }, { ru: "акварель", tk: "akwarel" }, { ru: "гуашь", tk: "guaş" },
   { ru: "кисть", tk: "çotga" }, { ru: "пластилин", tk: "plastilin" }, { ru: "книга", tk: "kitap" },
-  { ru: "веревка", tk: "ýüp" }, { ru: "глянцевая", tk: "ýylpyldawuk" }, { ru: "обложка", tk: "daşlyk" },
   { ru: "скотч", tk: "skoç" }, { ru: "черная", tk: "gara" }, { ru: "синяя", tk: "gök" },
   { ru: "красная", tk: "gyzyl" }, { ru: "зеленая", tk: "ýaşyl" }, { ru: "белая", tk: "ak" },
   { ru: "клетку", tk: "gözenek" }, { ru: "линию", tk: "çyzykly" }, { ru: "лист", tk: "list" },
-  { ru: "набор", tk: "toplum" }, { ru: "для школы", tk: "mekdep üçin" }, { ru: "для офиса", tk: "ofis üçin" },
-  { ru: "для", tk: "üçin" }, { ru: "стикер", tk: "stiker" }, { ru: "шариковые ручки", tk: "şarikli ruçkalar" },
-  { ru: "гelli ручки", tk: "gelli ruçkalar" }, { ru: "школьные тетради", tk: "mekdep depderleri" },
-  { ru: "простые карандаши", tk: "ýönekeý galamlar" }, { ru: "позgyç we uçlaýjylar", tk: "ластики и точилки" },
-  { ru: "çyzuw esbaplary", tk: "чертежные принадлежности" }, { ru: "faýl we papkalar", tk: "файлы и папки" },
-  { ru: "kalkulýatorlar", tk: "калькуляторы" }, { ru: "surat albomlary", tk: "альбомы для рисования" },
-  { ru: "gündelik we bloknotlar", tk: "дневники и блокноты" }, { ru: "beýleki harytlar", tk: "прочие товары" }
+  { ru: "набор", tk: "toplum" }, { ru: "стикер", tk: "stiker" }
 ];
 
 function trText(str, targetLang) {
@@ -86,54 +88,55 @@ function detectCatSub(name) {
   var s = String(name).toLowerCase();
   if (/ручк|ruck|ruçk/.test(s)) return { c: "Ýazuw", sub: /гел|gel/.test(s) ? "Gelli ruçkalar" : "Şarikli ruçkalar" };
   if (/карандаш|galam/.test(s)) return { c: "Ýazuw", sub: /цвет|reňk/.test(s) ? "Reňkli galamlar" : "Ýönekeý galamlar" };
-  if (/ластик|стиралк|pozgy|точилк|uçla/.test(s)) return { c: "Ýazuw", sub: "Pozgyç we uçlaýjylar" };
-  if (/линейк|çyzgy|циркуль|sirkul|транспортир|угольник/.test(s)) return { c: "Ýazuw", sub: "Çyzuw esbaplary" };
-  if (/маркер|marker|корректор|замазк|выделител/.test(s)) return { c: "Ýazuw", sub: "Marker we korrektorlar" };
+  if (/ластик|стиралк|pozgy|точилк|uçla|tocil/.test(s)) return { c: "Ýazuw", sub: "Pozgyç we uçlaýjylar" };
+  if (/линейк|çyzgy|liney|циркуль|sirkul|транспортир|угольник/.test(s)) return { c: "Ýazuw", sub: "Çyzuw esbaplary" };
+  if (/маркер|marker|корректор|замазк|zamask|выделител|layner|hayla/.test(s)) return { c: "Ýazuw", sub: "Marker we korrektorlar" };
   if (/тетрад|depder/.test(s)) return { c: "Kagyz", sub: "Mekdep depderleri" };
-  if (/бумаг|kagyz|a4|а4|ватман|картон|стикер|stiker/.test(s)) return { c: "Kagyz", sub: "Printer, stiker we reňkli kagyz" };
+  if (/бумаг|kagyz|a4|а4|ватман|картон|стикер|stiker|zametka/.test(s)) return { c: "Kagyz", sub: "Printer, stiker we reňkli kagyz" };
   if (/блокнот|bloknot|дневник|gündelik|gundelik|ежедневник/.test(s)) return { c: "Kagyz", sub: "Gündelik we bloknotlar" };
-  if (/альбом|albom|скетчбук/.test(s)) return { c: "Döredijilik", sub: "Surat albomlary" };
-  if (/краск|boýag|гуаш|акварел|кист|çotga|пластилин|холст|мел|фломастер/.test(s)) return { c: "Döredijilik", sub: "Boýag, çotga we plastilin" };
+  if (/альбом|albom|скетчбук|sketch/.test(s)) return { c: "Döredijilik", sub: "Surat albomlary" };
+  if (/краск|boýag|гуаш|акварел|кист|çotga|çotka|пластилин|холст|holst|мел|фломастер|палитр|palitra/.test(s)) return { c: "Döredijilik", sub: "Boýag, çotga we plastilin" };
   if (/папк|papka|файл|faýl|скоросшиват|планшет/.test(s)) return { c: "Ofis", sub: "Faýl we papkalar" };
-  if (/калькулятор|kalkulýator/.test(s)) return { c: "Ofis", sub: "Kalkulýatorlar" };
-  if (/степлер|stepler|скоб|дырокол|скотч|ножниц|gaýçy|клей|ýelim|скрепк|кнопк|подставк/.test(s)) return { c: "Ofis", sub: "Ofis esbaplary" };
-  if (/пенал|penal|рюкзак|rukzak|портфел|сумк|обложк|мешок|ланч/.test(s)) return { c: "Torba", sub: "Mekdep torba, penal we daşlyk" };
-  if (/книг|kitap|сказк|словарь|пропис|атлас|глобус|энциклопед/.test(s)) return { c: "Kitap", sub: "Okuw kitaplary we gollanmalar" };
-  if (/лего|lego|кукл|машин|пазл|шахмат|игра|oýun|мяч|конструктор/.test(s)) return { c: "Oýunjak", sub: "Çaga oýunjaklary" };
-  if (/шар|şar|свеч|подар|лента|конверт|веревк|ýüp|бант|открытк|пакет/.test(s)) return { c: "Baýramçylyk", sub: "Baýramçylyk we sowgat bezegleri" };
+  if (/калькулятор|kalkulýator|kalkulyator/.test(s)) return { c: "Ofis", sub: "Kalkulýatorlar" };
+  if (/степлер|stepler|скоб|дырокол|dyrakol|скотч|skoç|ножниц|gaýçy|gaycy|клей|ýelim|kley|скрепк|skrepk|кнопк|подставк|органайзер|organa/.test(s)) return { c: "Ofis", sub: "Ofis esbaplary" };
+  if (/пенал|penal|рюкзак|rukzak|портфел|portfel|сумк|sumka|обложк|мешок|ланч/.test(s)) return { c: "Torba", sub: "Mekdep torba, penal we daşlyk" };
+  if (/книг|kitap|сказк|словарь|sözlük|sozluk|пропис|атлас|глобус|globus|энциклопед/.test(s)) return { c: "Kitap", sub: "Okuw kitaplary we gollanmalar" };
+  if (/лего|lego|кукл|gurjak|машин|masyn|пазл|pazl|шахмат|küşt|kust|игра|oýun|мяч|top|конструктор/.test(s)) return { c: "Oýunjak", sub: "Çaga oýunjaklary" };
+  if (/шар|şar|свеч|подар|лента|lenta|конверт|konwert|веревк|ýüp|бант|открытк|пакет|happy birthday/.test(s)) return { c: "Baýramçylyk", sub: "Baýramçylyk we sowgat bezegleri" };
   return { c: "Umumy", sub: "Beýleki harytlar" };
 }
-
+/* === APP.JS — 3-NJI BÖLEK === */
 function autoCategorizeAll(list) {
   if (!Array.isArray(list)) return [];
   for (var i = 0; i < list.length; i++) {
     var det = detectCatSub(list[i].t);
     list[i].c = det.c;
     list[i].sub = det.sub;
+    list[i].s = Math.max(0, Number(list[i].s) || 0);
+    list[i].p = Math.max(0, Number(list[i].p) || 0);
   }
   return list;
 }
-/* === BÖLEK 3/6: YATDA SAKLAÝJY, KEŞBEK WE FLY-TO-CART === */
+
 function lsGet(k, d) { try { var v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } }
 function lsSet(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
 
-var db = autoCategorizeAll(lsGet("ay_db_v20", githubBaza));
+var baseData = (typeof githubBaza !== "undefined" && Array.isArray(githubBaza)) ? githubBaza : [];
+var db = autoCategorizeAll(lsGet("ay_db_v22", baseData));
 var favs = lsGet("ay_favs", []);
 var views = lsGet("ay_views", {});
 var orders = lsGet("ay_orders", []);
-var cbBal = parseFloat(lsGet("ay_cb", 0)) || 0;
-var cbMeta = lsGet("ay_cb_meta", { spent: 0, earned: 0 });
 var userAddr = lsGet("ay_uaddr", { nm: "", ph: "", ad: "" });
-var admPassSaved = lsGet("ay_apass", "1234");
+var admPassSaved = lsGet("ay_apass", "AyCyzuw@2026");
 var m1 = lsGet("ay_m1", "aycyzuw.tm.arkadag@gmail.com");
 var m2 = lsGet("ay_m2", "aycyzuw.tm2026@gmail.com");
 var smsPh = lsGet("ay_sms", "+99365637644");
-var st = lsGet("ay_st", { s: 0, p: 0, c: 0 });
+var ordCounter = parseInt(lsGet("ay_ord_cnt", 0), 10) || 0;
 
 var cart = [], lang = "tk", taps = 0, tt, curDet = null, curQtyItem = null;
 var fMin = 0, fMax = Infinity, fBrand = "";
+var displayLimit = 40;
 
-function ico(c) { for (var i = 0; i < cats.length; i++) if (cats[i].id === c) return cats[i].i; return "📦"; }
 function catName(c) { for (var i = 0; i < cats.length; i++) if (cats[i].id === c) return cats[i][lang]; return c; }
 
 function getProdImgUrl(x) {
@@ -145,35 +148,25 @@ function getProdImgUrl(x) {
   return "img/" + x.id + ".jpg";
 }
 
-function getCbTier() {
-  var sp = cbMeta.spent || 0;
-  if (sp >= 1000) return { rate: 0.05, pct: 5, tk: "🥇 ALTYN DEREJE", ru: "🥇 ЗОЛОТОЙ СТАТУС", nextTk: "Iň ýokary VIP dereje!", nextRu: "Максимальный VIP статус!", prog: 100, left: 0 };
-  if (sp >= 300) return { rate: 0.03, pct: 3, tk: "🥈 KÜMÜŞ DEREJE", ru: "🥈 СЕРЕБРЯНЫЙ СТАТУС", nextTk: "Altyn (5%)", nextRu: "Золото (5%)", prog: Math.min(100, Math.round(((sp - 300) / 700) * 100)), left: Math.max(0, 1000 - sp) };
-  return { rate: 0.02, pct: 2, tk: "🥉 BÜRÜNÇ DEREJE", ru: "🥉 БРОНЗОВЫЙ СТАТУС", nextTk: "Kümüş (3%)", nextRu: "Серебро (3%)", prog: Math.min(100, Math.round((sp / 300) * 100)), left: Math.max(0, 300 - sp) };
-}
-
-function updCbUI() {
-  var t = getCbTier();
-  document.getElementById("profCbVal").innerText = cbBal.toFixed(2);
-  document.getElementById("cbAvail").innerText = cbBal.toFixed(2);
-  document.getElementById("cbUseWrap").style.display = cbBal > 0 ? "block" : "none";
-  document.getElementById("cbTierName").innerText = t[lang];
-  document.getElementById("cbRateTxt").innerText = t.pct + (lang === "tk" ? "% Keşbek" : "% Кэшбэк");
-  document.getElementById("cbProgBar").style.width = Math.max(8, t.prog) + "%";
-  document.getElementById("cbNextTier").innerText = lang === "tk" ? t.nextTk : t.nextRu;
-  document.getElementById("cbProgLeft").innerText = t.left > 0
-    ? (lang === "tk" ? "Indiki derejä: " + t.left.toFixed(0) + " m galdy" : "До след. уровня: " + t.left.toFixed(0) + " m")
-    : (lang === "tk" ? "VIP Altyn dereje işjeň" : "VIP Золото активно");
-  document.getElementById("cbTotalSpent").innerText = (cbMeta.spent || 0).toFixed(2);
-  document.getElementById("cbTotalEarned").innerText = (cbMeta.earned || 0).toFixed(2);
+function getActiveBrands() {
+  var found = [];
+  for (var b = 0; b < knownBrands.length; b++) {
+    var br = knownBrands[b];
+    for (var i = 0; i < db.length; i++) {
+      if (String(db[i].t).toLowerCase().indexOf(br.toLowerCase()) > -1) { found.push(br); break; }
+    }
+  }
+  return found;
 }
 
 function flyToCart(el, imgUrl) {
   if (!el) return;
   var card = el.closest(".card") || el.closest(".det-info") || el;
   var imgBox = card.querySelector(".pimg") || card.querySelector("#detImgWrap") || el;
+  var navCart = document.getElementById("navCartBtn");
+  if (!imgBox || !navCart) return;
   var r = imgBox.getBoundingClientRect();
-  var target = document.getElementById("navCartBtn").getBoundingClientRect();
+  var target = navCart.getBoundingClientRect();
 
   var flyer = document.createElement("img");
   flyer.className = "fly-img";
@@ -189,11 +182,10 @@ function flyToCart(el, imgUrl) {
     flyer.style.width = "22px";
     flyer.style.height = "22px";
     flyer.style.opacity = "0.25";
-    flyer.style.transform = "rotate(15deg)";
   });
   setTimeout(function () { flyer.remove(); }, 650);
 }
-/* === BÖLEK 4/6: SEBET MUKDARY, HALANANLAR WE HARYT KARTLARY === */
+
 function getCartQty(id) { for (var i = 0; i < cart.length; i++) if (cart[i].id === id) return cart[i].q; return 0; }
 
 function setExactQty(p, val) {
@@ -208,7 +200,7 @@ function setExactQty(p, val) {
     }
     var found = false;
     for (var i = 0; i < cart.length; i++) if (cart[i].id === p.id) { cart[i].q = n; found = true; }
-    if (!found) cart.push({ id: p.id, t: p.t, p: p.p, cost: p.cost || 0, c: p.c || "Umumy", img: p.img || "", q: n, max: maxS });
+    if (!found) cart.push({ id: p.id, t: p.t, p: p.p, c: p.c || "Umumy", img: p.img || "", q: n, max: maxS });
   }
   updCart(); render();
   if (curDet && curDet.id === p.id) updDetBtn(p);
@@ -241,7 +233,7 @@ function addCart(p, btnEl) {
   setExactQty(p, cur + 1);
   if (btnEl) flyToCart(btnEl, getProdImgUrl(p));
 }
-
+/* === APP.JS — 4-NJI BÖLEK === */
 function toggleFav(id) {
   var idx = favs.indexOf(id);
   if (idx > -1) favs.splice(idx, 1); else favs.push(id);
@@ -253,7 +245,7 @@ function toggleFav(id) {
 function updDetFav(id) {
   var isF = favs.indexOf(id) > -1;
   document.getElementById("detTopFav").innerHTML = isF ? hSvg1 : hSvg0;
-  var lkCnt = (isF ? 1 : 0) + (parseInt(id, 36) % 5 + 1);
+  var lkCnt = (isF ? 1 : 0) + (parseInt(String(id), 36) % 5 + 1 || 2);
   var statSpans = document.querySelectorAll("#detPage .stat-item");
   if (statSpans.length >= 2) {
     statSpans.item(0).innerHTML = (isF ? hSvg1 : hSvg0) + " <b id='detLikes'>" + lkCnt + "</b>";
@@ -265,7 +257,7 @@ function updDetBtn(x) {
   var w = document.getElementById("detBarWrap"); w.innerHTML = "";
   var q = getCartQty(x.id);
   if (x.s <= 0) {
-    w.innerHTML = '<button class="btn1" disabled style="opacity:.6">' + (lang === "tk" ? "Gutarandy" : "Нет в наличии") + '</button>';
+    w.innerHTML = '<button class="btn1" disabled style="opacity:.6">' + (lang === "tk" ? "Gutardy" : "Нет в наличии") + '</button>';
   } else if (q > 0) {
     var box = document.createElement("div"); box.className = "iqty"; box.style.height = "44px";
     var bm = document.createElement("button"); bm.innerText = "−"; bm.onclick = function () { setExactQty(x, q - 1); };
@@ -286,7 +278,7 @@ function updDetBtn(x) {
 
 function openDet(x) {
   curDet = x;
-  views[x.id] = (views[x.id] || (parseInt(x.id, 36) % 40 + 12)) + 1;
+  views[x.id] = (views[x.id] || (parseInt(String(x.id), 36) % 40 + 12 || 15)) + 1;
   lsSet("ay_views", views);
   var titleTr = trText(x.t, lang);
   document.getElementById("detTopTitle").innerText = titleTr;
@@ -294,17 +286,23 @@ function openDet(x) {
   document.getElementById("detPrc").innerText = x.p + " m";
   document.getElementById("detCat").innerText = catName(x.c);
   document.getElementById("detSub").innerText = trText(x.sub || "Umumy", lang);
-  document.getElementById("detCode").innerText = x.id;
   document.getElementById("detDesc").style.display = x.d ? "block" : "none";
-document.getElementById("detDesc").innerText = x.d ? trText(x.d, lang) : "";
+  document.getElementById("detDesc").innerText = x.d ? trText(x.d, lang) : "";
 
   document.getElementById("detTopShare").innerHTML = shSvg;
   updDetFav(x.id); updDetBtn(x);
 
   var iw = document.getElementById("detImgWrap"); iw.innerHTML = "";
-  var im = document.createElement("img"); im.src = getProdImgUrl(x);
+  var imgUrl = getProdImgUrl(x);
+  var im = document.createElement("img");
+  im.src = imgUrl;
   im.onerror = function () { iw.innerHTML = phSvg; };
   iw.appendChild(im);
+
+  document.getElementById("detImgBoxClick").onclick = function () {
+    document.getElementById("zoomImg").src = imgUrl;
+    document.getElementById("zoomModal").classList.add("open");
+  };
 
   document.getElementById("detTopFav").onclick = function () { toggleFav(x.id); };
   document.getElementById("detTopShare").onclick = function () {
@@ -319,11 +317,11 @@ document.getElementById("detDesc").innerText = x.d ? trText(x.d, lang) : "";
     if (s.id !== x.id && s.c === x.c && scnt < 10) {
       var sc = document.createElement("div"); sc.className = "sim-card";
       var si = document.createElement("div"); si.className = "sim-img";
-      var simg = document.createElement("img"); simg.src = getProdImgUrl(s);
+      var simg = document.createElement("img"); simg.src = getProdImgUrl(s); simg.loading = "lazy";
       simg.onerror = function () { this.parentElement.innerHTML = phSvg; };
       si.appendChild(simg);
       var sb = document.createElement("div"); sb.style.padding = "8px";
-      sb.innerHTML = '<div style="font-size:13.5px;font-weight:800;color:var(--p);margin-bottom:2px">' + s.p + ' m</div><div style="font-size:11.5px;height:30px;overflow:hidden">' + trText(s.t, lang) + '</div>';
+      sb.innerHTML = '<div style="font-size:13.5px;font-weight:800;color:var(--p);margin-bottom:2px">' + escapeHtml(s.p) + ' m</div><div style="font-size:11.5px;height:30px;overflow:hidden">' + escapeHtml(trText(s.t, lang)) + '</div>';
       sc.appendChild(si); sc.appendChild(sb);
       (function (item) { sc.onclick = function () { openDet(item); document.getElementById("detPage").scrollTop = 0; }; })(s);
       simBox.appendChild(sc); scnt++;
@@ -332,6 +330,9 @@ document.getElementById("detDesc").innerText = x.d ? trText(x.d, lang) : "";
   document.getElementById("detPage").classList.add("open");
 }
 
+document.getElementById("closeZoom").onclick = function () { document.getElementById("zoomModal").classList.remove("open"); };
+document.getElementById("zoomModal").onclick = function (e) { if (e.target === this) this.classList.remove("open"); };
+/* === APP.JS — 5-NJI BÖLEK === */
 function makeCard(x) {
   var card = document.createElement("div"); card.className = "card";
   card.onclick = function () { openDet(x); };
@@ -343,17 +344,21 @@ function makeCard(x) {
   card.appendChild(fbtn);
 
   var pimg = document.createElement("div"); pimg.className = "pimg";
-  var img = document.createElement("img"); img.src = getProdImgUrl(x);
+  var img = document.createElement("img");
+  img.src = getProdImgUrl(x);
+  img.loading = "lazy";
   img.onerror = function () { this.parentElement.innerHTML = phSvg; };
   pimg.appendChild(img);
 
   var info = document.createElement("div"); info.className = "cbody";
-  info.innerHTML = '<div class="prc">' + x.p + ' m</div><div class="ttl">' + trText(x.t, lang) + '</div>';
+  var prcDiv = document.createElement("div"); prcDiv.className = "prc"; prcDiv.innerText = x.p + " m";
+  var ttlDiv = document.createElement("div"); ttlDiv.className = "ttl"; ttlDiv.innerText = trText(x.t, lang);
+  info.appendChild(prcDiv); info.appendChild(ttlDiv);
 
   var q = getCartQty(x.id);
   if (x.s <= 0) {
     var btn = document.createElement("button"); btn.className = "add"; btn.disabled = true;
-    btn.innerText = lang === "tk" ? "Gutarandy" : "Нет в наличии";
+    btn.innerText = lang === "tk" ? "Gutardy" : "Нет в наличии";
     info.appendChild(btn);
   } else if (q > 0) {
     var qbox = document.createElement("div"); qbox.className = "iqty";
@@ -376,8 +381,89 @@ function makeCard(x) {
   card.appendChild(pimg); card.appendChild(info);
   return card;
 }
-/* === BÖLEK 5/6: FILTR, HALANANLAR WE SEBET === */
-function makeCatCard(c, fc) {
+
+window.filterByCat = function (cid, subName) {
+  document.getElementById("fcat").value = cid || "";
+  document.getElementById("fsub").value = subName || "";
+  fBrand = "";
+  displayLimit = 40;
+  document.getElementById("megaDrop").classList.remove("open");
+  showTab("home");
+  render();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
+
+window.filterByBrand = function (bname) {
+  document.getElementById("fcat").value = "";
+  document.getElementById("fsub").value = "";
+  fBrand = bname || "";
+  displayLimit = 40;
+  document.getElementById("megaDrop").classList.remove("open");
+  showTab("home");
+  render();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
+
+function openMegaMenu(mode) {
+  var drop = document.getElementById("megaDrop");
+  var body = document.getElementById("megaBody");
+  var title = document.getElementById("megaTitle");
+  if (drop.classList.contains("open") && drop.dataset.mode === mode) {
+    drop.classList.remove("open");
+    return;
+  }
+  drop.dataset.mode = mode;
+  body.innerHTML = "";
+
+  if (mode === "cat") {
+    title.innerText = lang === "tk" ? "Kategoriýalar" : "Категории";
+    var grid = document.createElement("div"); grid.className = "mega-cat-grid";
+    for (var i = 0; i < cats.length; i++) {
+      var c = cats[i];
+      var card = document.createElement("div"); card.className = "mega-cat-card";
+      var ct = document.createElement("div"); ct.className = "mega-cat-title";
+      ct.innerText = c.i + " " + c[lang];
+      (function (cid) { ct.onclick = function () { filterByCat(cid, ""); }; })(c.id);
+      card.appendChild(ct);
+
+      var subs = {};
+      for (var j = 0; j < db.length; j++) if (db[j].c === c.id && db[j].sub) subs[db[j].sub] = 1;
+      var slist = document.createElement("div"); slist.className = "mega-sub-list";
+      Object.keys(subs).forEach(function (sn) {
+        var si = document.createElement("div"); si.className = "mega-sub-item";
+        si.innerText = "• " + trText(sn, lang);
+        si.onclick = function () { filterByCat(c.id, sn); };
+        slist.appendChild(si);
+      });
+      card.appendChild(slist);
+      grid.appendChild(card);
+    }
+    body.appendChild(grid);
+  } else {
+    title.innerText = lang === "tk" ? "Brendler" : "Бренды";
+    var brands = getActiveBrands();
+    if (!brands.length) {
+      body.innerHTML = '<div style="padding:15px;color:var(--m)">' + (lang === "tk" ? "Häzirlikçe brendler ýüklenmedik" : "Бренды пока не загружены") + '</div>';
+    } else {
+      var bgrid = document.createElement("div"); bgrid.className = "mega-brand-grid";
+      brands.forEach(function (bn) {
+        var bc = document.createElement("div"); bc.className = "mbrand-card";
+        var slug = bn.toLowerCase().replace(/[^a-z0-9]/g, "");
+        bc.innerHTML = '<div class="mbrand-logo"><img src="img/brands/' + slug + '.png" onerror="this.parentElement.innerText=\'' + escapeHtml(bn) + '\'"></div><span>' + escapeHtml(bn) + '</span>';
+        bc.onclick = function () { filterByBrand(bn); };
+        bgrid.appendChild(bc);
+      });
+      body.appendChild(bgrid);
+    }
+  }
+  drop.classList.add("open");
+}
+
+document.getElementById("btnMegaCat").onclick = function () { openMegaMenu("cat"); };
+document.getElementById("btnMegaBrand").onclick = function () { openMegaMenu("brand"); };
+document.getElementById("closeMega").onclick = function () { document.getElementById("megaDrop").classList.remove("open"); };
+/* === APP.JS — 6-NJI BÖLEK === */
+function makeCatCard(c) {
   var d = document.createElement("div"); d.className = "ccard";
   var box = document.createElement("div"); box.className = "cbox";
   if (c.img) {
@@ -387,33 +473,53 @@ function makeCatCard(c, fc) {
   } else box.innerHTML = c.i;
   var sp = document.createElement("span"); sp.innerText = c[lang];
   d.appendChild(box); d.appendChild(sp);
-  d.onclick = function () {
-    fc.value = c.id; document.getElementById("fsub").value = "";
-    renderFilterList(); showTab("home"); render();
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+  d.onclick = function () { filterByCat(c.id, ""); };
   return d;
+}
+
+function renderBrandsUI() {
+  var brands = getActiveBrands();
+  var hStrip = document.getElementById("homeBrandStrip");
+  var hTitle = document.getElementById("homeBrandTitle");
+  var mGrid = document.getElementById("menuBrandGrid");
+  var mTitle = document.getElementById("menuBrandTitle");
+  if (!brands.length) {
+    if (hTitle) hTitle.style.display = "none";
+    if (mTitle) mTitle.style.display = "none";
+    return;
+  }
+  if (hTitle) hTitle.style.display = "flex";
+  if (mTitle) mTitle.style.display = "flex";
+  if (hStrip) hStrip.innerHTML = "";
+  if (mGrid) mGrid.innerHTML = "";
+  brands.forEach(function (bn) {
+    if (hStrip) {
+      var pill = document.createElement("div"); pill.className = "brand-pill";
+      pill.innerText = bn;
+      pill.onclick = function () { filterByBrand(bn); };
+      hStrip.appendChild(pill);
+    }
+    if (mGrid) {
+      var mc = document.createElement("div"); mc.className = "mbrand-card";
+      var slug = bn.toLowerCase().replace(/[^a-z0-9]/g, "");
+      mc.innerHTML = '<div class="mbrand-logo"><img src="img/brands/' + slug + '.png" onerror="this.parentElement.innerText=\'' + escapeHtml(bn) + '\'"></div><span>' + escapeHtml(bn) + '</span>';
+      mc.onclick = function () { filterByBrand(bn); };
+      mGrid.appendChild(mc);
+    }
+  });
 }
 
 function renderBrandChips() {
   var wrap = document.getElementById("brandFilterWrap"), box = document.getElementById("brandChips");
   if (!wrap || !box) return;
-  var foundBrands = [];
-  for (var b = 0; b < knownBrands.length; b++) {
-    var br = knownBrands[b];
-    for (var i = 0; i < db.length; i++) {
-      if (db[i].t.toLowerCase().indexOf(br.toLowerCase()) > -1) { foundBrands.push(br); break; }
-    }
-  }
+  var foundBrands = getActiveBrands();
   if (!foundBrands.length) { wrap.style.display = "none"; return; }
   wrap.style.display = "block"; box.innerHTML = "";
   for (var k = 0; k < foundBrands.length; k++) {
     var ch = document.createElement("span");
     ch.className = "b-chip" + (fBrand === foundBrands[k] ? " act" : "");
     ch.innerText = foundBrands[k];
-    (function (bn) {
-      ch.onclick = function () { fBrand = (fBrand === bn) ? "" : bn; renderBrandChips(); };
-    })(foundBrands[k]);
+    (function (bn) { ch.onclick = function () { fBrand = (fBrand === bn) ? "" : bn; renderBrandChips(); }; })(foundBrands[k]);
     box.appendChild(ch);
   }
 }
@@ -434,7 +540,7 @@ function renderFilterList() {
     for (var i = 0; i < cats.length; i++) {
       var c = cats[i], row = document.createElement("div");
       row.className = "flist-row";
-      row.innerHTML = "<span>" + c[lang] + "</span><span>›</span>";
+      row.innerHTML = "<span>" + escapeHtml(c[lang]) + "</span><span>›</span>";
       (function (cid) { row.onclick = function () { fc.value = cid; fsub.value = ""; renderFilterList(); }; })(c.id);
       wrap.appendChild(row);
     }
@@ -455,25 +561,26 @@ function renderFilterList() {
 
     var subs = {};
     for (var j = 0; j < db.length; j++) if (db[j].c === curCat && db[j].sub) subs[db[j].sub] = 1;
-    var keys = Object.keys(subs);
-    for (var k = 0; k < keys.length; k++) {
-      var sname = keys[k], srow = document.createElement("div");
+    Object.keys(subs).forEach(function (sname) {
+      var srow = document.createElement("div");
       srow.className = "flist-row" + (curSub === sname ? " act" : "");
-      srow.innerHTML = "<span>" + trText(sname, lang) + "</span><span>›</span>";
-      (function (sn) { srow.onclick = function () { fsub.value = (fsub.value === sn) ? "" : sn; renderFilterList(); }; })(sname);
+      srow.innerHTML = "<span>" + escapeHtml(trText(sname, lang)) + "</span><span>›</span>";
+      srow.onclick = function () { fsub.value = (fsub.value === sname) ? "" : sname; renderFilterList(); };
       wrap.appendChild(srow);
-    }
+    });
   }
   renderBrandChips();
 }
 
 function initF() {
-  var g1 = document.getElementById("cgrid1"), g2 = document.getElementById("cgrid2"), fc = document.getElementById("fcat");
-  g1.innerHTML = ""; g2.innerHTML = "";
+  var g1 = document.getElementById("cgrid1"), g2 = document.getElementById("cgrid2");
+  if (g1) g1.innerHTML = "";
+  if (g2) g2.innerHTML = "";
   for (var i = 0; i < cats.length; i++) {
-    g1.appendChild(makeCatCard(cats[i], fc));
-    g2.appendChild(makeCatCard(cats[i], fc));
+    if (g1) g1.appendChild(makeCatCard(cats[i]));
+    if (g2) g2.appendChild(makeCatCard(cats[i]));
   }
+  renderBrandsUI();
   renderFilterList();
 }
 
@@ -496,20 +603,45 @@ function render() {
     document.getElementById("catBannerTitle").innerText = lbl;
   } else cb.style.display = "none";
 
-  pg.innerHTML = "";
-  var cnt = 0;
+  var matched = [];
   for (var i = 0; i < db.length; i++) {
     var x = db[i];
-    var trTitle = trText(x.t, lang).toLowerCase();
-    var okPrice = (x.p >= fMin && x.p <= fMax);
-    var okBrand = !fBrand || (x.t.toLowerCase().indexOf(fBrand.toLowerCase()) > -1);
-    if ((!hz || x.s > 0) && okPrice && okBrand && (x.t.toLowerCase().indexOf(q) > -1 || trTitle.indexOf(q) > -1 || String(x.id).toLowerCase().indexOf(q) > -1) && (!fc || x.c === fc) && (!fsub || x.sub === fsub)) {
-      if (cnt < 1000) pg.appendChild(makeCard(x));
-      cnt++;
+    if (hz && x.s <= 0) continue;
+    if (x.p < fMin || x.p > fMax) continue;
+    if (fc && x.c !== fc) continue;
+    if (fsub && x.sub !== fsub) continue;
+    if (fBrand && String(x.t).toLowerCase().indexOf(fBrand.toLowerCase()) === -1) continue;
+    if (q) {
+      var trTitle = trText(x.t, lang).toLowerCase();
+      if (String(x.t).toLowerCase().indexOf(q) === -1 && trTitle.indexOf(q) === -1 && String(x.id).toLowerCase().indexOf(q) === -1) continue;
     }
+    matched.push(x);
   }
-  if (!cnt) pg.innerHTML = '<div class="empty-box" style="grid-column:1/-1"><p>' + (lang === "tk" ? "Haryt tapylmady" : "Товары не найдены") + '</p></div>';
+
+  pg.innerHTML = "";
+  var lmWrap = document.getElementById("loadMoreWrap");
+
+  if (!matched.length) {
+    lmWrap.style.display = "none";
+    pg.innerHTML = '<div class="empty-box" style="grid-column:1/-1"><p>' + (lang === "tk" ? "Haryt tapylmady" : "Товары не найдены") + '</p></div>';
+    return;
+  }
+
+  var showCnt = Math.min(displayLimit, matched.length);
+  var frag = document.createDocumentFragment();
+  for (var k = 0; k < showCnt; k++) frag.appendChild(makeCard(matched[k]));
+  pg.appendChild(frag);
+
+  if (matched.length > displayLimit) {
+    lmWrap.style.display = "block";
+    var rem = matched.length - displayLimit;
+    document.getElementById("btnLoadMore").innerText = (lang === "tk" ? "Ýene görkez (+" + Math.min(40, rem) + ")" : "Показать ещё (+" + Math.min(40, rem) + ")");
+  } else {
+    lmWrap.style.display = "none";
+  }
 }
+
+document.getElementById("btnLoadMore").onclick = function () { displayLimit += 40; render(); };
 
 function resetAllFilters() {
   document.getElementById("q").value = "";
@@ -518,9 +650,10 @@ function resetAllFilters() {
   document.getElementById("fMinP").value = "";
   document.getElementById("fMaxP").value = "";
   fMin = 0; fMax = Infinity; fBrand = "";
+  displayLimit = 40;
   renderFilterList(); render();
 }
-
+/* === APP.JS — 7-NJI BÖLEK === */
 function renderFavs() {
   var fg = document.getElementById("fgrid"); fg.innerHTML = ""; var found = 0;
   for (var i = 0; i < db.length; i++) if (favs.indexOf(db[i].id) > -1) { fg.appendChild(makeCard(db[i])); found++; }
@@ -529,12 +662,15 @@ function renderFavs() {
 
 function renderStockList() {
   var sl = document.getElementById("stockList"); sl.innerHTML = "";
-  for (var i = 0; i < db.length; i++) {
+  var lim = Math.min(150, db.length);
+  for (var i = 0; i < lim; i++) {
     var x = db[i], row = document.createElement("div"); row.className = "adm-row";
-    row.innerHTML = '<span style="max-width:65%"><b>[' + x.id + ']</b> ' + x.t + '</span>';
+    var sp = document.createElement("span"); sp.style.maxWidth = "65%";
+    sp.innerText = "[" + x.id + "] " + x.t;
+    row.appendChild(sp);
     var inp = document.createElement("input"); inp.type = "number"; inp.value = x.s;
     inp.style.cssText = "width:65px;padding:4px 6px;margin:0;text-align:center";
-    (function (idx) { inp.onchange = function () { db[idx].s = Math.max(0, parseFloat(this.value) || 0); lsSet("ay_db_v20", db); render(); }; })(i);
+    (function (idx) { inp.onchange = function () { db[idx].s = Math.max(0, parseFloat(this.value) || 0); lsSet("ay_db_v22", db); render(); }; })(i);
     row.appendChild(inp); sl.appendChild(row);
   }
 }
@@ -545,12 +681,11 @@ function renderOrders() {
   var h = "";
   for (var i = orders.length - 1; i >= 0; i--) {
     var o = orders[i];
-    var cleanDet = o.cleanDet || String(o.det || "").replace(/\s*Suraty:.*$/gm, "");
-    h += '<div style="background:var(--c);border:1px solid var(--b);padding:13px;border-radius:14px;margin-bottom:10px;font-size:13px"><div style="display:flex;justify-content:space-between;margin-bottom:4px"><b style="color:var(--p)">Sargyt ' + o.id + '</b><b style="color:var(--ok)">' + o.tot + '</b></div><span style="color:var(--m);font-size:12px">' + o.nm + ' (' + o.ph + ') • ' + o.ad + '</span><div style="margin-top:8px;white-space:pre-wrap;font-size:12px;background:var(--g);padding:9px;border-radius:9px;line-height:1.4">' + cleanDet + '</div></div>';
+    h += '<div style="background:var(--c);border:1px solid var(--b);padding:13px;border-radius:14px;margin-bottom:10px;font-size:13px"><div style="display:flex;justify-content:space-between;margin-bottom:4px"><b style="color:var(--p)">Sargyt ' + escapeHtml(o.id) + '</b><b style="color:var(--ok)">' + escapeHtml(o.tot) + '</b></div><span style="color:var(--m);font-size:12px">' + escapeHtml(o.nm) + ' (' + escapeHtml(o.ph) + ') • ' + escapeHtml(o.ad) + '</span><div style="margin-top:8px;white-space:pre-wrap;font-size:12px;background:var(--g);padding:9px;border-radius:9px;line-height:1.4">' + escapeHtml(o.cleanDet) + '</div></div>';
   }
   ol.innerHTML = h;
 }
-/* === BÖLEK 6A: SEBET, ARKADAG 10M/200M ELTIP BERMEK WE FAKTURA === */
+
 function updCart() {
   var c = 0, subTot = 0, cl = document.getElementById("clist");
   var invList = document.getElementById("invItemsList");
@@ -568,7 +703,8 @@ function updCart() {
 
     var body = document.createElement("div"); body.className = "citem-body";
     var top = document.createElement("div"); top.className = "citem-top";
-    top.innerHTML = '<div class="citem-title">' + trText(item.t, lang) + '</div>';
+    var cttl = document.createElement("div"); cttl.className = "citem-title"; cttl.innerText = trText(item.t, lang);
+    top.appendChild(cttl);
     var delBtn = document.createElement("button"); delBtn.className = "citem-del"; delBtn.innerText = "✕";
     (function (it) { delBtn.onclick = function () { setExactQty(it, 0); }; })(item);
     top.appendChild(delBtn);
@@ -595,7 +731,13 @@ function updCart() {
     cl.appendChild(row);
 
     if (invList) {
-      invList.innerHTML += '<div class="inv-item-row"><div class="inv-item-name">' + (i + 1) + '. ' + trText(item.t, lang) + '<span class="inv-item-qty">' + item.q + ' × ' + item.p.toFixed(2) + ' m</span></div><div class="inv-item-sum">' + (item.p * item.q).toFixed(2) + ' m</div></div>';
+      var irow = document.createElement("div"); irow.className = "inv-item-row";
+      var iname = document.createElement("div"); iname.className = "inv-item-name";
+      iname.innerText = (i + 1) + ". " + trText(item.t, lang) + " (" + item.q + " × " + item.p.toFixed(2) + " m)";
+      var isum = document.createElement("div"); isum.className = "inv-item-sum";
+      isum.innerText = (item.p * item.q).toFixed(2) + " m";
+      irow.appendChild(iname); irow.appendChild(isum);
+      invList.appendChild(irow);
     }
   }
 
@@ -604,25 +746,36 @@ function updCart() {
   document.getElementById("btnClearCart").style.display = hasItems ? "block" : "none";
   document.getElementById("cartEmptyWrap").innerHTML = hasItems ? "" : '<div class="empty-box"><p>' + (lang === "tk" ? "Sebediňiz häzir boş" : "Ваша корзина пуста") + '</p></div>';
 
-  var delivCost = (subTot > 0 && subTot < 200) ? 10 : 0;
+  var cityEl = document.getElementById("citySel");
+  var city = cityEl ? cityEl.value : "arkadag";
+  var delivCost = 0;
+  if (subTot > 0) {
+    if (city === "arkadag") delivCost = subTot >= 200 ? 0 : 10;
+    else if (city === "gokdepe") delivCost = 50;
+    else if (city === "ashgabat") delivCost = 70;
+    else if (city === "anew" || city === "baherden") delivCost = 100;
+  }
   var grandTot = subTot + delivCost;
-  var useCb = document.getElementById("useCbChk").checked;
-  var maxCbUsable = Math.min(subTot, cbBal);
-  var usedAmt = useCb ? maxCbUsable : 0;
-  var finalPay = Math.max(0, grandTot - usedAmt);
 
-  var pct = Math.min(100, Math.round((subTot / 200) * 100));
-  document.getElementById("shipProgFill").style.width = pct + "%";
   var pill = document.getElementById("freeShipPill");
-  if (subTot >= 200) {
-    pill.className = "free-badge ok";
-    pill.innerText = "🚚 0.00 m";
-    document.getElementById("shipProgTxt").innerText = lang === "tk" ? "✅ Arkadag şäherine eltip bermek 0.00 m!" : "✅ Доставка по г. Аркадаг 0.00 м!";
+  var progBox = document.querySelector(".ship-prog-box");
+  pill.innerText = "🚚 " + delivCost.toFixed(2) + " m";
+
+  if (city === "arkadag") {
+    if (progBox) progBox.style.display = "block";
+    var pct = Math.min(100, Math.round((subTot / 200) * 100));
+    document.getElementById("shipProgFill").style.width = pct + "%";
+    if (subTot >= 200) {
+      pill.className = "free-badge ok";
+      document.getElementById("shipProgTxt").innerText = lang === "tk" ? "✅ Arkadag şäherine eltip bermek mugt (0.00 m)!" : "✅ Доставка по г. Аркадаг бесплатная (0.00 м)!";
+    } else {
+      pill.className = "free-badge";
+      var left = (200 - subTot).toFixed(2);
+      document.getElementById("shipProgTxt").innerText = lang === "tk" ? "Arkadag şäherine mugt eltip bermek üçin ýene " + left + " m goşuň" : "До бесплатной доставки по г. Аркадаг ещё " + left + " м";
+    }
   } else {
     pill.className = "free-badge";
-    pill.innerText = "🚚 10.00 m";
-    var left = (200 - subTot).toFixed(2);
-    document.getElementById("shipProgTxt").innerText = lang === "tk" ? "Mugt eltip bermek üçin ýene " + left + " m goşuň" : "До бесплатной доставки ещё " + left + " м";
+    if (progBox) progBox.style.display = "none";
   }
 
   document.getElementById("cnt").innerText = c;
@@ -632,26 +785,23 @@ function updCart() {
   document.getElementById("sumTot").innerText = grandTot.toFixed(2) + " m";
 
   if (document.getElementById("invSub")) {
-    var nextNo = String((st.c || 0) + 101).padStart(5, "0");
+    var nextNo = String(ordCounter + 101).padStart(5, "0");
     document.getElementById("invNum").innerText = "FAKTURA № " + nextNo;
     document.getElementById("invDate").innerText = new Date().toLocaleDateString("ru-RU");
     document.getElementById("invSub").innerText = subTot.toFixed(2) + " m";
     document.getElementById("invDel").innerText = delivCost.toFixed(2) + " m";
-    document.getElementById("invCbRow").style.display = usedAmt > 0 ? "flex" : "none";
-    document.getElementById("invCbVal").innerText = "-" + usedAmt.toFixed(2) + " m";
-    document.getElementById("invGrand").innerText = finalPay.toFixed(2) + " m";
+    document.getElementById("invGrand").innerText = grandTot.toFixed(2) + " m";
   }
 }
-/* === BÖLEK 6B: SAHYPALAR WE AI KAMERA (OCR + BARKOD) === */
+/* === APP.JS — 8-NJI BÖLEK === */
 function showTab(t) {
   var s = document.querySelectorAll(".sec"), n = document.querySelectorAll(".nbtn");
   for (var i = 0; i < s.length; i++) s[i].classList.remove("act");
   for (var j = 0; j < n.length; j++) n[j].classList.toggle("act", n[j].getAttribute("data-t") === t);
   document.getElementById("s-" + t).classList.add("act");
-  document.getElementById("searchWrap").style.display = (t === "home") ? "block" : "none";
+  document.getElementById("searchBoxMain").style.display = (t === "home") ? "flex" : "none";
   if (t === "fav") renderFavs();
   if (t === "orders") renderOrders();
-  if (t === "prof") updCbUI();
 }
 
 function setL(l) {
@@ -660,14 +810,8 @@ function setL(l) {
   document.getElementById("lru").classList.toggle("act", l === "ru");
   var els = document.querySelectorAll("[data-tk]");
   for (var i = 0; i < els.length; i++) els[i].innerText = els[i].getAttribute("data-" + l);
-  document.getElementById("q").placeholder = l === "tk" ? "Gözleg..." : "Поиск...";
-  updCbUI(); initF(); render(); updCart();
-}
-
-function updRep() {
-  document.getElementById("repSales").innerText = st.s.toFixed(2) + " m";
-  document.getElementById("repProfit").innerText = st.p.toFixed(2) + " m";
-  document.getElementById("repCount").innerText = st.c;
+  document.getElementById("q").placeholder = l === "tk" ? "Haryt ady boýunça gözleg..." : "Поиск товара...";
+  initF(); render(); updCart();
 }
 
 var curSlide = 0;
@@ -677,12 +821,10 @@ function goSlide(n) {
   if (tr) tr.style.transform = "translateX(-" + (curSlide * 100) + "%)";
   for (var d = 0; d < dots.length; d++) dots[d].classList.toggle("act", d === curSlide);
 }
-setInterval(function () { goSlide((curSlide + 1) % 3); }, 4000);
+setInterval(function () { goSlide((curSlide + 1) % 3); }, 4500);
 
 document.getElementById("btnClearCart").onclick = function () {
-  cart = [];
-  updCart();
-  render();
+  cart = []; updCart(); render();
   showToast(lang === "tk" ? "🗑️ Sebet arassalandy" : "🗑️ Корзина очищена");
 };
 document.getElementById("btnOpenCheckout").onclick = function () {
@@ -693,166 +835,7 @@ document.getElementById("btnOpenCheckout").onclick = function () {
   document.getElementById("chkPage").classList.add("open");
 };
 document.getElementById("chkBack").onclick = function () { document.getElementById("chkPage").classList.remove("open"); };
-document.getElementById("useCbChk").onchange = updCart;
 
-var camStream = null, flashOn = false;
-function stopCamera() {
-  if (camStream) { camStream.getTracks().forEach(function (tr) { tr.stop(); }); camStream = null; }
-  flashOn = false;
-  document.getElementById("camFlashBtn").classList.remove("on");
-}
-
-function searchByAiTokens(tokens) {
-  var rb = document.getElementById("scanResultBox");
-  rb.style.display = "block";
-  var cleanWords = tokens.filter(function (w) { return w && w.length >= 2; });
-  if (!cleanWords.length) {
-    rb.innerHTML = lang === "tk" ? "⚠️ Suratdan ýazgy okalmady. Ýagtyrak ýerde düşüriň ýa-da aşakda adyny ýazyp ugradyň:" : "⚠️ Текст не распознан. Снимите при хорошем свете или напишите название:";
-    return;
-  }
-  var scored = [];
-  for (var i = 0; i < db.length; i++) {
-    var x = db[i], score = 0;
-    var hay = (x.id + " " + x.t + " " + trText(x.t, "tk") + " " + trText(x.t, "ru")).toLowerCase();
-    for (var k = 0; k < cleanWords.length; k++) {
-      var w = cleanWords[k].toLowerCase();
-      if (String(x.id).toLowerCase() === w) score += 15;
-      else if (hay.indexOf(w) > -1) score += 3;
-    }
-    if (score > 0) scored.push({ item: x, score: score });
-  }
-  scored.sort(function (a, b) { return b.score - a.score; });
-
-  if (!scored.length) {
-    document.getElementById("camNote").value = cleanWords.slice(0, 3).join(" ");
-    rb.innerHTML = (lang === "tk" ? "ℹ️ AI okady: <b>" : "ℹ️ AI прочитал: <b>") + cleanWords.slice(0, 3).join(", ") + "</b><br>" + (lang === "tk" ? "Bazada gabat gelmedi. 'Dükana ugrat' basyp sargap bilersiňiz:" : "Не найдено в базе. Нажмите 'Отправить в магазин':");
-    return;
-  }
-  var html = "<b>🤖 AI Tapylan Harytlar:</b><br>";
-  for (var m = 0; m < Math.min(4, scored.length); m++) {
-    var it = scored[m].item;
-    html += '<div style="padding:6px 0;border-bottom:1px solid var(--b);cursor:pointer;display:flex;justify-content:space-between;align-items:center" onclick="openCamProd(\'' + it.id + '\')"><span>' + trText(it.t, lang) + '</span><b style="color:var(--p);white-space:nowrap;margin-left:8px">' + it.p + ' m ›</b></div>';
-  }
-  rb.innerHTML = html;
-}
-
-async function analyzeCanvasWithAI(canvasEl) {
-  var rb = document.getElementById("scanResultBox");
-  rb.style.display = "block";
-  rb.innerHTML = lang === "tk" ? "⏳ AI suraty seljerýär..." : "⏳ AI анализирует фото...";
-  var tokens = [];
-
-  try {
-    if ("BarcodeDetector" in window) {
-      var bd = new BarcodeDetector();
-      var codes = await bd.detect(canvasEl);
-      for (var i = 0; i < codes.length; i++) if (codes[i].rawValue) tokens.push(codes[i].rawValue);
-    }
-  } catch (e) {}
-
-  if (!tokens.length && window.Tesseract) {
-    try {
-      var res = await Tesseract.recognize(canvasEl, "eng+rus");
-      var rawTxt = (res && res.data && res.data.text) ? res.data.text : "";
-      var words = rawTxt.replace(/[^a-zA-Zа-яА-ЯёЁäöüňýžşçÄÖÜŇÝŽŞÇ0-9\s]/g, " ").split(/\s+/);
-      for (var j = 0; j < words.length; j++) if (words[j].length >= 3) tokens.push(words[j]);
-    } catch (e) {}
-  }
-  searchByAiTokens(tokens);
-}
-
-window.openCamProd = function (id) {
-  stopCamera(); document.getElementById("camFull").classList.remove("open");
-  for (var i = 0; i < db.length; i++) if (db[i].id === id) { openDet(db[i]); break; }
-};
-
-document.getElementById("btnCam").onclick = function () {
-  document.getElementById("scanResultBox").style.display = "none";
-  document.getElementById("camPreview").style.display = "none";
-  document.getElementById("camNote").value = "";
-  document.getElementById("camFull").classList.add("open");
-  if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-    navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: "environment" }, width: { ideal: 1280 } } })
-      .then(function (stream) {
-        camStream = stream;
-        var v = document.getElementById("camVideo");
-        v.srcObject = stream;
-        v.play();
-      }).catch(function () {});
-  }
-};
-
-document.getElementById("camCloseBtn").onclick = function () { stopCamera(); document.getElementById("camFull").classList.remove("open"); };
-document.getElementById("camFlashBtn").onclick = function () {
-  if (!camStream) return;
-  var track = camStream.getVideoTracks();
-  if (track && track.getCapabilities && track.getCapabilities().torch) {
-    flashOn = !flashOn;
-    track.applyConstraints({ advanced: [{ torch: flashOn }] });
-    this.classList.toggle("on", flashOn);
-  }
-};
-
-document.getElementById("camSnapBtn").onclick = function () {
-  var vid = document.getElementById("camVideo");
-  if (!vid || vid.readyState < 2 || !vid.videoWidth) {
-    document.getElementById("camFile").click();
-    return;
-  }
-  var cv = document.createElement("canvas");
-  cv.width = vid.videoWidth;
-  cv.height = vid.videoHeight;
-  var ctx = cv.getContext("2d");
-  ctx.filter = "contrast(1.25) brightness(1.08)";
-  ctx.drawImage(vid, 0, 0, cv.width, cv.height);
-  var prev = document.getElementById("camPreview");
-  prev.src = cv.toDataURL("image/jpeg", 0.9);
-  prev.style.display = "block";
-  analyzeCanvasWithAI(cv);
-};
-
-document.getElementById("camFile").onchange = function (e) {
-  var file = e.target.files.item(0); if (!file) return;
-  var rd = new FileReader();
-  rd.onload = function (ev) {
-    var imgObj = new Image();
-    imgObj.onload = function () {
-      var cv = document.createElement("canvas");
-      var scale = Math.min(1, 1000 / Math.max(imgObj.width, imgObj.height));
-      cv.width = Math.round(imgObj.width * scale);
-      cv.height = Math.round(imgObj.height * scale);
-      var ctx = cv.getContext("2d");
-      ctx.filter = "contrast(1.2)";
-      ctx.drawImage(imgObj, 0, 0, cv.width, cv.height);
-      var prev = document.getElementById("camPreview");
-      prev.src = cv.toDataURL("image/jpeg", 0.9);
-      prev.style.display = "block";
-      analyzeCanvasWithAI(cv);
-    };
-    imgObj.src = ev.target.result;
-  };
-  rd.readAsDataURL(file);
-};
-
-document.getElementById("camNote").onkeyup = function () {
-  if (this.value.trim().length >= 2) searchByAiTokens(this.value.trim().split(/\s+/));
-};
-
-document.getElementById("btnSendCam").onclick = function () {
-  var note = document.getElementById("camNote").value.trim() || "AI Surat boýunça gözleg";
-  var mainMail = m1 || "aycyzuw.tm.arkadag@gmail.com";
-  var btn = this; btn.disabled = true; btn.innerText = "...";
-  fetch("https://formsubmit.co" + encodeURIComponent(mainMail), {
-    method: "POST",
-    headers: { "Content-Type": "application/json", "Accept": "application/json" },
-    body: JSON.stringify({ _subject: "AÝ-ÇYZUW AI Kamera Gözlegi", _captcha: "false", Sorag: note, Musderi: userAddr.ph || "Näbelli" })
-  }).finally(function () {
-    btn.disabled = false; btn.innerText = "📩 Dükana ugrat";
-    stopCamera(); document.getElementById("camFull").classList.remove("open");
-    showToast(lang === "tk" ? "✅ Talabyňyz dükana ugradyldy!" : "✅ Запрос отправлен в магазин!");
-  });
-};
-/* === BÖLEK 6C-1: EXCEL ÝÜKLEMEK WE GMAIL SARGYT === */
 document.getElementById("btnImport").onclick = function () {
   var raw = document.getElementById("pasteBox").value.trim();
   if (!raw) { showToast("⚠️ Excel maglumatyny goýuň!"); return; }
@@ -862,35 +845,32 @@ document.getElementById("btnImport").onclick = function () {
     if (!line) continue;
     var cols = line.indexOf("\t") > -1 ? line.split("\t") : line.split(/\s{2,}/);
     if (cols.length < 4) continue;
-    var id = String(cols.shift()).trim();
-    var t = String(cols.shift()).trim();
-    var stk = parseFloat(String(cols.shift()).replace(",", ".")) || 20;
-    var p = parseFloat(String(cols.shift()).replace(",", ".")) || 0;
-    var cost = cols.length ? (parseFloat(String(cols.shift()).replace(",", ".")) || 0) : 0;
-    var imgUrl = cols.length ? String(cols.shift()).trim() : "";
+    var id = String(cols[0]).trim();
+    var t = String(cols[1]).trim();
+    var stk = Math.max(0, parseFloat(String(cols[2]).replace(",", ".")) || 0);
+    var p = Math.max(0, parseFloat(String(cols[3]).replace(",", ".")) || 0);
     if (!id || !t) continue;
 
     var autoCat = detectCatSub(t);
     var found = false;
     for (var j = 0; j < db.length; j++) {
       if (String(db[j].id) === id) {
-        db[j].t = t; db[j].s = stk; db[j].p = p; db[j].cost = cost;
+        db[j].t = t; db[j].s = stk; db[j].p = p;
         db[j].c = autoCat.c; db[j].sub = autoCat.sub;
-        if (imgUrl) db[j].img = imgUrl;
         found = true; break;
       }
     }
     if (!found) {
-      db.push({ id: id, t: t, s: stk, p: p, cost: cost, c: autoCat.c, sub: autoCat.sub, img: imgUrl });
+      db.push({ id: id, t: t, s: stk, p: p, c: autoCat.c, sub: autoCat.sub });
     }
     added++;
   }
-  lsSet("ay_db_v20", db); render(); renderStockList(); initF();
+  lsSet("ay_db_v22", db); render(); renderStockList(); initF();
   document.getElementById("admStat").innerText = "✅ Ýüklendi: " + added + " | Jemi: " + db.length;
   document.getElementById("pasteBox").value = "";
   showToast("✅ " + added + " sany haryt ýüklendi!");
 };
-
+/* === APP.JS — 9-NJI BÖLEK === */
 document.getElementById("btnOrd").onclick = function () {
   var nm = document.getElementById("nm").value.trim();
   var ph = document.getElementById("ph").value.trim();
@@ -902,79 +882,69 @@ document.getElementById("btnOrd").onclick = function () {
   }
 
   var btn = this; btn.disabled = true; btn.innerText = lang === "tk" ? "Iberilýär..." : "Отправка...";
-  var cleanDet = "", mailDet = "", subTot = 0, prof = 0;
-  var baseSiteUrl = location.origin + location.pathname.replace(/\/[^\/]*$/, "/");
+  var cleanDet = "", subTot = 0, mailItems = [];
+  var baseSiteUrl = (location.origin && location.origin !== "null") ? (location.origin + location.pathname.replace(/\/[^\/]*$/, "/")) : "";
 
   for (var i = 0; i < cart.length; i++) {
     var it = cart[i];
     var rawImg = getProdImgUrl(it);
-    var fullImgLink = (rawImg.indexOf("http") === 0 || rawImg.indexOf("data:") === 0) ? rawImg : (baseSiteUrl + rawImg);
+    var fullImgLink = (rawImg.indexOf("http") === 0 || rawImg.indexOf("data:") === 0) ? rawImg : (baseSiteUrl ? baseSiteUrl + rawImg : "");
 
-    var lineTxt = (i + 1) + ". " + it.t + " (" + it.q + " × " + it.p.toFixed(2) + " m = " + (it.p * it.q).toFixed(2) + " m)";
-    cleanDet += lineTxt + "\n";
-    mailDet += lineTxt + " [Kod: " + it.id + "]\n   Suraty: " + fullImgLink + "\n\n";
+    cleanDet += (i + 1) + ". " + it.t + " (" + it.q + " × " + it.p.toFixed(2) + " m = " + (it.p * it.q).toFixed(2) + " m)\n";
+    mailItems.push({ id: it.id, t: it.t, q: it.q, p: it.p, img: fullImgLink });
 
     subTot += it.p * it.q;
-    prof += (it.p - (it.cost || 0)) * it.q;
     for (var j = 0; j < db.length; j++) if (db[j].id === it.id) db[j].s = Math.max(0, db[j].s - it.q);
   }
 
-  var delivCost = (subTot > 0 && subTot < 200) ? 10 : 0;
+  var cityEl = document.getElementById("citySel");
+  var cityVal = cityEl ? cityEl.value : "arkadag";
+  var cityLabel = (cityEl && cityEl.selectedIndex >= 0) ? cityEl.options[cityEl.selectedIndex].text.split("(")[0].trim() : "Arkadag şäheri";
+  var delivCost = 0;
+  if (subTot > 0) {
+    if (cityVal === "arkadag") delivCost = subTot >= 200 ? 0 : 10;
+    else if (cityVal === "gokdepe") delivCost = 50;
+    else if (cityVal === "ashgabat") delivCost = 70;
+    else if (cityVal === "anew" || cityVal === "baherden") delivCost = 100;
+  }
   var grandTot = subTot + delivCost;
-  var tierInfo = getCbTier();
-  var useCb = document.getElementById("useCbChk").checked;
-  var usedAmt = useCb ? Math.min(subTot, cbBal) : 0;
-  var payTot = Math.max(0, grandTot - usedAmt);
-  var earnedCb = +(subTot * tierInfo.rate).toFixed(2);
-
-  cbBal = +(cbBal - usedAmt + earnedCb).toFixed(2);
-  cbMeta.spent = +((cbMeta.spent || 0) + payTot).toFixed(2);
-  cbMeta.earned = +((cbMeta.earned || 0) + earnedCb).toFixed(2);
-  lsSet("ay_cb", cbBal); lsSet("ay_cb_meta", cbMeta); updCbUI();
-
-  var invNo = String((st.c || 0) + 101).padStart(5, "0");
-  var oid = "#" + invNo, totStr = payTot.toFixed(2) + " m";
-  var footInfo = "\nHarytlar: " + subTot.toFixed(2) + " m | Eltip bermek (Arkadag): " + delivCost.toFixed(2) + " m";
-  if (usedAmt > 0) footInfo += "\nKeşbek aýyrmasy: -" + usedAmt.toFixed(2) + " m";
+  var invNo = String(ordCounter + 101).padStart(5, "0");
+  var oid = "#" + invNo, totStr = grandTot.toFixed(2) + " m";
+  var fullAd = cityLabel + ", " + ad;
+  var footInfo = "\nHarytlar: " + subTot.toFixed(2) + " m | Eltip bermek (" + cityLabel + "): " + delivCost.toFixed(2) + " m";
   if (nt) footInfo += "\nBellik: " + nt;
-
   cleanDet += footInfo;
-  mailDet += footInfo;
 
-  orders.push({ id: oid, nm: nm, ph: ph, ad: ad, det: mailDet, cleanDet: cleanDet, tot: totStr });
-  st.s += payTot; st.p += prof; st.c += 1;
-  lsSet("ay_db_v20", db); lsSet("ay_orders", orders); lsSet("ay_st", st);
+  ordCounter += 1;
+  orders.push({ id: oid, nm: nm, ph: ph, ad: fullAd, cleanDet: cleanDet, tot: totStr });
+  lsSet("ay_db_v22", db); lsSet("ay_orders", orders); lsSet("ay_ord_cnt", ordCounter);
 
-  var mainMail = m1 || "aycyzuw.tm.arkadag@gmail.com";
-  var payload = {
-    _subject: "AÝ-ÇYZUW Faktura № " + invNo + " (" + totStr + ")",
-    _template: "table",
-    _captcha: "false",
-    Faktura_No: invNo,
-    Musderi_Ady: nm,
-    Telefon: ph,
-    Salgy: ad,
-    Bellik: nt || "Ýok",
-    Harytlar_we_Suratlar: mailDet,
-    Eltip_bermek: delivCost.toFixed(2) + " m",
-    Jemi_Toleg: totStr
-  };
-  if (m2) payload._cc = m2;
-
-  fetch("https://formsubmit.co" + encodeURIComponent(mainMail), {
+  fetch("send.php", {
     method: "POST",
-    headers: { "Content-Type": "application/json", "Accept": "application/json" },
-    body: JSON.stringify(payload)
-  }).finally(function () {
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      to: m1 || "aycyzuw.tm.arkadag@gmail.com",
+      cc: m2 || "",
+      subject: "Faktura № " + invNo + " (" + cityLabel + " - " + totStr + ")",
+      invNo: invNo,
+      nm: nm,
+      ph: ph,
+      ad: fullAd,
+      nt: nt || "Ýok",
+      items: mailItems,
+      subTot: subTot.toFixed(2) + " m",
+      deliv: delivCost.toFixed(2) + " m (" + cityLabel + ")",
+      totStr: totStr
+    })
+  }).catch(function () {}).finally(function () {
     btn.disabled = false; btn.innerText = lang === "tk" ? "✅ Sargydy tassykla" : "✅ Подтвердить заказ";
-    document.getElementById("useCbChk").checked = false;
     document.getElementById("chkPage").classList.remove("open");
     cart = []; updCart(); render();
     showToast(lang === "tk" ? "✅ Sargydyňyz kabul edildi! (Faktura № " + invNo + ")" : "✅ Ваш заказ принят! (Фактура № " + invNo + ")");
     showTab("orders");
   });
 };
-/* === BÖLEK 6C-2: ÄHLI DÜWMELER WE BAŞLANGYÇ IŞE GOÝBERIŞ === */
+/* === APP.JS — 10-NJY BÖLEK === */
 document.getElementById("detBack").onclick = function () { document.getElementById("detPage").classList.remove("open"); };
 document.getElementById("logoBtn").onclick = function () {
   taps++; clearTimeout(tt); tt = setTimeout(function () { taps = 0; }, 800);
@@ -983,15 +953,22 @@ document.getElementById("logoBtn").onclick = function () {
     document.getElementById("admPass").value = "";
     document.getElementById("admLogin").classList.add("open");
     setTimeout(function () { document.getElementById("admPass").focus(); }, 100);
-  } else showTab("home");
+  } else {
+    resetAllFilters();
+    showTab("home");
+  }
 };
 document.getElementById("ltm").onclick = function () { setL("tk"); };
 document.getElementById("lru").onclick = function () { setL("ru"); };
-document.getElementById("q").onkeyup = render;
-document.getElementById("hideZero").onchange = render;
-document.getElementById("clrQ").onclick = function () { document.getElementById("q").value = ""; render(); };
+
+var searchTimer;
+document.getElementById("q").onkeyup = function () {
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(function () { displayLimit = 40; render(); }, 180);
+};
+document.getElementById("hideZero").onchange = function () { displayLimit = 40; render(); };
+document.getElementById("clrQ").onclick = function () { document.getElementById("q").value = ""; displayLimit = 40; render(); };
 document.getElementById("btnExitCat").onclick = resetAllFilters;
-document.getElementById("btnAll").onclick = resetAllFilters;
 
 document.getElementById("btnSort").onclick = function () { document.getElementById("sm").classList.add("open"); };
 document.getElementById("btnFilt").onclick = function () { renderFilterList(); document.getElementById("fm").classList.add("open"); };
@@ -999,6 +976,7 @@ document.getElementById("btnApplyF").onclick = function () {
   fMin = parseFloat(document.getElementById("fMinP").value) || 0;
   var mx = parseFloat(document.getElementById("fMaxP").value);
   fMax = (!isNaN(mx) && mx > 0) ? mx : Infinity;
+  displayLimit = 40;
   render(); document.getElementById("fm").classList.remove("open");
 };
 document.getElementById("btnResetF").onclick = function () { resetAllFilters(); document.getElementById("fm").classList.remove("open"); };
@@ -1024,7 +1002,7 @@ document.getElementById("btnCheckAdm").onclick = function () {
     document.getElementById("adminPanel").style.display = "block";
     document.getElementById("admMail1").value = m1; document.getElementById("admMail2").value = m2; document.getElementById("admSms").value = smsPh;
     document.getElementById("admStat").innerText = "Jemi haryt sany: " + db.length;
-    updRep(); renderStockList(); document.getElementById("admLogin").classList.remove("open"); showTab("prof");
+    renderStockList(); document.getElementById("admLogin").classList.remove("open"); showTab("prof");
   } else {
     inp.value = "";
     showToast("❌ Nädogry parol!");
@@ -1039,14 +1017,25 @@ document.getElementById("btnSaveMail").onclick = function () {
   lsSet("ay_m1", m1); lsSet("ay_m2", m2); lsSet("ay_sms", smsPh);
   showToast("✅ Ýatda saklandy!");
 };
-document.getElementById("btnResetRep").onclick = function () { st = { s: 0, p: 0, c: 0 }; lsSet("ay_st", st); updRep(); };
-document.getElementById("btnClear").onclick = function () { if (confirm("Arassalamalymy?")) { localStorage.removeItem("ay_db_v20"); db = autoCategorizeAll(githubBaza.slice()); render(); renderStockList(); initF(); } };
+document.getElementById("btnClear").onclick = function () { if (confirm("Arassalamalymy?")) { localStorage.removeItem("ay_db_v22"); db = autoCategorizeAll(baseData.slice()); render(); renderStockList(); initF(); } };
 document.getElementById("btnLogout").onclick = function () { document.getElementById("adminPanel").style.display = "none"; document.getElementById("admPass").value = ""; };
-document.getElementById("btnCopyGit").onclick = function () { if (navigator.clipboard) navigator.clipboard.writeText("var githubBaza = " + JSON.stringify(db, null, 2) + ";").then(function () { showToast("📋 baza.js üçin kopiýalandy!"); }); };
+document.getElementById("btnCopyGit").onclick = function () {
+  var cleanExport = db.map(function (item) {
+    return { id: item.id, t: item.t, s: item.s, p: item.p };
+  });
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText("var githubBaza = " + JSON.stringify(cleanExport, null, 2) + ";").then(function () {
+      showToast("📋 baza.js üçin kopiýalandy!");
+    });
+  }
+};
+
+var citySelEl = document.getElementById("citySel");
+if (citySelEl) citySelEl.onchange = updCart;
 
 var nbtns = document.querySelectorAll(".nbtn");
 for (var i = 0; i < nbtns.length; i++) nbtns[i].onclick = function () { showTab(this.getAttribute("data-t")); };
 var clsBtns = document.querySelectorAll(".cls");
 for (var j = 0; j < clsBtns.length; j++) clsBtns[j].onclick = function () { document.getElementById(this.getAttribute("data-m")).classList.remove("open"); };
 
-updCbUI(); initF(); render(); updCart();
+initF(); render(); updCart();
