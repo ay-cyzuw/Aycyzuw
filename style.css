@@ -96,18 +96,46 @@ body {
 .brand-circles { display: flex; gap: 12px; overflow-x: auto; padding: 4px 2px 12px; margin-bottom: 10px; scrollbar-width: none; }
 .brand-circles::-webkit-scrollbar { display: none; }
 .bcircle-item { display: flex; flex-direction: column; align-items: center; gap: 6px; min-width: 76px; cursor: pointer; flex-shrink: 0; }
-.bcircle-ring { width: 68px; height: 68px; border-radius: 50%; background: #fff; border: 2px solid var(--p); padding: 4px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(19, 102, 158, 0.12); transition: transform 0.15s; }
-.bcircle-item:active .bcircle-ring { transform: scale(0.94); }
-.bcircle-ring img { width: 100%; height: 100%; object-fit: contain; border-radius: 50%; }
-.bcircle-txt { font-size: 11px; font-weight: 900; color: var(--p); text-align: center; line-height: 1.1; }
-.bcircle-lbl { font-size: 11px; font-weight: 700; color: var(--t); text-align: center; max-width: 76px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+/* Tegelek brendler (tegelegiň içini doly doldurýar) */
+.bcircle-ring {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid var(--p);
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(19, 102, 158, 0.12);
+  transition: transform 0.15s;
+}
+.bcircle-ring img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
 
-/* Meşhur brendler kartlary */
-.vip-brands { display: grid; grid-template-columns: repeat(auto-fill, minmax(112px, 1fr)); gap: 10px; margin-bottom: 18px; }
-.vip-card { background: var(--c); border: 1px solid var(--b); border-radius: 16px; overflow: hidden; cursor: pointer; box-shadow: 0 3px 10px rgba(15, 23, 42, 0.04); transition: transform 0.15s; }
-.vip-card:hover { transform: translateY(-2px); border-color: var(--p); }
-.vip-top { height: 74px; background: #fff; display: flex; align-items: center; justify-content: center; padding: 8px; position: relative; }
-.vip-top img { max-height: 100%; max-width: 100%; object-fit: contain; }
+/* Meşhur brendler kartlary (ýokarky bölegi doly doldurýar) */
+.vip-top {
+  height: 74px;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  overflow: hidden;
+  position: relative;
+}
+.vip-top img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 .vip-badge { position: absolute; top: 6px; left: 6px; background: rgba(19, 102, 158, 0.12); color: var(--p); font-size: 10px; font-weight: 900; padding: 2px 5px; border-radius: 6px; }
 .vip-bot { background: linear-gradient(135deg, var(--p), #1e88c9); color: #fff; text-align: center; padding: 7px 6px; font-size: 12px; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
