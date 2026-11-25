@@ -319,3 +319,25 @@ select, textarea, input { width: 100%; padding: 11px; border: 1px solid var(--b)
 @media (min-width: 800px) {
   .qcat-box { max-height: 180px; }
 }
+/* === TELEFONDA PROFIL BÖLÜMINI BEÝLEKILER ÝALY DÜZETMEK === */
+@media (max-width: 768px) {
+  /* Profilde gizlenýän ýokarky başlygy we içindäki menýuny gaýtadan açýar */
+  .hdr {
+    display: block !important;
+  }
+
+  /* Aşaky menýunyň hemişe ekranyň iň aşagynda berk durmagyny üpjün edýär */
+  .nav {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    display: flex !important;
+    z-index: 999 !important;
+  }
+
+  /* Profil sahypasynyň iň aşaky maglumatlarynyň menýunyň aşagynda galmazlygy üçin */
+  #s-prof {
+    padding-bottom: 120px !important;
+  }
+}
