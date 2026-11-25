@@ -1,4 +1,4 @@
-/* === APP.JS — 1-NJI BÖLEK === */
+/* === APP.JS — BÖLEK 1 / 8 === */
 var toastTimer;
 function showToast(msg) {
   var tb = document.getElementById("toastBox");
@@ -11,19 +11,16 @@ function showToast(msg) {
 
 function escapeHtml(str) {
   return String(str || "")
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
+    .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;").replace(/'/g, "&#039;");
 }
 
-var hSvg0 = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>';
-var hSvg1 = '<svg width="16" height="16" viewBox="0 0 24 24" fill="#f43f5e" stroke="#f43f5e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>';
-var eyeSvg = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#13669e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>';
+var hSvg0 = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>';
+var hSvg1 = '<svg width="16" height="16" viewBox="0 0 24 24" fill="#f43f5e" stroke="#f43f5e" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>';
+var eyeSvg = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#13669e" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>';
 var shSvg = '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>';
 var phSvg = '<div class="p-ph"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>AÝ-ÇYZUW</span></div>';
-var emptyBoxSvg = '<svg viewBox="0 0 64 64" fill="none"><path d="M10 22L32 10L54 22V46L32 58L10 46V22Z" fill="#e2e8f0" stroke="#94a3b8" stroke-width="2"/><path d="M10 22L32 34L54 22" stroke="#94a3b8" stroke-width="2"/><path d="M32 34V58" stroke="#94a3b8" stroke-width="2"/><path d="M21 16L43 28" stroke="#cbd5e1" stroke-width="2"/><rect x="16" y="35" width="8" height="6" rx="1" fill="#f59e0b"/></svg>';
+var emptyBoxSvg = '<svg viewBox="0 0 64 64" fill="none"><path d="M10 22L32 10L54 22V46L32 58L10 46V22Z" fill="#e2e8f0" stroke="#94a3b8" stroke-width="2"/><path d="M10 22L32 34L54 22" stroke="#94a3b8" stroke-width="2"/><path d="M32 34V58" stroke="#94a3b8" stroke-width="2"/><rect x="16" y="35" width="8" height="6" rx="1" fill="#f59e0b"/></svg>';
 
 var lImg = document.getElementById("logoImg");
 if (lImg) {
@@ -34,43 +31,45 @@ if (lImg) {
   };
 }
 
-var cats = [
-  { id: "Ofis", tk: "Ofis üçin", ru: "Для офиса", i: "🗂️", img: "img/ofis.jpg" },
-  { id: "Torba", tk: "Mekdep üçin", ru: "Для школы", i: "🎒", img: "img/mekdep.jpg" },
-  { id: "Kagyz", tk: "Kagyz önümleri", ru: "Бумажная продукция", i: "📄", img: "img/kagyz.jpg" },
-  { id: "Ýazuw", tk: "Ýazuw esbaplary", ru: "Письменные товары", i: "🖊️", img: "img/yazuw.jpg" },
-  { id: "Döredijilik", tk: "Döredijilik", ru: "Творчество", i: "🎨", img: "img/doredijilik.jpg" },
-  { id: "Kitap", tk: "Kitaplar", ru: "Книги", i: "📚", img: "img/kitaplar.jpg" },
-  { id: "Oýunjak", tk: "Oýunjaklar", ru: "Игрушки", i: "🧸", img: "img/oyunjak.jpg" },
-  { id: "Baýramçylyk", tk: "Baýramçylyk", ru: "Праздник", i: "🎈", img: "img/bayramcylyk.jpg" },
-  { id: "Umumy", tk: "Umumy harytlar", ru: "Общие товары", i: "🛍️", img: "img/umumy.jpg" }
-];
-
-var knownBrands = ["Double A", "Dolphin", "Pensan", "Hatber", "CASIO", "Maped", "Faber-Castell", "ErichKrause", "Berlingo", "Koh-i-Noor", "Attache", "Brauberg", "Centrum", "Deli", "Pilot", "Bic"];
+var knownBrands = ["Double A", "Dolphin", "Pensan", "Hatber", "CASIO", "Maped", "Faber-Castell", "ErichKrause", "Berlingo", "Koh-i-Noor", "Attache", "Brauberg", "Centrum", "Deli", "Pilot", "Bic", "Student", "Kangaro", "Sonet", "Gamma", "Luch"];
+/* === APP.JS — BÖLEK 2 / 8 === */
+var cats = [];
+function addCat(id, tk, ru, ico, img, subsStr) {
+  var subs = subsStr.split("|").map(function (s) {
+    var p = s.split("~");
+    return { tk: p[0], ru: p[1] || p[0] };
+  });
+  cats.push({ id: id, tk: tk, ru: ru, i: ico, img: img, subs: subs });
+}
+/* === APP.JS — BÖLEK 3 / 8 === */
+addCat("Ofis", "Ofis harytlary", "Товары для офиса", "🗂️", "img/ofis.jpg", "Ofis esbaplary~Офисные принадлежности|Papkalar we arhiw~Папки и архивы|Ofis kagyz önümleri~Бумажная продукция|Tanyşdyryş enjamlary~Оборудование для презентаций|Ofis tehnikasy~Офисная техника");
+addCat("Mekdep", "Mekdep harytlary", "Товары для школы", "🎒", "img/mekdep.jpg", "Mekdep esbaplary~Школьные принадлежности|Mekdep torbalary~Портфели для школьников|Depderler we gündelikler~Тетради и дневники|Surat we çyzuw albomlary~Альбомы и папки для рисования|Reňkli kagyz we karton~Цветная бумага и картон");
+addCat("Ýazuw", "Ruçkalar, galamlar, markerler", "Ручки, карандаши, маркеры", "🖊️", "img/yazuw.jpg", "Ruçkalar~Ручки|Galamlar~Карандаши|Markerler we tekstmarkerler~Маркеры и текстмаркеры|Pozgyç we uçlaýjylar~Ластики и точилки|Çyzgyç we sirkullar~Линейки и циркули");
+addCat("Kitap", "Kitaplar", "Книги", "📚", "img/kitaplar.jpg", "Çeper edebiýat~Художественная литература|Çagalar edebiýaty~Детская литература|Türkmen dilindäki kitaplar~Книги на Туркменском языке|Daşary ýurt dillerindäki kitaplar~Книги на иностранном языке|Okuw gollanmalary we sözlükler~Учебные пособия и словари|Psihologiýa we işewürlik~Психология и деловая литература");
+addCat("Döredijilik", "Döredijilik", "Творчество", "🎨", "img/doredijilik.jpg", "Çaga döredijiligi~Детское творчество|Pazllar~Пазлы|Belgiler boýunça suratlar~Картины по номерам|Döredijilik harytlary~Товары для творчества|Çeperçilik harytlary~Товары для художества");
+addCat("Baýramçylyk", "Baýramçylyk harytlary", "Товары для праздника", "🎈", "img/bayramcylyk.jpg", "Baýramçylyk bezegleri~Аксессуары для праздника|Açyk hatlar we konwertler~Открытки и конверты|Baýramçylyk şemleri~Свечи для праздника|Howa şarlary we gaplama~Воздушные шары и упаковка");
+/* === APP.JS — BÖLEK 4 / 8 === */
+addCat("Oýunjak", "Oýunjaklar", "Игрушки", "🧸", "img/oyunjak.jpg", "Konstruktorlar we Lego~Конструкторы и Лего|Stol oýunlary we pazllar~Настольные игры и пазлы|Maşynlar we robotlar~Машины и роботы|Gurjaklar we ýumşak oýunjaklar~Куклы и мягкие игрушки|Ösdüriji we sport oýunjaklary~Развивающие и спортивные игры");
+addCat("Bižuteriýa", "Bižuteriýa", "Бижутерия", "💍", "img/bizuteriya.jpg", "Saç bezegleri we obodoklar~Аксессуары для волос и ободки|Bilezikler we şaý-sepler~Браслеты и украшения");
+addCat("Sowgatlyk", "Sowgatlyk önümler", "Сувенирная продукция", "🎁", "img/sowgatlyk.jpg", "Breloklar we antistressler~Брелки и антистрессы|Gapjyklar we kopilkalar~Кошельки и копилки|Sowgatlyk gutular we aýnalar~Подарочные коробки и зеркала");
+addCat("Kompýuter", "Kompýuter enjamlary", "Компьютерная техника", "💻", "img/kompyuter.jpg", "Fleşkalar we diskler~Носители информации и флешки|Syçanjyk halylary we aksessuarlar~Коврики и аксессуары|Nauşnikler we kolonkalar~Наушники и колонки|Printer boýaglary~Краски для принтеров");
+addCat("Hojalyk", "Öý-hojalyk harytlary", "Хозяйственные товары", "🏠", "img/hojalyk.jpg", "Suw çüýşeleri we termoslar~Бутылки для воды и термосы|Interýer bezegleri we sagatlar~Декор интерьера и часы|Hoşboý yslar we arassaçylyk~Освежители и хозтовары|Zibil bedrelere we beýlekiler~Урны и прочие товары");
 
 var dictPairs = [
   { ru: "шариковая ручка", tk: "şarikli ruçka" }, { ru: "гелевая ручка", tk: "gelli ruçka" },
   { ru: "простой карандаш", tk: "ýönekeý galam" }, { ru: "цветные карандаши", tk: "reňkli galamlar" },
-  { ru: "офисная бумага", tk: "ofis kagyzy" }, { ru: "школьная тетрадь", tk: "mekdep depderi" },
-  { ru: "альбом для рисования", tk: "surat albomy" }, { ru: "тетрадь", tk: "depder" }, { ru: "тетрад", tk: "depder" },
-  { ru: "ручка", tk: "ruçka" }, { ru: "шариковая", tk: "şarikli" }, { ru: "гелевая", tk: "gelli" },
-  { ru: "карандаш", tk: "galam" }, { ru: "арандаш", tk: "galam" }, { ru: "простой", tk: "ýönekeý" }, { ru: "цветные", tk: "reňkli" },
-  { ru: "ластик", tk: "pozgyç" }, { ru: "стиралка", tk: "pozgyç" }, { ru: "точилка", tk: "uçlaýjy" }, { ru: "линейка", tk: "çyzgyç" },
-  { ru: "циркуль", tk: "sirkul" }, { ru: "маркер", tk: "marker" }, { ru: "бумага", tk: "kagyz" },
-  { ru: "альбом", tk: "albom" }, { ru: "албом", tk: "albom" }, { ru: "дневник", tk: "gündelik" },
-  { ru: "блокнот", tk: "bloknot" }, { ru: "блакнот", tk: "bloknot" }, { ru: "влокнот", tk: "bloknot" },
-  { ru: "папка", tk: "papka" }, { ru: "файл", tk: "faýl" }, { ru: "степлер", tk: "stepler" },
-  { ru: "скобы", tk: "skoba" }, { ru: "ножницы", tk: "gaýçy" }, { ru: "ножници", tk: "gaýçy" }, { ru: "клей", tk: "ýelim" },
-  { ru: "калькулятор", tk: "kalkulýator" }, { ru: "калкулятор", tk: "kalkulýator" }, { ru: "пенал", tk: "penal" },
-  { ru: "рюкзак", tk: "rukzak" }, { ru: "юкзак", tk: "rukzak" }, { ru: "портфель", tk: "portfel" }, { ru: "портфел", tk: "portfel" },
-  { ru: "краски", tk: "boýaglar" }, { ru: "акварель", tk: "akwarel" }, { ru: "гуашь", tk: "guaş" }, { ru: "гуаш", tk: "guaş" },
-  { ru: "кисть", tk: "çotga" }, { ru: "пластилин", tk: "plastilin" }, { ru: "книга", tk: "kitap" },
-  { ru: "скотч", tk: "skoç" }, { ru: "черная", tk: "gara" }, { ru: "синяя", tk: "gök" },
-  { ru: "красная", tk: "gyzyl" }, { ru: "зеленая", tk: "ýaşyl" }, { ru: "белая", tk: "ak" },
-  { ru: "клетку", tk: "gözenek" }, { ru: "линию", tk: "çyzykly" }, { ru: "лист", tk: "list" },
-  { ru: "набор", tk: "toplum" }, { ru: "стикер", tk: "stiker" }, { ru: "часи", tk: "sagat" }, { ru: "часы", tk: "sagat" }
+  { ru: "тетрадь", tk: "depder" }, { ru: "ручка", tk: "ruçka" }, { ru: "карандаш", tk: "galam" },
+  { ru: "ластик", tk: "pozgyç" }, { ru: "стиралка", tk: "pozgyç" }, { ru: "точилка", tk: "uçlaýjy" },
+  { ru: "линейка", tk: "çyzgyç" }, { ru: "циркуль", tk: "sirkul" }, { ru: "маркер", tk: "marker" },
+  { ru: "бумага", tk: "kagyz" }, { ru: "альбом", tk: "albom" }, { ru: "дневник", tk: "gündelik" },
+  { ru: "блокнот", tk: "bloknot" }, { ru: "папка", tk: "papka" }, { ru: "файл", tk: "faýl" },
+  { ru: "степлер", tk: "stepler" }, { ru: "скобы", tk: "skoba" }, { ru: "ножницы", tk: "gaýçy" },
+  { ru: "клей", tk: "ýelim" }, { ru: "калькулятор", tk: "kalkulýator" }, { ru: "пенал", tk: "penal" },
+  { ru: "рюкзак", tk: "rukzak" }, { ru: "портфель", tk: "portfel" }, { ru: "краски", tk: "boýaglar" },
+  { ru: "акварель", tk: "akwarel" }, { ru: "гуашь", tk: "guaş" }, { ru: "кисть", tk: "çotga" },
+  { ru: "пластилин", tk: "plastilin" }, { ru: "книга", tk: "kitap" }, { ru: "скотч", tk: "skoç" }
 ];
-/* === APP.JS — 2-NJI BÖLEK === */
+
 function trText(str, targetLang) {
   if (!str) return "";
   var res = String(str);
@@ -79,36 +78,85 @@ function trText(str, targetLang) {
     var from = targetLang === "tk" ? pair.ru : pair.tk;
     var to = targetLang === "tk" ? pair.tk : pair.ru;
     var esc = from.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    var rx = new RegExp(esc, "gi");
-    res = res.replace(rx, function (m) {
+    res = res.replace(new RegExp(esc, "gi"), function (m) {
       return m.charAt(0) === m.charAt(0).toUpperCase() ? to.charAt(0).toUpperCase() + to.slice(1) : to;
     });
   }
   return res;
 }
-
+/* === APP.JS — BÖLEK 5 / 8 === */
 function detectCatSub(name) {
   var s = String(name).toLowerCase();
-  if (/ручк|ruck|ruçk/.test(s)) return { c: "Ýazuw", sub: /гел|gel/.test(s) ? "Gelli ruçkalar" : "Şarikli ruçkalar" };
-  if (/карандаш|арандаш|galam/.test(s)) return { c: "Ýazuw", sub: /цвет|reňk/.test(s) ? "Reňkli galamlar" : "Ýönekeý galamlar" };
-  if (/ластик|стиралк|pozgy|точилк|uçla|tocil/.test(s)) return { c: "Ýazuw", sub: "Pozgyç we uçlaýjylar" };
-  if (/линейк|çyzgy|liney|циркуль|сиркул|sirkul|транспортир|угольник/.test(s)) return { c: "Ýazuw", sub: "Çyzuw esbaplary" };
-  if (/маркер|marker|корректор|замазк|zamask|выделител|layner|hayla|haýla/.test(s)) return { c: "Ýazuw", sub: "Marker we korrektorlar" };
-  if (/тетрад|етрад|depder/.test(s)) return { c: "Kagyz", sub: "Mekdep depderleri" };
-  if (/бумаг|бумг|kagyz|a4|а4|ватман|картон|стикер|тикер|stiker|zametka/.test(s)) return { c: "Kagyz", sub: "Printer, stiker we reňkli kagyz" };
-  if (/блокнот|блакнот|влокнот|bloknot|дневник|gündelik|gundelik|ежедневник/.test(s)) return { c: "Kagyz", sub: "Gündelik we bloknotlar" };
-  if (/альбом|албом|albom|скетчбук|sketch/.test(s)) return { c: "Döredijilik", sub: "Surat albomlary" };
-  if (/краск|boýag|гуаш|акварел|кист|çotga|çotka|пластилин|холст|holst|мел|фломастер|пломастер|палитр|palitra/.test(s)) return { c: "Döredijilik", sub: "Boýag, çotga we plastilin" };
-  if (/папк|papka|файл|faýl|скоросшиват|планшет/.test(s)) return { c: "Ofis", sub: "Faýl we papkalar" };
-  if (/калькулятор|калкулятор|kalkulýator|kalkulyator/.test(s)) return { c: "Ofis", sub: "Kalkulýatorlar" };
-  if (/степлер|stepler|скоб|дырокол|дыракол|dyrakol|скотч|skoç|ножниц|gaýçy|gaycy|клей|ýelim|kley|скрепк|skrepk|кнопк|подставк|органайзер|organa/.test(s)) return { c: "Ofis", sub: "Ofis esbaplary" };
-  if (/пенал|penal|рюкзак|юкзак|rukzak|портфел|portfel|сумк|sumka|обложк|мешок|ланч/.test(s)) return { c: "Torba", sub: "Mekdep torba, penal we daşlyk" };
-  if (/книг|kitap|сказк|словарь|sözlük|sozluk|пропис|атлас|глобус|globus|энциклопед/.test(s)) return { c: "Kitap", sub: "Okuw kitaplary we gollanmalar" };
-  if (/лего|lego|кукл|gurjak|машин|masyn|пазл|pazl|шахмат|küşt|kust|игра|oýun|мяч|top|конструктор/.test(s)) return { c: "Oýunjak", sub: "Çaga oýunjaklary" };
-  if (/шар|şar|свеч|подар|лента|lenta|конверт|konwert|веревк|ýüp|бант|открытк|пакет|happy birthday/.test(s)) return { c: "Baýramçylyk", sub: "Baýramçylyk we sowgat bezegleri" };
-  return { c: "Umumy", sub: "Beýleki harytlar" };
+  if (/флеш|fles|диск|disk|cd-r|dvd|мышь|мышк|коврик|наушник|inpods|ultrapods|колонка|kalonka|принтер|printer|inkbank|usb|adapter|модем/.test(s)) {
+    if (/флеш|fles|диск|disk|cd-r|dvd/.test(s)) return { c: "Kompýuter", sub: "Fleşkalar we diskler" };
+    if (/наушник|inpods|ultrapods|колонка|kalonka|speaker|микрофон/.test(s)) return { c: "Kompýuter", sub: "Nauşnikler we kolonkalar" };
+    if (/принтер|printer|inkbank/.test(s)) return { c: "Kompýuter", sub: "Printer boýaglary" };
+    return { c: "Kompýuter", sub: "Syçanjyk halylary we aksessuarlar" };
+  }
+  if (/заколк|zokolka|ободок|abadok|abodok|браслет|бреслет|брош|волос|saç|sac|невидимк|newidimk|newedimk|шпилк|бантик|bantik/.test(s)) {
+    if (/браслет|бреслет|jewelry|monjuk/.test(s)) return { c: "Bižuteriýa", sub: "Bilezikler we şaý-sepler" };
+    return { c: "Bižuteriýa", sub: "Saç bezegleri we obodoklar" };
+  }
+  if (/брелок|brelok|копилк|kopilk|кошел|gapjyk|антистресс|anti stres|сквиш|squishy|lapa|зеркал|ayna|aýna|подарочн.*коробк|karopka sowgat/.test(s)) {
+    if (/брелок|brelok|антистресс|anti stres|сквиш|squishy|lapa/.test(s)) return { c: "Sowgatlyk", sub: "Breloklar we antistressler" };
+    if (/кошел|gapjyk|копилк|kopilk/.test(s)) return { c: "Sowgatlyk", sub: "Gapjyklar we kopilkalar" };
+    return { c: "Sowgatlyk", sub: "Sowgatlyk gutular we aýnalar" };
+  }
+  if (/бутылк|бутилк|butilk|термос|termos|освежител|освижител|мыло|мило|салфетк|salfetka|урн|bedere|будильник|часи|часы|sagat|декор|dekor|decor|зонт|zont/.test(s)) {
+    if (/бутылк|бутилк|butilk|термос|termos/.test(s)) return { c: "Hojalyk", sub: "Suw çüýşeleri we termoslar" };
+    if (/урн|bedere/.test(s)) return { c: "Hojalyk", sub: "Zibil bedrelere we beýlekiler" };
+    if (/освежител|освижител|мыло|мило|салфетк|salfetka/.test(s)) return { c: "Hojalyk", sub: "Hoşboý yslar we arassaçylyk" };
+    return { c: "Hojalyk", sub: "Interýer bezegleri we sagatlar" };
+  }
+  if (/шар|şar|balloon|свеч|шем|подар|лента|lenta|открытк|otkritk|топер|toper|happy birthday|праздн|хлопуш/.test(s)) {
+    if (/открытк|otkritk|конверт|konwert/.test(s)) return { c: "Baýramçylyk", sub: "Açyk hatlar we konwertler" };
+    if (/свеч|шем/.test(s)) return { c: "Baýramçylyk", sub: "Baýramçylyk şemleri" };
+    if (/шар|şar|balloon|упаков|пленка для празднич/.test(s)) return { c: "Baýramçylyk", sub: "Howa şarlary we gaplama" };
+    return { c: "Baýramçylyk", sub: "Baýramçylyk bezegleri" };
+  }
+  if (/лего|lego|кукл|gurjak|машин|masyn|car|пазл|pazl|шахмат|küşt|kust|chess|игра|oýun|oyun|мяч|top|конструктор|пистолет|pistolet|робот|robot|uno|мафи|домино|лол|lol/.test(s)) {
+    if (/лего|lego|конструктор|building blocks/.test(s)) return { c: "Oýunjak", sub: "Konstruktorlar we Lego" };
+    if (/пазл|pazl|шахмат|küşt|kust|chess|uno|мафи|домино|лото|кубик рубик/.test(s)) return { c: "Oýunjak", sub: "Stol oýunlary we pazllar" };
+    if (/машин|masyn|car|робот|robot|вертол|самол|поезд|poyuz/.test(s)) return { c: "Oýunjak", sub: "Maşynlar we robotlar" };
+    if (/кукл|gurjak|barbie|мягк/.test(s)) return { c: "Oýunjak", sub: "Gurjaklar we ýumşak oýunjaklary" };
+    return { c: "Oýunjak", sub: "Ösdüriji we sport oýunjaklary" };
+  }
+  if (/ручк|ruck|ruçk|карандаш|арандаш|galam|маркер|marker|текстмакер|текстовыделител|хайлайтер|haýla|hayla|ластик|стиралк|pozgy|точилк|uçla|tocil|линейк|çyzgy|liney|циркуль|сиркул|sirkul/.test(s)) {
+    if (/ручк|ruck|ruçk/.test(s)) return { c: "Ýazuw", sub: "Ruçkalar" };
+    if (/карандаш|арандаш|galam/.test(s)) return { c: "Ýazuw", sub: "Galamlar" };
+    if (/маркер|marker|текстмакер|текстовыделител|хайлайтер|haýla|hayla|лайнер|layner/.test(s)) return { c: "Ýazuw", sub: "Markerler we tekstmarkerler" };
+    if (/ластик|стиралк|pozgy|точилк|uçla|tocil/.test(s)) return { c: "Ýazuw", sub: "Pozgyç we uçlaýjylar" };
+    return { c: "Ýazuw", sub: "Çyzgyç we sirkullar" };
+  }
+  if (/краск|boýag|гуаш|акварел|кист|çotga|çotka|пластилин|холст|holst|мел|фломастер|пломастер|палитр|palitra|мольберт|malbert|раскраск|raskraska|алмазн|картина по номерам|бисер|фетр/.test(s)) {
+    if (/пазл/.test(s)) return { c: "Döredijilik", sub: "Pazllar" };
+    if (/алмазн|картина по номерам/.test(s)) return { c: "Döredijilik", sub: "Belgiler boýunça suratlar" };
+    if (/холст|holst|мольберт|malbert|подрамник|мастихин|маслян/.test(s)) return { c: "Döredijilik", sub: "Çeperçilik harytlary" };
+    if (/наклейк|stiker|стикер|бисер|фетр|лента декоратив/.test(s)) return { c: "Döredijilik", sub: "Döredijilik harytlary" };
+    return { c: "Döredijilik", sub: "Çaga döredijiligi" };
+  }
+  if (/книг|kitap|сказк|ertek|словарь|sözlük|sozluk|пропис|атлас|глобус|globus|энциклопед|учебник|oxford|headway/.test(s)) {
+    if (/сказк|ertek|малыш|детск/.test(s)) return { c: "Kitap", sub: "Çagalar edebiýaty" };
+    if (/türkmen|turkmen|gurbannazar|kerbabaýew|magtymguly|gurbannepesow/.test(s)) return { c: "Kitap", sub: "Türkmen dilindäki kitaplar" };
+    if (/english|oxford|headway|иностран|турецк|kitap /.test(s)) return { c: "Kitap", sub: "Daşary ýurt dillerindäki kitaplar" };
+    if (/словарь|sözlük|sozluk|пропис|атлас|глобус|globus|учебник|тренаж/.test(s)) return { c: "Kitap", sub: "Okuw gollanmalary we sözlükler" };
+    if (/психолог|бизнес|привыч|кийосаки|карнеги|законов власти/.test(s)) return { c: "Kitap", sub: "Psihologiýa we işewürlik" };
+    return { c: "Kitap", sub: "Çeper edebiýat" };
+  }
+  if (/папк|papka|файл|faýl|скоросшиват|степлер|stepler|скоб|дырокол|дыракол|dyrakol|скотч|skoç|ножниц|gaýçy|gaycy|клей|ýelim|kley|скрепк|skrepk|зажим|органайзер|organa|калькулятор|калкулятор|kalkul|бумаг.*а4|бумаг.*а3|ламинат|брошюр|доск.*магнит|доск.*маркер|печат|штамп|ценник|чек/.test(s)) {
+    if (/папк|papka|файл|faýl|скоросшиват/.test(s)) return { c: "Ofis", sub: "Papkalar we arhiw" };
+    if (/бумаг.*а4|бумаг.*а3|фотобумаг|чек|рулон|конверт|блокнот|ежедневник/.test(s)) return { c: "Ofis", sub: "Ofis kagyz önümleri" };
+    if (/доск.*магнит|доск.*маркер|пробков/.test(s)) return { c: "Ofis", sub: "Tanyşdyryş enjamlary" };
+    if (/калькулятор|калкулятор|kalkul|ламинат|брошюр|резак|уничтожит|батаре/.test(s)) return { c: "Ofis", sub: "Ofis tehnikasy" };
+    return { c: "Ofis", sub: "Ofis esbaplary" };
+  }
+  if (/пенал|penal|рюкзак|юкзак|rukzak|портфел|portfel|сумк|sumka|мешок/.test(s)) return { c: "Mekdep", sub: "Mekdep torbalary" };
+  if (/тетрад|етрад|depder|дневник|gündelik|gundelik/.test(s)) return { c: "Mekdep", sub: "Depderler we gündelikler" };
+  if (/альбом|албом|albom|скетчбук|sketch/.test(s)) return { c: "Mekdep", sub: "Surat we çyzuw albomlary" };
+  if (/цветн.*бумаг|картон|ватман/.test(s)) return { c: "Mekdep", sub: "Reňkli kagyz we karton" };
+  return { c: "Mekdep", sub: "Mekdep esbaplary" };
 }
-
+/* === APP.JS — BÖLEK 6 / 8 === */
 function autoCategorizeAll(list) {
   if (!Array.isArray(list)) return [];
   for (var i = 0; i < list.length; i++) {
@@ -125,12 +173,11 @@ function lsGet(k, d) { try { var v = localStorage.getItem(k); return v ? JSON.pa
 function lsSet(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
 
 var baseData = (typeof githubBaza !== "undefined" && Array.isArray(githubBaza)) ? githubBaza : [];
-var db = autoCategorizeAll(lsGet("ay_db_v22", baseData));
+var db = autoCategorizeAll(lsGet("ay_db_v25", baseData));
 var favs = lsGet("ay_favs", []);
 var views = lsGet("ay_views", {});
 var orders = lsGet("ay_orders", []);
 var userAddr = lsGet("ay_uaddr", { nm: "", ph: "", ad: "" });
-var admPassSaved = lsGet("ay_apass", "AyCyzuw@2026");
 var m1 = lsGet("ay_m1", "aycyzuw.tm.arkadag@gmail.com");
 var m2 = lsGet("ay_m2", "aycyzuw.tm2026@gmail.com");
 var smsPh = lsGet("ay_sms", "+99365637644");
@@ -139,6 +186,7 @@ var ordCounter = parseInt(lsGet("ay_ord_cnt", 0), 10) || 0;
 var cart = [], lang = "tk", taps = 0, tt, curDet = null, curQtyItem = null;
 var fMin = 0, fMax = Infinity, fBrand = "";
 var displayLimit = 40;
+var activeMenuCat = "";
 
 function catName(c) { for (var i = 0; i < cats.length; i++) if (cats[i].id === c) return cats[i][lang]; return c; }
 
@@ -203,7 +251,7 @@ function setExactQty(p, val) {
     }
     var found = false;
     for (var i = 0; i < cart.length; i++) if (cart[i].id === p.id) { cart[i].q = n; found = true; }
-    if (!found) cart.push({ id: p.id, t: p.t, p: p.p, c: p.c || "Umumy", img: p.img || "", q: n, max: maxS });
+    if (!found) cart.push({ id: p.id, t: p.t, p: p.p, c: p.c || "Mekdep", img: p.img || "", q: n, max: maxS });
   }
   updCart(); render();
   if (curDet && curDet.id === p.id) updDetBtn(p);
@@ -236,7 +284,7 @@ function addCart(p, btnEl) {
   setExactQty(p, cur + 1);
   if (btnEl) flyToCart(btnEl, getProdImgUrl(p));
 }
-/* === APP.JS — 3-NJI BÖLEK === */
+
 function toggleFav(id) {
   var idx = favs.indexOf(id);
   if (idx > -1) favs.splice(idx, 1); else favs.push(id);
@@ -244,7 +292,7 @@ function toggleFav(id) {
   render(); renderFavs();
   if (curDet && curDet.id === id) updDetFav(id);
 }
-
+/* === APP.JS — BÖLEK 7A === */
 function updDetFav(id) {
   var isF = favs.indexOf(id) > -1;
   document.getElementById("detTopFav").innerHTML = isF ? hSvg1 : hSvg0;
@@ -306,7 +354,6 @@ function openDet(x) {
     document.getElementById("zoomImg").src = imgUrl;
     document.getElementById("zoomModal").classList.add("open");
   };
-
   document.getElementById("detTopFav").onclick = function () { toggleFav(x.id); };
   document.getElementById("detTopShare").onclick = function () {
     var txt = titleTr + " — " + x.p + " m\n" + location.href;
@@ -335,7 +382,7 @@ function openDet(x) {
 
 document.getElementById("closeZoom").onclick = function () { document.getElementById("zoomModal").classList.remove("open"); };
 document.getElementById("zoomModal").onclick = function (e) { if (e.target === this) this.classList.remove("open"); };
-
+/* === APP.JS — BÖLEK 7B === */
 function makeCard(x) {
   var card = document.createElement("div"); card.className = "card";
   card.onclick = function () { openDet(x); };
@@ -384,7 +431,7 @@ function makeCard(x) {
   card.appendChild(pimg); card.appendChild(info);
   return card;
 }
-/* === APP.JS — 4-NJI BÖLEK === */
+
 window.filterByCat = function (cid, subName) {
   document.getElementById("fcat").value = cid || "";
   document.getElementById("fsub").value = subName || "";
@@ -405,73 +452,93 @@ window.filterByBrand = function (bname) {
   window.scrollTo({ top: 0, behavior: "smooth" });
 };
 
-function makeColorfulCatCard(c, idx) {
-  var d = document.createElement("div");
-  d.className = "ccol-card grad-" + (idx % 9);
-  var title = document.createElement("div");
-  title.className = "ccol-title";
-  title.innerText = c[lang];
-  d.appendChild(title);
+function renderCatalogGrid() {
+  var g2 = document.getElementById("cgrid2");
+  var subHdr = document.getElementById("catSubHeader");
+  if (!g2) return;
+  g2.innerHTML = "";
 
-  if (c.img) {
-    var im = document.createElement("img");
-    im.className = "ccol-img";
-    im.src = c.img;
-    im.alt = c[lang];
-    im.onerror = function () {
-      this.remove();
-      var sp = document.createElement("div");
-      sp.className = "ccol-ico";
-      sp.innerText = c.i;
-      d.appendChild(sp);
-    };
-    d.appendChild(im);
+  if (!activeMenuCat) {
+    if (subHdr) subHdr.style.display = "none";
+    for (var i = 0; i < cats.length; i++) {
+      (function (c, idx) {
+        var cnt = db.filter(function (x) { return x.c === c.id; }).length;
+        var d = document.createElement("div");
+        d.className = "ccol-card grad-" + (idx % 11);
+        d.innerHTML = '<div class="ccol-title">' + escapeHtml(c[lang]) + '</div><div class="ccol-cnt">' + cnt + (lang === "tk" ? " haryt" : " товаров") + '</div>';
+        if (c.img) {
+          var im = document.createElement("img");
+          im.className = "ccol-img";
+          im.src = c.img;
+          im.onerror = function () { this.remove(); var sp = document.createElement("div"); sp.className = "ccol-ico"; sp.innerText = c.i; d.appendChild(sp); };
+          d.appendChild(im);
+        }
+        d.onclick = function () {
+          if (c.subs && c.subs.length) {
+            activeMenuCat = c.id;
+            renderCatalogGrid();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          } else {
+            filterByCat(c.id, "");
+          }
+        };
+        g2.appendChild(d);
+      })(cats[i], i);
+    }
   } else {
-    var sp = document.createElement("div");
-    sp.className = "ccol-ico";
-    sp.innerText = c.i;
-    d.appendChild(sp);
+    var catObj = null;
+    for (var k = 0; k < cats.length; k++) if (cats[k].id === activeMenuCat) catObj = cats[k];
+    if (!catObj) { activeMenuCat = ""; renderCatalogGrid(); return; }
+
+    if (subHdr) {
+      subHdr.style.display = "flex";
+      document.getElementById("catSubTitle").innerText = catObj[lang];
+      document.getElementById("btnCatBack").onclick = function () { activeMenuCat = ""; renderCatalogGrid(); };
+      document.getElementById("btnCatAllItems").onclick = function () { filterByCat(catObj.id, ""); };
+    }
+
+    catObj.subs.forEach(function (subItem, idx) {
+      var sCnt = db.filter(function (x) { return x.c === catObj.id && x.sub === subItem.tk; }).length;
+      var d = document.createElement("div");
+      d.className = "ccol-card grad-" + ((idx + 2) % 11);
+      d.innerHTML = '<div class="ccol-title">' + escapeHtml(subItem[lang]) + '</div><div class="ccol-cnt">' + sCnt + (lang === "tk" ? " haryt" : " товаров") + '</div><div class="ccol-ico">' + catObj.i + '</div>';
+      d.onclick = function () { filterByCat(catObj.id, subItem.tk); };
+      g2.appendChild(d);
+    });
   }
-  d.onclick = function () { filterByCat(c.id, ""); };
-  return d;
 }
 
-function renderBrandsUI() {
+function openBrandsModal() {
+  var box = document.getElementById("brandsGridBox");
+  if (!box) return;
   var brands = getActiveBrands();
-  var cRow = document.getElementById("brandCirclesRow");
-  var vGrid = document.getElementById("homeVipBrands");
-  var hTitle = document.getElementById("homeBrandTitle");
-
-  if (!brands.length) {
-    if (cRow) cRow.style.display = "none";
-    if (vGrid) vGrid.style.display = "none";
-    if (hTitle) hTitle.style.display = "none";
-    return;
-  }
-
-  if (cRow) { cRow.style.display = "flex"; cRow.innerHTML = ""; }
-  if (vGrid) { vGrid.style.display = "grid"; vGrid.innerHTML = ""; }
-  if (hTitle) hTitle.style.display = "flex";
-
+  box.innerHTML = "";
   brands.forEach(function (bn) {
     var slug = bn.toLowerCase().replace(/[^a-z0-9]/g, "");
-    if (cRow) {
-      var item = document.createElement("div");
-      item.className = "bcircle-item";
-      item.innerHTML = '<div class="bcircle-ring"><img src="img/brands/' + slug + '.png" onerror="this.parentElement.innerHTML=\'<span class=bcircle-txt>' + escapeHtml(bn) + '</span>\'"></div><span class="bcircle-lbl">' + escapeHtml(bn) + '</span>';
-      item.onclick = function () { filterByBrand(bn); };
-      cRow.appendChild(item);
-    }
-    if (vGrid) {
-      var vc = document.createElement("div");
-      vc.className = "vip-card";
-      vc.innerHTML = '<div class="vip-top"><span class="vip-badge">★</span><img src="img/brands/' + slug + '.png" onerror="this.parentElement.innerHTML=\'<span class=vip-badge>★</span><b style=color:var(--p);font-size:14px>' + escapeHtml(bn) + '</b>\'"></div><div class="vip-bot">' + escapeHtml(bn) + '</div>';
-      vc.onclick = function () { filterByBrand(bn); };
-      vGrid.appendChild(vc);
-    }
+    var card = document.createElement("div");
+    card.className = "brand-cube-card";
+    card.innerHTML = '<div class="brand-cube-logo"><img src="img/brands/' + slug + '.png" alt="' + escapeHtml(bn) + '" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'block\'"><span class="brand-cube-fallback" style="display:none">' + escapeHtml(bn) + '</span></div><div class="brand-cube-name">' + escapeHtml(bn) + '</div>';
+    card.onclick = function () {
+      document.getElementById("brandsPage").classList.remove("open");
+      filterByBrand(bn);
+    };
+    box.appendChild(card);
   });
+  document.getElementById("brandsPage").classList.add("open");
 }
 
+function handleSlideClick() {
+  if (curSlide === 0) {
+    activeMenuCat = "";
+    showTab("menu");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  } else if (curSlide === 1) {
+    document.getElementById("delivModal").classList.add("open");
+  } else if (curSlide === 2) {
+    openBrandsModal();
+  }
+}
+/* === APP.JS — BÖLEK 8A === */
 function renderBrandChips() {
   var wrap = document.getElementById("brandFilterWrap"), box = document.getElementById("brandChips");
   if (!wrap || !box) return;
@@ -536,15 +603,10 @@ function renderFilterList() {
 }
 
 function initF() {
-  var g2 = document.getElementById("cgrid2");
-  if (g2) {
-    g2.innerHTML = "";
-    for (var i = 0; i < cats.length; i++) g2.appendChild(makeColorfulCatCard(cats[i], i));
-  }
-  renderBrandsUI();
+  renderCatalogGrid();
   renderFilterList();
 }
-/* === APP.JS — 5A BÖLEK === */
+
 function render() {
   var qv = document.getElementById("q").value.trim(), q = qv.toLowerCase();
   var fc = document.getElementById("fcat").value, fsub = document.getElementById("fsub").value;
@@ -581,7 +643,6 @@ function render() {
 
   pg.innerHTML = "";
   var lmWrap = document.getElementById("loadMoreWrap");
-
   if (!matched.length) {
     lmWrap.style.display = "none";
     pg.innerHTML = '<div class="empty-box" style="grid-column:1/-1">' + emptyBoxSvg + '<p>' + (lang === "tk" ? "Haryt tapylmady" : "Товары не найдены") + '</p></div>';
@@ -631,7 +692,7 @@ function renderStockList() {
     row.appendChild(sp);
     var inp = document.createElement("input"); inp.type = "number"; inp.value = x.s;
     inp.style.cssText = "width:65px;padding:4px 6px;margin:0;text-align:center";
-    (function (idx) { inp.onchange = function () { db[idx].s = Math.max(0, parseFloat(this.value) || 0); lsSet("ay_db_v22", db); render(); }; })(i);
+    (function (idx) { inp.onchange = function () { db[idx].s = Math.max(0, parseFloat(this.value) || 0); lsSet("ay_db_v25", db); render(); }; })(i);
     row.appendChild(inp); sl.appendChild(row);
   }
 }
@@ -646,7 +707,7 @@ function renderOrders() {
   }
   ol.innerHTML = h;
 }
-/* === APP.JS — 5B BÖLEK === */
+/* === APP.JS — BÖLEK 8B-1 === */
 function updCart() {
   var c = 0, subTot = 0, cl = document.getElementById("clist");
   var invList = document.getElementById("invItemsList");
@@ -656,7 +717,6 @@ function updCart() {
   for (var i = 0; i < cart.length; i++) {
     var item = cart[i]; c += item.q; subTot += item.p * item.q;
     var row = document.createElement("div"); row.className = "citem-new";
-
     var imgDiv = document.createElement("div"); imgDiv.className = "citem-img";
     var im = document.createElement("img"); im.src = getProdImgUrl(item);
     im.onerror = function () { this.parentElement.innerHTML = phSvg; };
@@ -686,7 +746,6 @@ function updCart() {
     })(item);
     qc.appendChild(bm); qc.appendChild(qn); qc.appendChild(bp);
     bot.appendChild(qc);
-
     body.appendChild(top); body.appendChild(bot);
     row.appendChild(imgDiv); row.appendChild(body);
     cl.appendChild(row);
@@ -754,7 +813,7 @@ function updCart() {
     document.getElementById("invGrand").innerText = grandTot.toFixed(2) + " m";
   }
 }
-/* === APP.JS — 6A BÖLEK (TÄZELENEN) === */
+/* === APP.JS — BÖLEK 8B-2 === */
 function toggleCityDrop(e) {
   if (e) e.stopPropagation();
   var w = document.getElementById("cityDropWrap");
@@ -792,14 +851,8 @@ function validateTmPhone(forceShow) {
   inp.value = raw.length > 2 ? (raw.slice(0, 2) + " " + raw.slice(2)) : raw;
 
   var isValid = /^(61|62|63|64|65|71)\d{6}$/.test(raw);
-  if (raw.length === 0 && !forceShow) {
-    wrap.classList.remove("invalid");
-    return false;
-  }
-  if (!isValid) {
-    wrap.classList.add("invalid");
-    return false;
-  }
+  if (raw.length === 0 && !forceShow) { wrap.classList.remove("invalid"); return false; }
+  if (!isValid) { wrap.classList.add("invalid"); return false; }
   wrap.classList.remove("invalid");
   return true;
 }
@@ -811,10 +864,10 @@ function showTab(t) {
   document.getElementById("s-" + t).classList.add("act");
   document.getElementById("searchBoxMain").style.display = (t === "home") ? "flex" : "none";
 
-  // Ýokarky AÝ-ÇYZUW başlygyny diňe Profilde gizlemek:
   var hdr = document.querySelector(".hdr");
-  if (hdr) hdr.style.display = (t === "prof") ? "none" : "";
+  if (hdr) hdr.style.display = (window.innerWidth <= 768 && t === "prof") ? "none" : "";
 
+  if (t === "menu") { activeMenuCat = ""; renderCatalogGrid(); }
   if (t === "fav") renderFavs();
   if (t === "orders") renderOrders();
 }
@@ -825,7 +878,6 @@ function setL(l) {
   for (var i = 0; i < els.length; i++) els[i].innerText = els[i].getAttribute("data-" + l);
   document.getElementById("q").placeholder = l === "tk" ? "Haryt ady boýunça gözleg..." : "Поиск товара...";
   initF(); render(); updCart();
-  if (typeof updShopStatus === "function") updShopStatus();
   showToast(l === "tk" ? "🇹🇲 Dil: Türkmençe" : "🇷🇺 Язык: Русский");
 }
 
@@ -838,16 +890,10 @@ function goSlide(n) {
 }
 setInterval(function () { goSlide((curSlide + 1) % 3); }, 4500);
 
-document.getElementById("btnClearCart").onclick = function () {
-  cart = []; updCart(); render();
-  showToast(lang === "tk" ? "🗑️ Sebet arassalandy" : "🗑️ Корзина очищена");
-};
+document.getElementById("btnClearCart").onclick = function () { cart = []; updCart(); render(); showToast(lang === "tk" ? "🗑️ Sebet arassalandy" : "🗑️ Корзина очищена"); };
 document.getElementById("btnOpenCheckout").onclick = function () {
   if (userAddr.nm && !document.getElementById("nm").value) document.getElementById("nm").value = userAddr.nm;
-  if (userAddr.ph && !document.getElementById("ph").value) {
-    document.getElementById("ph").value = userAddr.ph;
-    validateTmPhone(false);
-  }
+  if (userAddr.ph && !document.getElementById("ph").value) { document.getElementById("ph").value = userAddr.ph; validateTmPhone(false); }
   if (userAddr.ad && !document.getElementById("ad").value) document.getElementById("ad").value = userAddr.ad;
   updCart();
   document.getElementById("chkPage").classList.add("open");
@@ -863,104 +909,58 @@ document.getElementById("btnImport").onclick = function () {
     if (!line) continue;
     var cols = line.indexOf("\t") > -1 ? line.split("\t") : line.split(/\s{2,}/);
     if (cols.length < 4) continue;
-    var id = String(cols[0]).trim();
-    var t = String(cols[1]).trim();
+    var id = String(cols[0]).trim(), t = String(cols[1]).trim();
     var stk = Math.max(0, parseFloat(String(cols[2]).replace(",", ".")) || 0);
     var p = Math.max(0, parseFloat(String(cols[3]).replace(",", ".")) || 0);
     if (!id || !t) continue;
-
     var autoCat = detectCatSub(t);
     var found = false;
     for (var j = 0; j < db.length; j++) {
-      if (String(db[j].id) === id) {
-        db[j].t = t; db[j].s = stk; db[j].p = p;
-        db[j].c = autoCat.c; db[j].sub = autoCat.sub;
-        found = true; break;
-      }
+      if (String(db[j].id) === id) { db[j].t = t; db[j].s = stk; db[j].p = p; db[j].c = autoCat.c; db[j].sub = autoCat.sub; found = true; break; }
     }
-    if (!found) {
-      db.push({ id: id, t: t, s: stk, p: p, c: autoCat.c, sub: autoCat.sub });
-    }
+    if (!found) db.push({ id: id, t: t, s: stk, p: p, c: autoCat.c, sub: autoCat.sub });
     added++;
   }
-  lsSet("ay_db_v22", db); render(); renderStockList(); initF();
+  lsSet("ay_db_v25", db); render(); renderStockList(); initF();
   document.getElementById("admStat").innerText = "✅ Ýüklendi: " + added + " | Jemi: " + db.length;
   document.getElementById("pasteBox").value = "";
   showToast("✅ " + added + " sany haryt ýüklendi!");
 };
 
 document.getElementById("btnOrd").onclick = function () {
-  var nm = document.getElementById("nm").value.trim();
-  var ad = document.getElementById("ad").value.trim();
-  var nt = document.getElementById("nt").value.trim();
-  var phOk = validateTmPhone(true);
-  if (!nm || !ad) {
-    showToast(lang === "tk" ? "⚠️ Adyňyzy we salgyňyzy ýazyň!" : "⚠️ Заполните имя и адрес!");
-    return;
-  }
-  if (!phOk) {
-    showToast(lang === "tk" ? "⚠️ Dogry telefon belgi giriziň!" : "⚠️ Введите правильный номер телефона!");
-    document.getElementById("ph").focus();
-    return;
-  }
+  var nm = document.getElementById("nm").value.trim(), ad = document.getElementById("ad").value.trim(), nt = document.getElementById("nt").value.trim();
+  if (!nm || !ad) { showToast(lang === "tk" ? "⚠️ Adyňyzy we salgyňyzy ýazyň!" : "⚠️ Заполните имя и адрес!"); return; }
+  if (!validateTmPhone(true)) { showToast(lang === "tk" ? "⚠️ Dogry telefon belgi giriziň!" : "⚠️ Введите правильный номер телефона!"); document.getElementById("ph").focus(); return; }
   var ph = "+993 " + document.getElementById("ph").value.trim();
-
   var btn = this; btn.disabled = true; btn.innerText = lang === "tk" ? "Iberilýär..." : "Отправка...";
   var cleanDet = "", subTot = 0, mailItems = [];
   var baseSiteUrl = (location.origin && location.origin !== "null") ? (location.origin + location.pathname.replace(/\/[^\/]*$/, "/")) : "";
 
   for (var i = 0; i < cart.length; i++) {
-    var it = cart[i];
-    var rawImg = getProdImgUrl(it);
+    var it = cart[i], rawImg = getProdImgUrl(it);
     var fullImgLink = (rawImg.indexOf("http") === 0 || rawImg.indexOf("data:") === 0) ? rawImg : (baseSiteUrl ? baseSiteUrl + rawImg : "");
-
     cleanDet += (i + 1) + ". " + it.t + " (" + it.q + " × " + it.p.toFixed(2) + " m = " + (it.p * it.q).toFixed(2) + " m)\n";
     mailItems.push({ id: it.id, t: it.t, q: it.q, p: it.p, img: fullImgLink });
-
     subTot += it.p * it.q;
     for (var j = 0; j < db.length; j++) if (db[j].id === it.id) db[j].s = Math.max(0, db[j].s - it.q);
   }
 
-  var cityEl = document.getElementById("citySel");
-  var cityVal = cityEl ? cityEl.value : "arkadag";
+  var cityEl = document.getElementById("citySel"), cityVal = cityEl ? cityEl.value : "arkadag";
   var cityNames = { arkadag: "Arkadag şäheri", gokdepe: "Gökdepe", ashgabat: "Aşgabat şäheri", anew: "Änew", baherden: "Bäherden" };
   var cityLabel = cityNames[cityVal] || "Arkadag şäheri";
-  var delivCost = 0;
-  if (subTot > 0) {
-    if (cityVal === "arkadag") delivCost = subTot >= 200 ? 0 : 10;
-    else if (cityVal === "gokdepe") delivCost = 50;
-    else if (cityVal === "ashgabat") delivCost = 70;
-    else if (cityVal === "anew" || cityVal === "baherden") delivCost = 100;
-  }
-  var grandTot = subTot + delivCost;
-  var invNo = String(ordCounter + 101).padStart(5, "0");
-  var oid = "#" + invNo, totStr = grandTot.toFixed(2) + " m";
+  var delivCost = subTot > 0 ? (cityVal === "arkadag" ? (subTot >= 200 ? 0 : 10) : (cityVal === "gokdepe" ? 50 : (cityVal === "ashgabat" ? 70 : 100))) : 0;
+  var grandTot = subTot + delivCost, invNo = String(ordCounter + 101).padStart(5, "0"), oid = "#" + invNo, totStr = grandTot.toFixed(2) + " m";
   var fullAd = cityLabel + ", " + ad;
-  var footInfo = "\nHarytlar: " + subTot.toFixed(2) + " m | Eltip bermek (" + cityLabel + "): " + delivCost.toFixed(2) + " m";
-  if (nt) footInfo += "\nBellik: " + nt;
-  cleanDet += footInfo;
+  cleanDet += "\nHarytlar: " + subTot.toFixed(2) + " m | Eltip bermek (" + cityLabel + "): " + delivCost.toFixed(2) + " m" + (nt ? "\nBellik: " + nt : "");
 
   ordCounter += 1;
   orders.push({ id: oid, nm: nm, ph: ph, ad: fullAd, cleanDet: cleanDet, tot: totStr });
-  lsSet("ay_db_v22", db); lsSet("ay_orders", orders); lsSet("ay_ord_cnt", ordCounter);
+  lsSet("ay_db_v25", db); lsSet("ay_orders", orders); lsSet("ay_ord_cnt", ordCounter);
 
   fetch("send.php", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      to: m1 || "aycyzuw.tm.arkadag@gmail.com",
-      cc: m2 || "",
-      subject: "Faktura № " + invNo + " (" + cityLabel + " - " + totStr + ")",
-      invNo: invNo,
-      nm: nm,
-      ph: ph,
-      ad: fullAd,
-      nt: nt || "Ýok",
-      items: mailItems,
-      subTot: subTot.toFixed(2) + " m",
-      deliv: delivCost.toFixed(2) + " m (" + cityLabel + ")",
-      totStr: totStr
-    })
+    body: JSON.stringify({ to: m1, cc: m2, subject: "Faktura № " + invNo + " (" + cityLabel + " - " + totStr + ")", invNo: invNo, nm: nm, ph: ph, ad: fullAd, nt: nt || "Ýok", items: mailItems, subTot: subTot.toFixed(2) + " m", deliv: delivCost.toFixed(2) + " m (" + cityLabel + ")", totStr: totStr })
   }).catch(function () {}).finally(function () {
     btn.disabled = false; btn.innerText = lang === "tk" ? "✅ Sargyt et" : "✅ Оформить заказ";
     document.getElementById("chkPage").classList.remove("open");
@@ -969,26 +969,16 @@ document.getElementById("btnOrd").onclick = function () {
     showTab("orders");
   });
 };
-/* === APP.JS — 6B BÖLEK (TÄZELENEN) === */
+/* === APP.JS — BÖLEK 8B-3 === */
 document.getElementById("detBack").onclick = function () { document.getElementById("detPage").classList.remove("open"); };
 document.getElementById("logoBtn").onclick = function () {
   taps++; clearTimeout(tt); tt = setTimeout(function () { taps = 0; }, 800);
-  if (taps === 3) {
-    taps = 0;
-    document.getElementById("admPass").value = "";
-    document.getElementById("admLogin").classList.add("open");
-    setTimeout(function () { document.getElementById("admPass").focus(); }, 100);
-  } else {
-    resetAllFilters();
-    showTab("home");
-  }
+  if (taps === 3) { taps = 0; document.getElementById("admPass").value = ""; document.getElementById("admLogin").classList.add("open"); setTimeout(function () { document.getElementById("admPass").focus(); }, 100); }
+  else { resetAllFilters(); showTab("home"); }
 };
 
 var searchTimer;
-document.getElementById("q").onkeyup = function () {
-  clearTimeout(searchTimer);
-  searchTimer = setTimeout(function () { displayLimit = 40; render(); }, 180);
-};
+document.getElementById("q").onkeyup = function () { clearTimeout(searchTimer); searchTimer = setTimeout(function () { displayLimit = 40; render(); }, 180); };
 document.getElementById("hideZero").onchange = function () { displayLimit = 40; render(); };
 document.getElementById("clrQ").onclick = function () { document.getElementById("q").value = ""; displayLimit = 40; render(); };
 document.getElementById("btnExitCat").onclick = resetAllFilters;
@@ -999,8 +989,7 @@ document.getElementById("btnApplyF").onclick = function () {
   fMin = parseFloat(document.getElementById("fMinP").value) || 0;
   var mx = parseFloat(document.getElementById("fMaxP").value);
   fMax = (!isNaN(mx) && mx > 0) ? mx : Infinity;
-  displayLimit = 40;
-  render(); document.getElementById("fm").classList.remove("open");
+  displayLimit = 40; render(); document.getElementById("fm").classList.remove("open");
 };
 document.getElementById("btnResetF").onclick = function () { resetAllFilters(); document.getElementById("fm").classList.remove("open"); };
 
@@ -1018,39 +1007,43 @@ document.getElementById("btnSaveAddr").onclick = function () { userAddr = { nm: 
 document.getElementById("goCall").onclick = function () { location.href = "tel:" + String(smsPh).replace(/[^0-9+]/g, ""); };
 document.getElementById("goSms").onclick = function () { location.href = "sms:" + String(smsPh).replace(/[^0-9+]/g, ""); };
 
+// Admin girişi PHP serwer arkaly barlanýar (parol JS-de saklanmaýar)
 document.getElementById("btnCheckAdm").onclick = function () {
   var inp = document.getElementById("admPass");
-  if (inp.value === admPassSaved) {
+  var pass = inp.value;
+  if (!pass) return;
+  fetch("send.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ action: "auth", pass: pass })
+  }).then(function (r) { return r.json(); }).then(function (res) {
     inp.value = "";
-    document.getElementById("adminPanel").style.display = "block";
-    document.getElementById("admMail1").value = m1; document.getElementById("admMail2").value = m2; document.getElementById("admSms").value = smsPh;
-    document.getElementById("admStat").innerText = "Jemi haryt sany: " + db.length;
-    renderStockList(); document.getElementById("admLogin").classList.remove("open"); showTab("prof");
-  } else {
+    if (res && res.ok) {
+      document.getElementById("adminPanel").style.display = "block";
+      document.getElementById("admMail1").value = m1; document.getElementById("admMail2").value = m2; document.getElementById("admSms").value = smsPh;
+      document.getElementById("admStat").innerText = "Jemi haryt sany: " + db.length;
+      renderStockList(); document.getElementById("admLogin").classList.remove("open"); showTab("prof");
+    } else {
+      showToast("❌ Nädogry parol!");
+    }
+  }).catch(function () {
     inp.value = "";
-    showToast("❌ Nädogry parol!");
-  }
+    showToast("⚠️ Serwer (send.php) elýeterli däl!");
+  });
 };
+
 document.getElementById("btnSaveMail").onclick = function () {
-  var np = document.getElementById("admNewPass").value.trim();
-  if (np) { admPassSaved = np; lsSet("ay_apass", admPassSaved); document.getElementById("admNewPass").value = ""; }
   m1 = document.getElementById("admMail1").value.trim();
   m2 = document.getElementById("admMail2").value.trim();
   smsPh = document.getElementById("admSms").value.trim();
   lsSet("ay_m1", m1); lsSet("ay_m2", m2); lsSet("ay_sms", smsPh);
   showToast("✅ Ýatda saklandy!");
 };
-document.getElementById("btnClear").onclick = function () { if (confirm("Arassalamalymy?")) { localStorage.removeItem("ay_db_v22"); db = autoCategorizeAll(baseData.slice()); render(); renderStockList(); initF(); } };
+document.getElementById("btnClear").onclick = function () { if (confirm("Arassalamalymy?")) { localStorage.removeItem("ay_db_v25"); db = autoCategorizeAll(baseData.slice()); render(); renderStockList(); initF(); } };
 document.getElementById("btnLogout").onclick = function () { document.getElementById("adminPanel").style.display = "none"; document.getElementById("admPass").value = ""; };
 document.getElementById("btnCopyGit").onclick = function () {
-  var cleanExport = db.map(function (item) {
-    return { id: item.id, t: item.t, s: item.s, p: item.p };
-  });
-  if (navigator.clipboard) {
-    navigator.clipboard.writeText("var githubBaza = " + JSON.stringify(cleanExport, null, 2) + ";").then(function () {
-      showToast("📋 baza.js üçin kopiýalandy!");
-    });
-  }
+  var cleanExport = db.map(function (item) { return { id: item.id, t: item.t, s: item.s, p: item.p }; });
+  if (navigator.clipboard) navigator.clipboard.writeText("var githubBaza = " + JSON.stringify(cleanExport, null, 2) + ";").then(function () { showToast("📋 baza.js üçin kopiýalandy!"); });
 };
 
 var nbtns = document.querySelectorAll(".nbtn");
@@ -1058,14 +1051,4 @@ for (var i = 0; i < nbtns.length; i++) nbtns[i].onclick = function () { showTab(
 var clsBtns = document.querySelectorAll(".cls");
 for (var j = 0; j < clsBtns.length; j++) clsBtns[j].onclick = function () { document.getElementById(this.getAttribute("data-m")).classList.remove("open"); };
 
-function updShopStatus() {
-  var b = document.getElementById("shopStatusBadge");
-  if (!b) return;
-  var h = new Date().getHours();
-  var isOpen = (h >= 9 && h < 21);
-  b.classList.toggle("closed", !isOpen);
-  b.innerText = isOpen ? (lang === "tk" ? "Açyk" : "Открыто") : (lang === "tk" ? "Ýapyk" : "Закрыто");
-}
-
-initF(); render(); updCart(); updShopStatus();
-setInterval(updShopStatus, 60000);
+initF(); render(); updCart();

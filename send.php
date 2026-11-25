@@ -19,8 +19,36 @@ if ($origin && $host) {
     }
 }
 
-// Spam goragy (1 IP-den 30 sekuntda diňe 1 sargyt)
+$data = json_decode(file_get_contents('php://input'), true);
+if (!$data || !is_array($data)) {
+    http_response_code(400);
+    echo json_encode(['ok' => false, 'err' => 'Invalid data']);
+    exit;
+}
+
 $ip = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
+
+// === 1. ADMIN PAROL BARLAGY (Brute-force goragly) ===
+if (($data['action'] ?? '') === 'auth') {
+    $ADMIN_PASS = 'aynazar2026'; // Admin parolyny şu ýerden üýtgedip bilersiňiz
+    $tryFile = sys_get_temp_dir() . '/aycyzuw_auth_' . md5($ip);
+    if (file_exists($tryFile) && (time() - filemtime($tryFile)) < 2) {
+        http_response_code(429);
+        echo json_encode(['ok' => false, 'err' => 'Wait 2 seconds']);
+        exit;
+    }
+    @touch($tryFile);
+    $pass = (string)($data['pass'] ?? '');
+    if (hash_equals($ADMIN_PASS, $pass)) {
+        echo json_encode(['ok' => true]);
+    } else {
+        http_response_code(401);
+        echo json_encode(['ok' => false]);
+    }
+    exit;
+}
+
+// === 2. SARGYT IBERMEK (Spam goragy: 1 IP-den 30 sekuntda 1 sargyt) ===
 $rateFile = sys_get_temp_dir() . '/aycyzuw_rate_' . md5($ip);
 if (file_exists($rateFile) && (time() - filemtime($rateFile)) < 30) {
     http_response_code(429);
@@ -29,18 +57,10 @@ if (file_exists($rateFile) && (time() - filemtime($rateFile)) < 30) {
 }
 @touch($rateFile);
 
-$data = json_decode(file_get_contents('php://input'), true);
-if (!$data || !is_array($data)) {
-    http_response_code(400);
-    echo json_encode(['ok' => false, 'err' => 'Invalid data']);
-    exit;
-}
-
 function clean($str) {
     return htmlspecialchars(strip_tags(trim((string)$str)), ENT_QUOTES, 'UTF-8');
 }
 
-// Poçta salgylary howpsuzlyk üçin serverde berkidildi
 $defaultTo1 = 'aycyzuw.tm.arkadag@gmail.com';
 $defaultTo2 = 'aycyzuw.tm2026@gmail.com';
 
