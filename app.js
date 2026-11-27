@@ -48,7 +48,12 @@ addCat("Döredijilik", "Döredijilik", "Творчество", "🎨", "img/dore
 addCat("Baýramçylyk", "Baýramçylyk harytlary", "Товары для праздника", "🎈", "img/bayramcylyk.jpg", "Baýramçylyk bezegleri~Аксессуары для праздника|Açyk hatlar we konwertler~Открытки и конверты|Baýramçylyk şemleri~Свечи для праздника|Howa şarlary we gaplama~Воздушные шары и упаковка");
 addCat("Oýunjak", "Oýunjaklar", "Игрушки", "🧸", "img/oyunjak.jpg", "Konstruktorlar we Lego~Конструкторы и Лего|Stol oýunlary we pazllar~Настольные игры и пазлы|Maşynlar we robotlar~Машины и роботы|Gurjaklar we ýumşak oýunjaklar~Куклы и мягкие игрушки|Ösdüriji we sport oýunjaklary~Развивающие и sport игры");
 addCat("Bižuteriýa", "Bižuteriýa", "Бижутерия", "💍", "img/bizuteriya.jpg", "Saç bezegleri we obodoklar~Аксессуары для волос и ободки|Bilezikler we şaý-sepler~Браслеты и украшения");
-addCat("Sowgatlyk", "Sowgatlyk önümler", "Сувенирная продукция", "🎁", "img/sowgatlyk.jpg", "Breloklar we antistressler~Брелки и антистрессы|Gapjyklar we kopilkalar~Кошельки и копилки|Sowgatlyk gutular we aýnalarvar dictPairs = [
+addCat("Sowgatlyk", "Sowgatlyk önümler", "Сувенирная продукция", "🎁", "img/sowgatlyk.jpg", "Breloklar we antistressler~Брелки и антистрессы|Gapjyklar we kopilkalar~Кошельки и копилки|Sowgatlyk gutular we aýnalar~Подарочные коробки и зеркала");
+addCat("Kompýuter", "Kompýuter enjamlary", "Компьютерная техника", "💻", "img/kompyuter.jpg", "Fleşkalar we diskler~Носители информации и флешки|Syçanjyk halylary we aksessuarlar~Коврики и аксессуары|Nauşnikler we kolonkalar~Наушники и колонки|Printer boýaglary~Краски для принтеров");
+addCat("Hojalyk", "Öý-hojalyk harytlary", "Хозяйственные товары", "🏠", "img/hojalyk.jpg", "Suw çüýşeleri we termoslar~Бутылки для воды и термосы|Interýer bezegleri we sagatlar~Декор интерьера и часы|Hoşboý yslar we arassaçylyk~Освежители и хозтовары|Zibil bedrelere we beýlekiler~Урны и прочие товары");
+
+var dictPairs = [
+
   { ru: "шариковая ручка", tk: "şarikli ruçka" }, { ru: "гелевая ручка", tk: "gelli ruçka" },
   { ru: "простой карандаш", tk: "ýönekeý galam" }, { ru: "цветные карандаши", tk: "reňkli galamlar" },
   { ru: "тетрадь", tk: "depder" }, { ru: "ручка", tk: "ruçka" }, { ru: "карандаш", tk: "galam" },
