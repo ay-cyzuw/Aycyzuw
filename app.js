@@ -166,9 +166,6 @@ function detectCatSub(name) {
   if (/цветн.*бумаг|картон|ватман/.test(s)) return { c: "Mekdep", sub: "Reňkli kagyz we karton" };
   return { c: "Mekdep", sub: "Mekdep esbaplary" };
 }
-~Подарочные коробки и зеркала");
-addCat("Kompýuter", "Kompýuter enjamlary", "Компьютерная техника", "💻", "img/kompyuter.jpg", "Fleşkalar we diskler~Носители информации и флешки|Syçanjyk halylary we aksessuarlar~Коврики и аксессуары|Nauşnikler we kolonkalar~Наушники и колонки|Printer boýaglary~Краски для принтеров");
-addCat("Hojalyk", "Öý-hojalyk harytlary", "Хозяйственные товары", "🏠", "img/hojalyk.jpg", "Suw çüýşeleri we termoslar~Бутылки для воды и термосы|Interýer bezegleri we sagatlar~Декор интерьера и часы|Hoşboý yslar we arassaçylyk~Освежители и хозтовары|Zibil bedrelere we beýlekiler~Урны и прочие товары");
 function autoCategorizeAll(list) {
   if (!Array.isArray(list)) return [];
   for (var i = 0; i < list.length; i++) {
