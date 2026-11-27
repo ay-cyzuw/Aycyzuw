@@ -2,7 +2,6 @@ Options -Indexes
 
 <IfModule mod_rewrite.c>
 RewriteEngine On
-# Diňe hakyky domen bilen girilende HTTPS-e gönükdirýär (lokal/IP-de päsgel bermeýär)
 RewriteCond %{HTTPS} !=on
 RewriteCond %{HTTP_HOST} !^localhost [NC]
 RewriteCond %{HTTP_HOST} !^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$
@@ -14,8 +13,12 @@ Header set X-Content-Type-Options "nosniff"
 Header set X-Frame-Options "SAMEORIGIN"
 Header set X-XSS-Protection "1; mode=block"
 Header set Referrer-Policy "strict-origin-when-cross-origin"
-Header set Content-Security-Policy "default-src 'self'; img-src 'self' data: https: http:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self';"
+Header set Content-Security-Policy "default-src 'self'; img-src 'self' data: https: http:; style-src 'self' 'unsafe-inline' https://googleapis.com; font-src 'self' https://gstatic.com; script-src 'self' 'unsafe-inline' https://jsdelivr.net; connect-src 'self';"
 </IfModule>
+
+<FilesMatch "\.(json|php)$">
+  Header set Cache-Control "no-cache, no-store, must-revalidate"
+</FilesMatch>
 
 <FilesMatch "^\.">
 Order allow,deny

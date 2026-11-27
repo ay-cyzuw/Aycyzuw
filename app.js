@@ -1,4 +1,3 @@
-/* === APP.JS — BÖLEK 1 / 8 === */
 var toastTimer;
 function showToast(msg) {
   var tb = document.getElementById("toastBox");
@@ -16,8 +15,8 @@ function escapeHtml(str) {
 }
 
 var hSvg0 = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>';
-var hSvg1 = '<svg width="16" height="16" viewBox="0 0 24 24" fill="#f43f5e" stroke="#f43f5e" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>';
-var eyeSvg = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#13669e" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>';
+var hSvg1 = '<svg width="16" height="16" viewBox="0 0 24 24" fill="#e11d48" stroke="#e11d48" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>';
+var eyeSvg = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#0f4c81" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>';
 var shSvg = '<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>';
 var phSvg = '<div class="p-ph"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg><span>AÝ-ÇYZUW</span></div>';
 var emptyBoxSvg = '<svg viewBox="0 0 64 64" fill="none"><path d="M10 22L32 10L54 22V46L32 58L10 46V22Z" fill="#e2e8f0" stroke="#94a3b8" stroke-width="2"/><path d="M10 22L32 34L54 22" stroke="#94a3b8" stroke-width="2"/><path d="M32 34V58" stroke="#94a3b8" stroke-width="2"/><rect x="16" y="35" width="8" height="6" rx="1" fill="#f59e0b"/></svg>';
@@ -32,7 +31,6 @@ if (lImg) {
 }
 
 var knownBrands = ["Double A", "Dolphin", "Pensan", "Hatber", "CASIO", "Maped", "Faber-Castell", "ErichKrause", "Berlingo", "Koh-i-Noor", "Attache", "Brauberg", "Centrum", "Deli", "Pilot", "Bic", "Student", "Kangaro", "Sonet", "Gamma", "Luch"];
-/* === APP.JS — BÖLEK 2 / 8 === */
 var cats = [];
 function addCat(id, tk, ru, ico, img, subsStr) {
   var subs = subsStr.split("|").map(function (s) {
@@ -41,21 +39,16 @@ function addCat(id, tk, ru, ico, img, subsStr) {
   });
   cats.push({ id: id, tk: tk, ru: ru, i: ico, img: img, subs: subs });
 }
-/* === APP.JS — BÖLEK 3 / 8 === */
+
 addCat("Ofis", "Ofis harytlary", "Товары для офиса", "🗂️", "img/ofis.jpg", "Ofis esbaplary~Офисные принадлежности|Papkalar we arhiw~Папки и архивы|Ofis kagyz önümleri~Бумажная продукция|Tanyşdyryş enjamlary~Оборудование для презентаций|Ofis tehnikasy~Офисная техника");
 addCat("Mekdep", "Mekdep harytlary", "Товары для школы", "🎒", "img/mekdep.jpg", "Mekdep esbaplary~Школьные принадлежности|Mekdep torbalary~Портфели для школьников|Depderler we gündelikler~Тетради и дневники|Surat we çyzuw albomlary~Альбомы и папки для рисования|Reňkli kagyz we karton~Цветная бумага и картон");
 addCat("Ýazuw", "Ruçkalar, galamlar, markerler", "Ручки, карандаши, маркеры", "🖊️", "img/yazuw.jpg", "Ruçkalar~Ручки|Galamlar~Карандаши|Markerler we tekstmarkerler~Маркеры и текстмаркеры|Pozgyç we uçlaýjylar~Ластики и точилки|Çyzgyç we sirkullar~Линейки и циркули");
 addCat("Kitap", "Kitaplar", "Книги", "📚", "img/kitaplar.jpg", "Çeper edebiýat~Художественная литература|Çagalar edebiýaty~Детская литература|Türkmen dilindäki kitaplar~Книги на Туркменском языке|Daşary ýurt dillerindäki kitaplar~Книги на иностранном языке|Okuw gollanmalary we sözlükler~Учебные пособия и словари|Psihologiýa we işewürlik~Психология и деловая литература");
 addCat("Döredijilik", "Döredijilik", "Творчество", "🎨", "img/doredijilik.jpg", "Çaga döredijiligi~Детское творчество|Pazllar~Пазлы|Belgiler boýunça suratlar~Картины по номерам|Döredijilik harytlary~Товары для творчества|Çeperçilik harytlary~Товары для художества");
 addCat("Baýramçylyk", "Baýramçylyk harytlary", "Товары для праздника", "🎈", "img/bayramcylyk.jpg", "Baýramçylyk bezegleri~Аксессуары для праздника|Açyk hatlar we konwertler~Открытки и конверты|Baýramçylyk şemleri~Свечи для праздника|Howa şarlary we gaplama~Воздушные шары и упаковка");
-/* === APP.JS — BÖLEK 4 / 8 === */
-addCat("Oýunjak", "Oýunjaklar", "Игрушки", "🧸", "img/oyunjak.jpg", "Konstruktorlar we Lego~Конструкторы и Лего|Stol oýunlary we pazllar~Настольные игры и пазлы|Maşynlar we robotlar~Машины и роботы|Gurjaklar we ýumşak oýunjaklar~Куклы и мягкие игрушки|Ösdüriji we sport oýunjaklary~Развивающие и спортивные игры");
+addCat("Oýunjak", "Oýunjaklar", "Игрушки", "🧸", "img/oyunjak.jpg", "Konstruktorlar we Lego~Конструкторы и Лего|Stol oýunlary we pazllar~Настольные игры и пазлы|Maşynlar we robotlar~Машины и роботы|Gurjaklar we ýumşak oýunjaklar~Куклы и мягкие игрушки|Ösdüriji we sport oýunjaklary~Развивающие и sport игры");
 addCat("Bižuteriýa", "Bižuteriýa", "Бижутерия", "💍", "img/bizuteriya.jpg", "Saç bezegleri we obodoklar~Аксессуары для волос и ободки|Bilezikler we şaý-sepler~Браслеты и украшения");
-addCat("Sowgatlyk", "Sowgatlyk önümler", "Сувенирная продукция", "🎁", "img/sowgatlyk.jpg", "Breloklar we antistressler~Брелки и антистрессы|Gapjyklar we kopilkalar~Кошельки и копилки|Sowgatlyk gutular we aýnalar~Подарочные коробки и зеркала");
-addCat("Kompýuter", "Kompýuter enjamlary", "Компьютерная техника", "💻", "img/kompyuter.jpg", "Fleşkalar we diskler~Носители информации и флешки|Syçanjyk halylary we aksessuarlar~Коврики и аксессуары|Nauşnikler we kolonkalar~Наушники и колонки|Printer boýaglary~Краски для принтеров");
-addCat("Hojalyk", "Öý-hojalyk harytlary", "Хозяйственные товары", "🏠", "img/hojalyk.jpg", "Suw çüýşeleri we termoslar~Бутылки для воды и термосы|Interýer bezegleri we sagatlar~Декор интерьера и часы|Hoşboý yslar we arassaçylyk~Освежители и хозтовары|Zibil bedrelere we beýlekiler~Урны и прочие товары");
-
-var dictPairs = [
+addCat("Sowgatlyk", "Sowgatlyk önümler", "Сувенирная продукция", "🎁", "img/sowgatlyk.jpg", "Breloklar we antistressler~Брелки и антистрессы|Gapjyklar we kopilkalar~Кошельки и копилки|Sowgatlyk gutular we aýnalarvar dictPairs = [
   { ru: "шариковая ручка", tk: "şarikli ruçka" }, { ru: "гелевая ручка", tk: "gelli ruçka" },
   { ru: "простой карандаш", tk: "ýönekeý galam" }, { ru: "цветные карандаши", tk: "reňkli galamlar" },
   { ru: "тетрадь", tk: "depder" }, { ru: "ручка", tk: "ruçka" }, { ru: "карандаш", tk: "galam" },
@@ -84,7 +77,19 @@ function trText(str, targetLang) {
   }
   return res;
 }
-/* === APP.JS — BÖLEK 5 / 8 === */
+
+// Akylly Gözleg: Kiril we Latyn harplaryny deňeşdirmek üçin
+function normSearch(s) {
+  var map = {
+    "а":"a","б":"b","в":"w","г":"g","д":"d","е":"e","ё":"yo","ж":"j","з":"z","и":"i","й":"y",
+    "к":"k","л":"l","м":"m","н":"n","о":"o","п":"p","р":"r","с":"s","т":"t","у":"u","ф":"f",
+    "х":"h","ц":"s","ч":"ch","ш":"sh","щ":"sh","ъ":"","ы":"y","ь":"","э":"e","ю":"yu","я":"ya",
+    "ä":"a","ö":"o","ü":"u","ň":"n","ş":"sh","ç":"ch","ž":"j","ý":"y"
+  };
+  return String(s || "").toLowerCase().replace(/ch|sh|yu|ya|yo/g, function(m) { return m; })
+    .split("").map(function(ch) { return map[ch] !== undefined ? map[ch] : ch; }).join("");
+}
+
 function detectCatSub(name) {
   var s = String(name).toLowerCase();
   if (/флеш|fles|диск|disk|cd-r|dvd|мышь|мышк|коврик|наушник|inpods|ultrapods|колонка|kalonka|принтер|printer|inkbank|usb|adapter|модем/.test(s)) {
@@ -156,7 +161,9 @@ function detectCatSub(name) {
   if (/цветн.*бумаг|картон|ватман/.test(s)) return { c: "Mekdep", sub: "Reňkli kagyz we karton" };
   return { c: "Mekdep", sub: "Mekdep esbaplary" };
 }
-/* === APP.JS — BÖLEK 6 / 8 === */
+~Подарочные коробки и зеркала");
+addCat("Kompýuter", "Kompýuter enjamlary", "Компьютерная техника", "💻", "img/kompyuter.jpg", "Fleşkalar we diskler~Носители информации и флешки|Syçanjyk halylary we aksessuarlar~Коврики и аксессуары|Nauşnikler we kolonkalar~Наушники и колонки|Printer boýaglary~Краски для принтеров");
+addCat("Hojalyk", "Öý-hojalyk harytlary", "Хозяйственные товары", "🏠", "img/hojalyk.jpg", "Suw çüýşeleri we termoslar~Бутылки для воды и термосы|Interýer bezegleri we sagatlar~Декор интерьера и часы|Hoşboý yslar we arassaçylyk~Освежители и хозтовары|Zibil bedrelere we beýlekiler~Урны и прочие товары");
 function autoCategorizeAll(list) {
   if (!Array.isArray(list)) return [];
   for (var i = 0; i < list.length; i++) {
@@ -165,6 +172,7 @@ function autoCategorizeAll(list) {
     list[i].sub = det.sub;
     list[i].s = Math.max(0, Number(list[i].s) || 0);
     list[i].p = Math.max(0, Number(list[i].p) || 0);
+    list[i].op = Math.max(0, Number(list[i].op) || 0);
   }
   return list;
 }
@@ -173,7 +181,7 @@ function lsGet(k, d) { try { var v = localStorage.getItem(k); return v ? JSON.pa
 function lsSet(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
 
 var baseData = (typeof githubBaza !== "undefined" && Array.isArray(githubBaza)) ? githubBaza : [];
-var db = autoCategorizeAll(lsGet("ay_db_v25", baseData));
+var db = autoCategorizeAll(lsGet("ay_db_v32", baseData));
 var favs = lsGet("ay_favs", []);
 var views = lsGet("ay_views", {});
 var orders = lsGet("ay_orders", []);
@@ -182,9 +190,10 @@ var m1 = lsGet("ay_m1", "aycyzuw.tm.arkadag@gmail.com");
 var m2 = lsGet("ay_m2", "aycyzuw.tm2026@gmail.com");
 var smsPh = lsGet("ay_sms", "+99365637644");
 var ordCounter = parseInt(lsGet("ay_ord_cnt", 0), 10) || 0;
+var adminSessionPass = "";
 
 var cart = [], lang = "tk", taps = 0, tt, curDet = null, curQtyItem = null;
-var fMin = 0, fMax = Infinity, fBrand = "";
+var fMin = 0, fMax = Infinity, fBrand = "", fOnlyPromo = false;
 var displayLimit = 40;
 var activeMenuCat = "";
 
@@ -246,7 +255,7 @@ function setExactQty(p, val) {
   } else {
     var maxS = p.s || p.max || 999;
     if (n > maxS) {
-      showToast(lang === "tk" ? "📦 Ammarda diňe " + maxS + " sany bar" : "📦 На складе только " + maxS + " шт");
+      showToast(lang === "tk" ? "⚠️ Häzirki wagtda has köp mukdar elýeterli däl" : "⚠️ Большее количество временно недоступно");
       n = maxS;
     }
     var found = false;
@@ -262,9 +271,6 @@ function promptQty(p) {
   document.getElementById("qtyItemTitle").innerText = trText(p.t, lang);
   var inp = document.getElementById("qtyInput");
   inp.value = getCartQty(p.id) || 1;
-  inp.max = p.s || p.max || 999;
-  document.getElementById("qpMaxBtn").innerText = lang === "tk" ? "Ählisi" : "Все";
-  document.getElementById("qpMaxBtn").onclick = function () { inp.value = p.s || p.max || 50; };
   document.getElementById("qtyModal").classList.add("open");
   setTimeout(function () { inp.focus(); inp.select(); }, 100);
 }
@@ -278,7 +284,7 @@ function addCart(p, btnEl) {
   var cur = getCartQty(p.id);
   var maxS = p.s || 999;
   if (cur + 1 > maxS) {
-    showToast(lang === "tk" ? "📦 Ammarda diňe " + maxS + " sany bar" : "📦 На складе только " + maxS + " шт");
+    showToast(lang === "tk" ? "⚠️ Häzirki wagtda has köp mukdar elýeterli däl" : "⚠️ Большее количество временно недоступно");
     return;
   }
   setExactQty(p, cur + 1);
@@ -292,7 +298,9 @@ function toggleFav(id) {
   render(); renderFavs();
   if (curDet && curDet.id === id) updDetFav(id);
 }
-/* === APP.JS — BÖLEK 7A === */
+var detGalleryImgs = [];
+var curZoomIdx = 0;
+
 function updDetFav(id) {
   var isF = favs.indexOf(id) > -1;
   document.getElementById("detTopFav").innerHTML = isF ? hSvg1 : hSvg0;
@@ -315,7 +323,7 @@ function updDetBtn(x) {
     var sp = document.createElement("span"); sp.innerText = q + (lang === "tk" ? " sany (üýtget)" : " шт (изм.)"); sp.onclick = function () { promptQty(x); };
     var bp = document.createElement("button"); bp.innerText = "+";
     bp.onclick = function () {
-      if (q >= x.s) { showToast(lang === "tk" ? "📦 Ammarda diňe " + x.s + " sany bar" : "📦 На складе только " + x.s + " шт"); return; }
+      if (q >= x.s) { showToast(lang === "tk" ? "⚠️ Häzirki wagtda has köp mukdar elýeterli däl" : "⚠️ Большее количество временно недоступно"); return; }
       addCart(x, bp);
     };
     box.appendChild(bm); box.appendChild(sp); box.appendChild(bp); w.appendChild(box);
@@ -327,6 +335,26 @@ function updDetBtn(x) {
   }
 }
 
+function renderDetThumbs() {
+  var tBox = document.getElementById("detThumbs");
+  if (!tBox) return;
+  if (detGalleryImgs.length <= 1) { tBox.style.display = "none"; return; }
+  tBox.style.display = "flex";
+  tBox.innerHTML = "";
+  detGalleryImgs.forEach(function (src, idx) {
+    var btn = document.createElement("button");
+    btn.className = "det-thumb-btn" + (idx === curZoomIdx ? " act" : "");
+    btn.innerHTML = '<img src="' + src + '" alt="">';
+    btn.onclick = function () {
+      curZoomIdx = idx;
+      var iw = document.getElementById("detImgWrap");
+      iw.innerHTML = '<img src="' + src + '" alt="">';
+      renderDetThumbs();
+    };
+    tBox.appendChild(btn);
+  });
+}
+
 function openDet(x) {
   curDet = x;
   views[x.id] = (views[x.id] || (parseInt(String(x.id), 36) % 40 + 12 || 15)) + 1;
@@ -334,7 +362,24 @@ function openDet(x) {
   var titleTr = trText(x.t, lang);
   document.getElementById("detTopTitle").innerText = titleTr;
   document.getElementById("detName").innerText = titleTr;
-  document.getElementById("detPrc").innerText = x.p + " m";
+
+  var prcEl = document.getElementById("detPrc");
+  var oldEl = document.getElementById("detOldPrc");
+  var pBadge = document.getElementById("detPromoBadge");
+  prcEl.innerText = x.p + " m";
+  if (x.op && x.op > x.p) {
+    var disc = Math.round(((x.op - x.p) / x.op) * 100);
+    prcEl.classList.add("promo-on");
+    oldEl.style.display = "inline";
+    oldEl.innerText = x.op + " m";
+    pBadge.style.display = "block";
+    pBadge.innerText = "-" + disc + "%";
+  } else {
+    prcEl.classList.remove("promo-on");
+    oldEl.style.display = "none";
+    pBadge.style.display = "none";
+  }
+
   document.getElementById("detCat").innerText = catName(x.c);
   document.getElementById("detSub").innerText = trText(x.sub || "Umumy", lang);
   document.getElementById("detDesc").style.display = x.d ? "block" : "none";
@@ -343,17 +388,36 @@ function openDet(x) {
   document.getElementById("detTopShare").innerHTML = shSvg;
   updDetFav(x.id); updDetBtn(x);
 
+  var baseImg = getProdImgUrl(x);
+  detGalleryImgs = [baseImg];
+  curZoomIdx = 0;
+  var tBox = document.getElementById("detThumbs");
+  if (tBox) { tBox.style.display = "none"; tBox.innerHTML = ""; }
+
   var iw = document.getElementById("detImgWrap"); iw.innerHTML = "";
-  var imgUrl = getProdImgUrl(x);
   var im = document.createElement("img");
-  im.src = imgUrl;
+  im.src = baseImg;
   im.onerror = function () { iw.innerHTML = phSvg; };
   iw.appendChild(im);
 
-  document.getElementById("detImgBoxClick").onclick = function () {
-    document.getElementById("zoomImg").src = imgUrl;
-    document.getElementById("zoomModal").classList.add("open");
-  };
+  // 2-nji we 3-nji suratlary barlamak (barkod_2.jpg, barkod_3.jpg)
+  if (baseImg.indexOf("img/") === 0 && baseImg.indexOf(".") > -1) {
+    var dotIdx = baseImg.lastIndexOf(".");
+    var prefix = baseImg.slice(0, dotIdx);
+    var ext = baseImg.slice(dotIdx);
+    [prefix + "_2" + ext, prefix + "_3" + ext].forEach(function (extraUrl) {
+      var probe = new Image();
+      probe.onload = function () {
+        if (curDet && curDet.id === x.id && detGalleryImgs.indexOf(extraUrl) === -1) {
+          detGalleryImgs.push(extraUrl);
+          renderDetThumbs();
+        }
+      };
+      probe.src = extraUrl;
+    });
+  }
+
+  document.getElementById("detImgBoxClick").onclick = function () { openZoomAt(curZoomIdx); };
   document.getElementById("detTopFav").onclick = function () { toggleFav(x.id); };
   document.getElementById("detTopShare").onclick = function () {
     var txt = titleTr + " — " + x.p + " m\n" + location.href;
@@ -380,12 +444,38 @@ function openDet(x) {
   document.getElementById("detPage").classList.add("open");
 }
 
+function openZoomAt(idx) {
+  if (!detGalleryImgs.length) return;
+  curZoomIdx = (idx + detGalleryImgs.length) % detGalleryImgs.length;
+  document.getElementById("zoomImg").src = detGalleryImgs[curZoomIdx];
+  var multi = detGalleryImgs.length > 1;
+  document.getElementById("zoomPrev").style.display = multi ? "flex" : "none";
+  document.getElementById("zoomNext").style.display = multi ? "flex" : "none";
+  document.getElementById("zoomCounter").innerText = (curZoomIdx + 1) + " / " + detGalleryImgs.length;
+  document.getElementById("zoomModal").classList.add("open");
+}
+document.getElementById("zoomPrev").onclick = function (e) { e.stopPropagation(); openZoomAt(curZoomIdx - 1); };
+document.getElementById("zoomNext").onclick = function (e) { e.stopPropagation(); openZoomAt(curZoomIdx + 1); };
 document.getElementById("closeZoom").onclick = function () { document.getElementById("zoomModal").classList.remove("open"); };
 document.getElementById("zoomModal").onclick = function (e) { if (e.target === this) this.classList.remove("open"); };
-/* === APP.JS — BÖLEK 7B === */
+var touchStartX = 0;
+document.getElementById("zoomModal").addEventListener("touchstart", function (e) { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+document.getElementById("zoomModal").addEventListener("touchend", function (e) {
+  var dx = e.changedTouches[0].screenX - touchStartX;
+  if (Math.abs(dx) > 45 && detGalleryImgs.length > 1) openZoomAt(dx < 0 ? curZoomIdx + 1 : curZoomIdx - 1);
+}, { passive: true });
 function makeCard(x) {
   var card = document.createElement("div"); card.className = "card";
   card.onclick = function () { openDet(x); };
+
+  if (x.op && x.op > x.p) {
+    var disc = Math.round(((x.op - x.p) / x.op) * 100);
+    var pb = document.createElement("div");
+    pb.className = "promo-badge";
+    pb.innerText = "-" + disc + "%";
+    card.appendChild(pb);
+  }
+
   var isLiked = favs.indexOf(x.id) > -1;
   var fbtn = document.createElement("button");
   fbtn.className = "fav-btn" + (isLiked ? " liked" : "");
@@ -401,9 +491,20 @@ function makeCard(x) {
   pimg.appendChild(img);
 
   var info = document.createElement("div"); info.className = "cbody";
-  var prcDiv = document.createElement("div"); prcDiv.className = "prc"; prcDiv.innerText = x.p + " m";
+  var prcRow = document.createElement("div"); prcRow.className = "prc-row";
+  var prcDiv = document.createElement("span");
+  prcDiv.className = "prc" + (x.op && x.op > x.p ? " promo-on" : "");
+  prcDiv.innerText = x.p + " m";
+  prcRow.appendChild(prcDiv);
+  if (x.op && x.op > x.p) {
+    var oldDiv = document.createElement("span");
+    oldDiv.className = "old-prc";
+    oldDiv.innerText = x.op + " m";
+    prcRow.appendChild(oldDiv);
+  }
+
   var ttlDiv = document.createElement("div"); ttlDiv.className = "ttl"; ttlDiv.innerText = trText(x.t, lang);
-  info.appendChild(prcDiv); info.appendChild(ttlDiv);
+  info.appendChild(prcRow); info.appendChild(ttlDiv);
 
   var q = getCartQty(x.id);
   if (x.s <= 0) {
@@ -417,7 +518,7 @@ function makeCard(x) {
     var sp = document.createElement("span"); sp.innerText = q; sp.onclick = function () { promptQty(x); };
     var bp = document.createElement("button"); bp.innerText = "+";
     bp.onclick = function () {
-      if (q >= x.s) { showToast(lang === "tk" ? "📦 Ammarda diňe " + x.s + " sany bar" : "📦 На складе только " + x.s + " шт"); return; }
+      if (q >= x.s) { showToast(lang === "tk" ? "⚠️ Häzirki wagtda has köp mukdar elýeterli däl" : "⚠️ Большее количество временно недоступно"); return; }
       addCart(x, bp);
     };
     qbox.appendChild(bm); qbox.appendChild(sp); qbox.appendChild(bp);
@@ -432,10 +533,29 @@ function makeCard(x) {
   return card;
 }
 
+function renderPromoSection() {
+  var sec = document.getElementById("promoSection");
+  var grid = document.getElementById("promoScrollGrid");
+  if (!sec || !grid) return;
+  var promos = db.filter(function (x) { return x.op && x.op > x.p && x.s > 0; });
+  if (!promos.length) { sec.style.display = "none"; return; }
+  sec.style.display = "block";
+  grid.innerHTML = "";
+  var lim = Math.min(12, promos.length);
+  for (var i = 0; i < lim; i++) grid.appendChild(makeCard(promos[i]));
+}
+
+document.getElementById("btnAllPromos").onclick = function () {
+  fOnlyPromo = true;
+  document.getElementById("fOnlyPromo").checked = true;
+  displayLimit = 40;
+  render();
+};
+
 window.filterByCat = function (cid, subName) {
   document.getElementById("fcat").value = cid || "";
   document.getElementById("fsub").value = subName || "";
-  fBrand = "";
+  fBrand = ""; fOnlyPromo = false;
   displayLimit = 40;
   showTab("home");
   render();
@@ -445,7 +565,7 @@ window.filterByCat = function (cid, subName) {
 window.filterByBrand = function (bname) {
   document.getElementById("fcat").value = "";
   document.getElementById("fsub").value = "";
-  fBrand = bname || "";
+  fBrand = bname || ""; fOnlyPromo = false;
   displayLimit = 40;
   showTab("home");
   render();
@@ -462,10 +582,9 @@ function renderCatalogGrid() {
     if (subHdr) subHdr.style.display = "none";
     for (var i = 0; i < cats.length; i++) {
       (function (c, idx) {
-        var cnt = db.filter(function (x) { return x.c === c.id; }).length;
         var d = document.createElement("div");
         d.className = "ccol-card grad-" + (idx % 11);
-        d.innerHTML = '<div class="ccol-title">' + escapeHtml(c[lang]) + '</div><div class="ccol-cnt">' + cnt + (lang === "tk" ? " haryt" : " товаров") + '</div>';
+        d.innerHTML = '<div class="ccol-title">' + escapeHtml(c[lang]) + '</div>';
         if (c.img) {
           var im = document.createElement("img");
           im.className = "ccol-img";
@@ -498,10 +617,9 @@ function renderCatalogGrid() {
     }
 
     catObj.subs.forEach(function (subItem, idx) {
-      var sCnt = db.filter(function (x) { return x.c === catObj.id && x.sub === subItem.tk; }).length;
       var d = document.createElement("div");
       d.className = "ccol-card grad-" + ((idx + 2) % 11);
-      d.innerHTML = '<div class="ccol-title">' + escapeHtml(subItem[lang]) + '</div><div class="ccol-cnt">' + sCnt + (lang === "tk" ? " haryt" : " товаров") + '</div><div class="ccol-ico">' + catObj.i + '</div>';
+      d.innerHTML = '<div class="ccol-title">' + escapeHtml(subItem[lang]) + '</div><div class="ccol-ico">' + catObj.i + '</div>';
       d.onclick = function () { filterByCat(catObj.id, subItem.tk); };
       g2.appendChild(d);
     });
@@ -528,17 +646,10 @@ function openBrandsModal() {
 }
 
 function handleSlideClick() {
-  if (curSlide === 0) {
-    activeMenuCat = "";
-    showTab("menu");
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  } else if (curSlide === 1) {
-    document.getElementById("delivModal").classList.add("open");
-  } else if (curSlide === 2) {
-    openBrandsModal();
-  }
+  if (curSlide === 0) { activeMenuCat = ""; showTab("menu"); window.scrollTo({ top: 0, behavior: "smooth" }); }
+  else if (curSlide === 1) { document.getElementById("delivModal").classList.add("open"); }
+  else if (curSlide === 2) { openBrandsModal(); }
 }
-/* === APP.JS — BÖLEK 8A === */
 function renderBrandChips() {
   var wrap = document.getElementById("brandFilterWrap"), box = document.getElementById("brandChips");
   if (!wrap || !box) return;
@@ -605,38 +716,51 @@ function renderFilterList() {
 function initF() {
   renderCatalogGrid();
   renderFilterList();
+  renderPromoSection();
 }
 
+var lastLoggedSearch = "";
 function render() {
   var qv = document.getElementById("q").value.trim(), q = qv.toLowerCase();
+  var qNorm = normSearch(qv);
   var fc = document.getElementById("fcat").value, fsub = document.getElementById("fsub").value;
   var hz = document.getElementById("hideZero").checked, pg = document.getElementById("pgrid");
   document.getElementById("clrQ").style.display = qv ? "block" : "none";
 
   var hasPriceF = (fMin > 0 || fMax < Infinity);
-  var isFiltered = Boolean(qv || fc || fsub || fBrand || hasPriceF);
+  var isFiltered = Boolean(qv || fc || fsub || fBrand || hasPriceF || fOnlyPromo);
   document.getElementById("homeTopBlocks").style.display = isFiltered ? "none" : "block";
-  document.getElementById("fBadge").style.display = (fc || fsub || fBrand || hasPriceF) ? "inline" : "none";
+  document.getElementById("fBadge").style.display = (fc || fsub || fBrand || hasPriceF || fOnlyPromo) ? "inline" : "none";
 
   var cb = document.getElementById("catBanner");
-  if (fc || fBrand) {
+  if (fc || fBrand || fOnlyPromo) {
     cb.style.display = "flex";
-    var lbl = fc ? (catName(fc) + (fsub ? " › " + trText(fsub, lang) : "")) : "";
-    if (fBrand) lbl += (lbl ? " • " : "") + fBrand;
-    document.getElementById("catBannerTitle").innerText = lbl;
+    var parts = [];
+    if (fOnlyPromo) parts.push(lang === "tk" ? "Arzanladyşdaky harytlar" : "Товары по акции");
+    if (fc) parts.push(catName(fc) + (fsub ? " › " + trText(fsub, lang) : ""));
+    if (fBrand) parts.push(fBrand);
+    document.getElementById("catBannerTitle").innerText = parts.join(" • ");
   } else cb.style.display = "none";
+
+  if (q && q.length >= 3 && q !== lastLoggedSearch) {
+    lastLoggedSearch = q;
+    fetch("send.php", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ action: "search_log", q: q }) }).catch(function () {});
+  }
 
   var matched = [];
   for (var i = 0; i < db.length; i++) {
     var x = db[i];
     if (hz && x.s <= 0) continue;
+    if (fOnlyPromo && !(x.op && x.op > x.p)) continue;
     if (x.p < fMin || x.p > fMax) continue;
     if (fc && x.c !== fc) continue;
     if (fsub && x.sub !== fsub) continue;
     if (fBrand && String(x.t).toLowerCase().indexOf(fBrand.toLowerCase()) === -1) continue;
     if (q) {
+      var origLow = String(x.t).toLowerCase();
       var trTitle = trText(x.t, lang).toLowerCase();
-      if (String(x.t).toLowerCase().indexOf(q) === -1 && trTitle.indexOf(q) === -1 && String(x.id).toLowerCase().indexOf(q) === -1) continue;
+      var normT = normSearch(x.t + " " + trTitle);
+      if (origLow.indexOf(q) === -1 && trTitle.indexOf(q) === -1 && normT.indexOf(qNorm) === -1 && String(x.id).toLowerCase().indexOf(q) === -1) continue;
     }
     matched.push(x);
   }
@@ -671,7 +795,8 @@ function resetAllFilters() {
   document.getElementById("fsub").value = "";
   document.getElementById("fMinP").value = "";
   document.getElementById("fMaxP").value = "";
-  fMin = 0; fMax = Infinity; fBrand = "";
+  document.getElementById("fOnlyPromo").checked = false;
+  fMin = 0; fMax = Infinity; fBrand = ""; fOnlyPromo = false;
   displayLimit = 40;
   renderFilterList(); render();
 }
@@ -681,33 +806,233 @@ function renderFavs() {
   for (var i = 0; i < db.length; i++) if (favs.indexOf(db[i].id) > -1) { fg.appendChild(makeCard(db[i])); found++; }
   if (!found) fg.innerHTML = '<div class="empty-box" style="grid-column:1/-1">' + emptyBoxSvg + '<p>' + (lang === "tk" ? "Halanan haryt ýok" : "Нет избранных товаров") + '</p></div>';
 }
+window.switchAdmTab = function (tabName, btnEl) {
+  var tabs = document.querySelectorAll(".adm-tab");
+  for (var i = 0; i < tabs.length; i++) tabs[i].classList.remove("act");
+  if (btnEl) btnEl.classList.add("act");
+  var panes = document.querySelectorAll(".adm-pane");
+  for (var j = 0; j < panes.length; j++) panes[j].style.display = "none";
+  var target = document.getElementById("adm-pane-" + tabName);
+  if (target) target.style.display = "block";
+  if (tabName === "low") initLowStockSelect();
+};
 
-function renderStockList() {
-  var sl = document.getElementById("stockList"); sl.innerHTML = "";
-  var lim = Math.min(150, db.length);
-  for (var i = 0; i < lim; i++) {
-    var x = db[i], row = document.createElement("div"); row.className = "adm-row";
-    var sp = document.createElement("span"); sp.style.maxWidth = "65%";
-    sp.innerText = "[" + x.id + "] " + x.t;
-    row.appendChild(sp);
-    var inp = document.createElement("input"); inp.type = "number"; inp.value = x.s;
-    inp.style.cssText = "width:65px;padding:4px 6px;margin:0;text-align:center";
-    (function (idx) { inp.onchange = function () { db[idx].s = Math.max(0, parseFloat(this.value) || 0); lsSet("ay_db_v25", db); render(); }; })(i);
-    row.appendChild(inp); sl.appendChild(row);
-  }
+function saveBazaToServer() {
+  lsSet("ay_db_v32", db);
+  render(); renderPromoSection();
+  if (!adminSessionPass) return;
+  var cleanExport = db.map(function (item) {
+    var obj = { id: item.id, t: item.t, s: item.s, p: item.p };
+    if (item.op && item.op > item.p) obj.op = item.op;
+    return obj;
+  });
+  fetch("send.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ action: "save_baza", pass: adminSessionPass, items: cleanExport })
+  }).then(function (r) { return r.json(); }).then(function (res) {
+    if (res && res.ok) showToast("✅ Serwerde ýatda saklandy!");
+  }).catch(function () {});
 }
 
+var editingProdObj = null;
+function openEditProdModal(item) {
+  editingProdObj = item;
+  document.getElementById("editProdTitle").innerText = "[" + item.id + "] " + item.t;
+  document.getElementById("edProdStock").value = item.s;
+  document.getElementById("edProdPrice").value = item.p;
+  document.getElementById("edProdOldPrice").value = item.op || 0;
+  document.getElementById("admEditProdModal").classList.add("open");
+}
+
+document.getElementById("btnSaveProdEdit").onclick = function () {
+  if (!editingProdObj) return;
+  editingProdObj.s = Math.max(0, parseFloat(document.getElementById("edProdStock").value) || 0);
+  editingProdObj.p = Math.max(0, parseFloat(document.getElementById("edProdPrice").value) || 0);
+  var opVal = Math.max(0, parseFloat(document.getElementById("edProdOldPrice").value) || 0);
+  editingProdObj.op = (opVal > editingProdObj.p) ? opVal : 0;
+  document.getElementById("admEditProdModal").classList.remove("open");
+  renderStockList();
+  saveBazaToServer();
+};
+
+function renderStockList() {
+  var sl = document.getElementById("stockList");
+  if (!sl) return;
+  sl.innerHTML = "";
+  var qEl = document.getElementById("admProdSearch");
+  var q = qEl ? qEl.value.trim().toLowerCase() : "";
+  var list = [];
+  for (var i = 0; i < db.length; i++) {
+    if (!q || String(db[i].t).toLowerCase().indexOf(q) > -1 || String(db[i].id).toLowerCase().indexOf(q) > -1) {
+      list.push(db[i]);
+    }
+    if (list.length >= 120) break;
+  }
+  list.forEach(function (x) {
+    var row = document.createElement("div"); row.className = "adm-row";
+    var promoTag = (x.op && x.op > x.p) ? ' <span style="background:#e11d48;color:#fff;padding:1px 6px;border-radius:5px;font-size:10px">AKSIÝA</span>' : '';
+    row.innerHTML = '<div style="flex:1"><b>[' + escapeHtml(x.id) + ']</b> ' + escapeHtml(x.t) + promoTag + '</div>' +
+      '<div style="text-align:right;white-space:nowrap"><b style="color:var(--p)">' + x.p + ' m</b><br><span style="font-size:11px;color:var(--m)">Sany: ' + x.s + '</span></div>';
+    row.onclick = function () { openEditProdModal(x); };
+    sl.appendChild(row);
+  });
+}
+
+function initLowStockSelect() {
+  var sel = document.getElementById("admLowCatSel");
+  if (!sel) return;
+  if (!sel.options.length) {
+    var optAll = document.createElement("option");
+    optAll.value = ""; optAll.innerText = "Ähli bölümler (Kategoriýalar)";
+    sel.appendChild(optAll);
+    cats.forEach(function (c) {
+      var o = document.createElement("option");
+      o.value = c.id; o.innerText = c.tk;
+      sel.appendChild(o);
+    });
+  }
+  renderLowStockReport();
+}
+
+var currentLowReportText = "";
+window.renderLowStockReport = function () {
+  var catVal = document.getElementById("admLowCatSel").value;
+  var maxQ = parseInt(document.getElementById("admLowMaxQty").value, 10);
+  var box = document.getElementById("admLowList");
+  var cntEl = document.getElementById("admLowCount");
+  box.innerHTML = "";
+  var filtered = db.filter(function (x) {
+    if (catVal && x.c !== catVal) return false;
+    return x.s <= maxQ;
+  });
+  cntEl.innerText = "Tapylan haryt sany: " + filtered.length;
+  var lines = ["AÝ-ÇYZUW — Azalan harytlar (" + (catVal || "Ählisi") + "):"];
+  filtered.forEach(function (x, idx) {
+    var r = document.createElement("div"); r.className = "adm-row";
+    r.innerHTML = '<span><b>[' + escapeHtml(x.id) + ']</b> ' + escapeHtml(x.t) + '</span><b style="color:var(--err)">' + x.s + ' sany</b>';
+    box.appendChild(r);
+    lines.push((idx + 1) + ". [" + x.id + "] " + x.t + " — " + x.s + " sany");
+  });
+  currentLowReportText = lines.join("\n");
+};
+
+document.getElementById("btnCopyLowStock").onclick = function () {
+  if (!currentLowReportText) return;
+  if (navigator.clipboard) navigator.clipboard.writeText(currentLowReportText).then(function () { showToast("📋 Azalan harytlar sanawy kopiýalandy!"); });
+};
+
+function processImportedRows(rows) {
+  var added = 0;
+  for (var i = 0; i < rows.length; i++) {
+    var cols = rows[i];
+    if (!cols || cols.length < 4) continue;
+    var id = String(cols[0] || "").trim(), t = String(cols[1] || "").trim();
+    var stk = Math.max(0, parseFloat(String(cols[2] || "0").replace(",", ".")) || 0);
+    var p = Math.max(0, parseFloat(String(cols[3] || "0").replace(",", ".")) || 0);
+    if (!id || !t || isNaN(p) || (p === 0 && isNaN(parseFloat(cols[3])))) continue;
+    var autoCat = detectCatSub(t);
+    var found = false;
+    for (var j = 0; j < db.length; j++) {
+      if (String(db[j].id) === id) { db[j].t = t; db[j].s = stk; db[j].p = p; db[j].c = autoCat.c; db[j].sub = autoCat.sub; found = true; break; }
+    }
+    if (!found) db.push({ id: id, t: t, s: stk, p: p, op: 0, c: autoCat.c, sub: autoCat.sub });
+    added++;
+  }
+  renderStockList(); initF(); saveBazaToServer();
+  document.getElementById("admStat").innerText = "✅ Ýüklendi: " + added + " | Jemi: " + db.length;
+  showToast("✅ " + added + " sany haryt täzelendi!");
+}
+
+document.getElementById("excelFileInp").onchange = function (e) {
+  var file = e.target.files[0];
+  if (!file) return;
+  if (typeof XLSX === "undefined") { showToast("⚠️ Excel okaýjy ýüklenmedi, interneti barlaň!"); return; }
+  var reader = new FileReader();
+  reader.onload = function (ev) {
+    var wb = XLSX.read(ev.target.result, { type: "binary" });
+    var ws = wb.Sheets[wb.SheetNames[0]];
+    var rows = XLSX.utils.sheet_to_json(ws, { header: 1 });
+    processImportedRows(rows);
+    e.target.value = "";
+  };
+  reader.readAsBinaryString(file);
+};
+window.loadAdminServerData = function () {
+  if (!adminSessionPass) return;
+  fetch("send.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ action: "get_admin_data", pass: adminSessionPass })
+  }).then(function (r) { return r.json(); }).then(function (res) {
+    if (!res || !res.ok) return;
+    var td = (res.days && res.days[res.today]) ? res.days[res.today] : { views: 0, orders: 0, rev: 0 };
+    document.getElementById("stTodayViews").innerText = td.views || 0;
+    document.getElementById("stTodayOrders").innerText = td.orders || 0;
+    document.getElementById("stTodayRev").innerText = (Number(td.rev) || 0).toFixed(2) + " m";
+    document.getElementById("stTotalViews").innerText = res.total_views || 0;
+
+    var sBox = document.getElementById("stTopSearches");
+    var sKeys = Object.keys(res.searches || {});
+    if (!sKeys.length) {
+      sBox.innerHTML = "<span style='color:var(--m)'>Heniz gözleg maglumaty ýok</span>";
+    } else {
+      sBox.innerHTML = sKeys.slice(0, 10).map(function (k, i) {
+        return "<div style='display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px dashed var(--b)'><span>" + (i + 1) + ". " + escapeHtml(k) + "</span><b>" + res.searches[k] + " gezek</b></div>";
+      }).join("");
+    }
+
+    var hBox = document.getElementById("stHistoryList");
+    var dKeys = Object.keys(res.days || {}).sort().reverse().slice(0, 7);
+    if (!dKeys.length) {
+      hBox.innerHTML = "<span style='color:var(--m)'>Taryh ýok</span>";
+    } else {
+      hBox.innerHTML = dKeys.map(function (dk) {
+        var inf = res.days[dk];
+        return "<div style='display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px dashed var(--b)'><b>" + dk + "</b><span>👥 " + (inf.views || 0) + " | 🛒 " + (inf.orders || 0) + " | 💰 " + (Number(inf.rev) || 0).toFixed(2) + " m</span></div>";
+      }).join("");
+    }
+
+    var oBox = document.getElementById("admLiveOrdersList");
+    var liveOrds = res.orders || [];
+    if (!liveOrds.length) {
+      oBox.innerHTML = "<div style='text-align:center;padding:20px;color:var(--m)'>Serwerde heniz sargyt ýok</div>";
+    } else {
+      oBox.innerHTML = liveOrds.map(function (o) {
+        var phClean = String(o.ph || "").replace(/[^0-9+]/g, "");
+        return '<div style="background:var(--g);border:1px solid var(--b);border-radius:12px;padding:11px;margin-bottom:9px;font-size:12.5px">' +
+          '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px"><b style="color:var(--p)">' + escapeHtml(o.id) + ' • ' + escapeHtml(o.date || "") + '</b><b style="color:var(--ok)">' + escapeHtml(o.tot) + '</b></div>' +
+          '<div><b>' + escapeHtml(o.nm) + '</b> — <a href="tel:' + phClean + '" style="color:var(--p);font-weight:700">' + escapeHtml(o.ph) + '</a></div>' +
+          '<div style="color:var(--m);font-size:11.5px;margin:2px 0 6px">' + escapeHtml(o.ad) + '</div>' +
+          '<div style="background:var(--c);padding:7px;border-radius:8px;white-space:pre-wrap;font-size:11.5px;margin-bottom:6px">' + escapeHtml(o.det) + '</div>' +
+          '<select onchange="updateLiveOrderStatus(\'' + escapeHtml(o.id) + '\', this.value)" style="margin:0;padding:6px;font-size:12px;font-weight:700">' +
+          '<option value="Täze"' + (o.status === "Täze" ? " selected" : "") + '>🆕 Täze sargyt</option>' +
+          '<option value="Ýolda"' + (o.status === "Ýolda" ? " selected" : "") + '>🚚 Ýolda</option>' +
+          '<option value="Gowşuryldy"' + (o.status === "Gowşuryldy" ? " selected" : "") + '>✅ Gowşuryldy</option>' +
+          '</select></div>';
+      }).join("");
+    }
+  }).catch(function () {});
+};
+
+window.updateLiveOrderStatus = function (oid, st) {
+  fetch("send.php", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ action: "order_status", pass: adminSessionPass, id: oid, status: st })
+  }).then(function () { showToast("✅ Sargyt ýagdaýy täzelendi!"); }).catch(function () {});
+};
 function renderOrders() {
   var ol = document.getElementById("olist");
   if (!orders.length) { ol.innerHTML = '<div class="empty-box">' + emptyBoxSvg + '<p>' + (lang === "tk" ? "Heniz sargyt ýok" : "Заказов пока нет") + '</p></div>'; return; }
   var h = "";
   for (var i = orders.length - 1; i >= 0; i--) {
     var o = orders[i];
-    h += '<div style="background:var(--c);border:1px solid var(--b);padding:13px;border-radius:14px;margin-bottom:10px;font-size:13px"><div style="display:flex;justify-content:space-between;margin-bottom:4px"><b style="color:var(--p)">Sargyt ' + escapeHtml(o.id) + '</b><b style="color:var(--ok)">' + escapeHtml(o.tot) + '</b></div><span style="color:var(--m);font-size:12px">' + escapeHtml(o.nm) + ' (' + escapeHtml(o.ph) + ') • ' + escapeHtml(o.ad) + '</span><div style="margin-top:8px;white-space:pre-wrap;font-size:12px;background:var(--g);padding:9px;border-radius:9px;line-height:1.4">' + escapeHtml(o.cleanDet) + '</div></div>';
+    h += '<div style="background:var(--c);border:1px solid var(--b);padding:14px;border-radius:15px;margin-bottom:10px;font-size:13px"><div style="display:flex;justify-content:space-between;margin-bottom:4px"><b style="color:var(--p)">Sargyt ' + escapeHtml(o.id) + '</b><b style="color:var(--ok)">' + escapeHtml(o.tot) + '</b></div><span style="color:var(--m);font-size:12px">' + escapeHtml(o.nm) + ' (' + escapeHtml(o.ph) + ') • ' + escapeHtml(o.ad) + '</span><div style="margin-top:8px;white-space:pre-wrap;font-size:12px;background:var(--g);padding:9px;border-radius:9px;line-height:1.45">' + escapeHtml(o.cleanDet) + '</div></div>';
   }
   ol.innerHTML = h;
 }
-/* === APP.JS — BÖLEK 8B-1 === */
+
 function updCart() {
   var c = 0, subTot = 0, cl = document.getElementById("clist");
   var invList = document.getElementById("invItemsList");
@@ -740,7 +1065,7 @@ function updCart() {
       bm.onclick = function () { setExactQty(it, it.q - 1); };
       qn.onclick = function () { promptQty(it); };
       bp.onclick = function () {
-        if (it.q >= it.max) { showToast(lang === "tk" ? "📦 Ammarda diňe " + it.max + " sany bar" : "📦 На складе только " + it.max + " шт"); return; }
+        if (it.q >= it.max) { showToast(lang === "tk" ? "⚠️ Häzirki wagtda has köp mukdar elýeterli däl" : "⚠️ Большее количество временно недоступно"); return; }
         setExactQty(it, it.q + 1);
       };
     })(item);
@@ -813,7 +1138,6 @@ function updCart() {
     document.getElementById("invGrand").innerText = grandTot.toFixed(2) + " m";
   }
 }
-/* === APP.JS — BÖLEK 8B-2 === */
 function toggleCityDrop(e) {
   if (e) e.stopPropagation();
   var w = document.getElementById("cityDropWrap");
@@ -864,9 +1188,6 @@ function showTab(t) {
   document.getElementById("s-" + t).classList.add("act");
   document.getElementById("searchBoxMain").style.display = (t === "home") ? "flex" : "none";
 
-  var hdr = document.querySelector(".hdr");
-  if (hdr) hdr.style.display = (window.innerWidth <= 768 && t === "prof") ? "none" : "";
-
   if (t === "menu") { activeMenuCat = ""; renderCatalogGrid(); }
   if (t === "fav") renderFavs();
   if (t === "orders") renderOrders();
@@ -876,7 +1197,7 @@ function setL(l) {
   lang = l;
   var els = document.querySelectorAll("[data-tk]");
   for (var i = 0; i < els.length; i++) els[i].innerText = els[i].getAttribute("data-" + l);
-  document.getElementById("q").placeholder = l === "tk" ? "Haryt ady boýunça gözleg..." : "Поиск товара...";
+  document.getElementById("q").placeholder = l === "tk" ? "Haryt ady ýa-da barkod boýunça gözleg..." : "Поиск по названию или штрихкоду...";
   initF(); render(); updCart();
   showToast(l === "tk" ? "🇹🇲 Dil: Türkmençe" : "🇷🇺 Язык: Русский");
 }
@@ -903,28 +1224,12 @@ document.getElementById("chkBack").onclick = function () { document.getElementBy
 document.getElementById("btnImport").onclick = function () {
   var raw = document.getElementById("pasteBox").value.trim();
   if (!raw) { showToast("⚠️ Excel maglumatyny goýuň!"); return; }
-  var lines = raw.split(/\r?\n/), added = 0;
-  for (var i = 0; i < lines.length; i++) {
-    var line = lines[i].trim();
-    if (!line) continue;
-    var cols = line.indexOf("\t") > -1 ? line.split("\t") : line.split(/\s{2,}/);
-    if (cols.length < 4) continue;
-    var id = String(cols[0]).trim(), t = String(cols[1]).trim();
-    var stk = Math.max(0, parseFloat(String(cols[2]).replace(",", ".")) || 0);
-    var p = Math.max(0, parseFloat(String(cols[3]).replace(",", ".")) || 0);
-    if (!id || !t) continue;
-    var autoCat = detectCatSub(t);
-    var found = false;
-    for (var j = 0; j < db.length; j++) {
-      if (String(db[j].id) === id) { db[j].t = t; db[j].s = stk; db[j].p = p; db[j].c = autoCat.c; db[j].sub = autoCat.sub; found = true; break; }
-    }
-    if (!found) db.push({ id: id, t: t, s: stk, p: p, c: autoCat.c, sub: autoCat.sub });
-    added++;
-  }
-  lsSet("ay_db_v25", db); render(); renderStockList(); initF();
-  document.getElementById("admStat").innerText = "✅ Ýüklendi: " + added + " | Jemi: " + db.length;
+  var lines = raw.split(/\r?\n/);
+  var rows = lines.map(function (line) {
+    return line.indexOf("\t") > -1 ? line.split("\t") : line.split(/\s{2,}/);
+  });
+  processImportedRows(rows);
   document.getElementById("pasteBox").value = "";
-  showToast("✅ " + added + " sany haryt ýüklendi!");
 };
 
 document.getElementById("btnOrd").onclick = function () {
@@ -955,12 +1260,12 @@ document.getElementById("btnOrd").onclick = function () {
 
   ordCounter += 1;
   orders.push({ id: oid, nm: nm, ph: ph, ad: fullAd, cleanDet: cleanDet, tot: totStr });
-  lsSet("ay_db_v25", db); lsSet("ay_orders", orders); lsSet("ay_ord_cnt", ordCounter);
+  lsSet("ay_db_v32", db); lsSet("ay_orders", orders); lsSet("ay_ord_cnt", ordCounter);
 
   fetch("send.php", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ to: m1, cc: m2, subject: "Faktura № " + invNo + " (" + cityLabel + " - " + totStr + ")", invNo: invNo, nm: nm, ph: ph, ad: fullAd, nt: nt || "Ýok", items: mailItems, subTot: subTot.toFixed(2) + " m", deliv: delivCost.toFixed(2) + " m (" + cityLabel + ")", totStr: totStr })
+    body: JSON.stringify({ action: "order", to: m1, cc: m2, subject: "Faktura № " + invNo + " (" + cityLabel + " - " + totStr + ")", invNo: invNo, nm: nm, ph: ph, ad: fullAd, nt: nt || "Ýok", items: mailItems, subTot: subTot.toFixed(2) + " m", deliv: delivCost.toFixed(2) + " m (" + cityLabel + ")", totStr: totStr, totNum: grandTot })
   }).catch(function () {}).finally(function () {
     btn.disabled = false; btn.innerText = lang === "tk" ? "✅ Sargyt et" : "✅ Оформить заказ";
     document.getElementById("chkPage").classList.remove("open");
@@ -969,7 +1274,6 @@ document.getElementById("btnOrd").onclick = function () {
     showTab("orders");
   });
 };
-/* === APP.JS — BÖLEK 8B-3 === */
 document.getElementById("detBack").onclick = function () { document.getElementById("detPage").classList.remove("open"); };
 document.getElementById("logoBtn").onclick = function () {
   taps++; clearTimeout(tt); tt = setTimeout(function () { taps = 0; }, 800);
@@ -989,6 +1293,7 @@ document.getElementById("btnApplyF").onclick = function () {
   fMin = parseFloat(document.getElementById("fMinP").value) || 0;
   var mx = parseFloat(document.getElementById("fMaxP").value);
   fMax = (!isNaN(mx) && mx > 0) ? mx : Infinity;
+  fOnlyPromo = document.getElementById("fOnlyPromo").checked;
   displayLimit = 40; render(); document.getElementById("fm").classList.remove("open");
 };
 document.getElementById("btnResetF").onclick = function () { resetAllFilters(); document.getElementById("fm").classList.remove("open"); };
@@ -1007,7 +1312,6 @@ document.getElementById("btnSaveAddr").onclick = function () { userAddr = { nm: 
 document.getElementById("goCall").onclick = function () { location.href = "tel:" + String(smsPh).replace(/[^0-9+]/g, ""); };
 document.getElementById("goSms").onclick = function () { location.href = "sms:" + String(smsPh).replace(/[^0-9+]/g, ""); };
 
-// Admin girişi PHP serwer arkaly barlanýar (parol JS-de saklanmaýar)
 document.getElementById("btnCheckAdm").onclick = function () {
   var inp = document.getElementById("admPass");
   var pass = inp.value;
@@ -1019,10 +1323,14 @@ document.getElementById("btnCheckAdm").onclick = function () {
   }).then(function (r) { return r.json(); }).then(function (res) {
     inp.value = "";
     if (res && res.ok) {
+      adminSessionPass = pass;
       document.getElementById("adminPanel").style.display = "block";
       document.getElementById("admMail1").value = m1; document.getElementById("admMail2").value = m2; document.getElementById("admSms").value = smsPh;
       document.getElementById("admStat").innerText = "Jemi haryt sany: " + db.length;
-      renderStockList(); document.getElementById("admLogin").classList.remove("open"); showTab("prof");
+      renderStockList();
+      loadAdminServerData();
+      document.getElementById("admLogin").classList.remove("open");
+      showTab("prof");
     } else {
       showToast("❌ Nädogry parol!");
     }
@@ -1039,10 +1347,14 @@ document.getElementById("btnSaveMail").onclick = function () {
   lsSet("ay_m1", m1); lsSet("ay_m2", m2); lsSet("ay_sms", smsPh);
   showToast("✅ Ýatda saklandy!");
 };
-document.getElementById("btnClear").onclick = function () { if (confirm("Arassalamalymy?")) { localStorage.removeItem("ay_db_v25"); db = autoCategorizeAll(baseData.slice()); render(); renderStockList(); initF(); } };
-document.getElementById("btnLogout").onclick = function () { document.getElementById("adminPanel").style.display = "none"; document.getElementById("admPass").value = ""; };
+document.getElementById("btnClear").onclick = function () { if (confirm("Lokal keşi arassalamalymy?")) { localStorage.removeItem("ay_db_v32"); db = autoCategorizeAll(baseData.slice()); render(); renderStockList(); initF(); } };
+document.getElementById("btnLogout").onclick = function () { adminSessionPass = ""; document.getElementById("adminPanel").style.display = "none"; document.getElementById("admPass").value = ""; };
 document.getElementById("btnCopyGit").onclick = function () {
-  var cleanExport = db.map(function (item) { return { id: item.id, t: item.t, s: item.s, p: item.p }; });
+  var cleanExport = db.map(function (item) {
+    var obj = { id: item.id, t: item.t, s: item.s, p: item.p };
+    if (item.op && item.op > item.p) obj.op = item.op;
+    return obj;
+  });
   if (navigator.clipboard) navigator.clipboard.writeText("var githubBaza = " + JSON.stringify(cleanExport, null, 2) + ";").then(function () { showToast("📋 baza.js üçin kopiýalandy!"); });
 };
 
@@ -1050,5 +1362,35 @@ var nbtns = document.querySelectorAll(".nbtn");
 for (var i = 0; i < nbtns.length; i++) nbtns[i].onclick = function () { showTab(this.getAttribute("data-t")); };
 var clsBtns = document.querySelectorAll(".cls");
 for (var j = 0; j < clsBtns.length; j++) clsBtns[j].onclick = function () { document.getElementById(this.getAttribute("data-m")).classList.remove("open"); };
+
+// PWA Ekrana goşmak we Service Worker
+var deferredPrompt;
+window.addEventListener("beforeinstallprompt", function (e) {
+  e.preventDefault();
+  deferredPrompt = e;
+  var btnInst = document.getElementById("goInstallApp");
+  if (btnInst) {
+    btnInst.style.display = "flex";
+    btnInst.onclick = function () {
+      if (deferredPrompt) { deferredPrompt.prompt(); deferredPrompt = null; btnInst.style.display = "none"; }
+    };
+  }
+});
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("sw.js").catch(function () {});
+}
+
+// Myhman sanyny serwerde hasaba almak we Umumy bazany (baza_live.json) çekmek
+fetch("send.php?action=visit").catch(function () {});
+fetch("baza_live.json?t=" + Date.now()).then(function (r) {
+  if (!r.ok) throw new Error();
+  return r.json();
+}).then(function (liveData) {
+  if (Array.isArray(liveData) && liveData.length > 0) {
+    db = autoCategorizeAll(liveData);
+    lsSet("ay_db_v32", db);
+    initF(); render(); updCart();
+  }
+}).catch(function () {});
 
 initF(); render(); updCart();
