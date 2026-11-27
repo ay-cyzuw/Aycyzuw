@@ -3,669 +3,497 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="theme-color" content="#0f4c81">
-  <meta name="description" content="AÝ-ÇYZUW — Arkadag şäherinde mekdep, ofis, döredijilik harytlary we kitaplar onlaýn dükany.">
   <title>AÝ-ÇYZUW — Kanselýariýa we Okuw Esbaplary</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0f4c81">
   <link rel="preconnect" href="https://googleapis.com">
   <link rel="preconnect" href="https://gstatic.com" crossorigin>
-  <link href="https://googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="manifest" href="manifest.json">
-  <link rel="apple-touch-icon" href="img/logo.png">
-  <link rel="stylesheet" href="style.css?v=32">
+  <link href="https://googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=33">
 </head>
 <body>
 
-<header class="hdr">
-  <div class="hdr-inner">
-    <div class="top">
-      <div class="brand" id="logoBtn">
-        <img id="logoImg" src="img/logo.png" alt="AÝ-ÇYZUW">
-        <div id="logoTxt">AÝ-<span>ÇYZUW</span></div>
-      </div>
-      <div class="sbox desktop-search" id="searchBoxMain">
-        <input type="text" id="q" placeholder="Haryt ady ýa-da barkod boýunça gözleg...">
-        <span class="clr-q" id="clrQ">✕</span>
-        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+  <div id="toastBox" class="toast-msg"></div>
+
+  <header class="hdr">
+    <div class="hdr-inner" id="desktopHdrInner">
+      <div class="top">
+        <div class="brand" id="logoBtn">
+          <img id="logoImg" src="img/logo.png" alt="AÝ-ÇYZUW">
+          <div id="logoTxt">AÝ-<span>ÇYZUW</span></div>
+        </div>
+        <div class="sbox" id="searchBoxMain">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" id="q" placeholder="Haryt ady ýa-da barkod boýunça gözleg..." autocomplete="off">
+          <span class="clr-q" id="clrQ">✕</span>
+        </div>
       </div>
     </div>
-    <nav class="nav">
-      <button class="nbtn act" data-t="home">
-        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        <span data-tk="Baş sahypa" data-ru="Главная">Baş sahypa</span>
-      </button>
-      <button class="nbtn" data-t="menu">
-        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-        <span data-tk="Kategoriýalar" data-ru="Категории">Kategoriýalar</span>
-      </button>
-      <button class="nbtn" data-t="cart" id="navCartBtn">
-        <span class="cbdg" id="cnt">0</span>
-        <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
-        <span id="navCartLbl">Sebet</span>
-      </button>
-      <button class="nbtn" data-t="fav">
-        <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-        <span data-tk="Halanan" data-ru="Избранное">Halanan</span>
-      </button>
-      <button class="nbtn" data-t="prof">
-        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        <span data-tk="Profil" data-ru="Профиль">Profil</span>
-      </button>
-    </nav>
-  </div>
-</header>
-<main class="container">
-  <section class="sec act" id="s-home">
-    <div id="homeTopBlocks">
-      <div class="quick-cats">
-        <div class="qcat-item" onclick="filterByCat('Ofis','')">
-          <div class="qcat-box qc-blue">
-            <img src="img/q-ofis.png" alt="Ofis" onerror="this.style.display='none';this.nextElementSibling.style.display='inline';">
-            <span style="display:none;">🗂️</span>
-          </div>
-          <span data-tk="Ofis" data-ru="Офис">Ofis</span>
-        </div>
-        <div class="qcat-item" onclick="filterByCat('Mekdep','')">
-          <div class="qcat-box qc-purple">
-            <img src="img/q-mekdep.png" alt="Mekdep" onerror="this.style.display='none';this.nextElementSibling.style.display='inline';">
-            <span style="display:none;">🎒</span>
-          </div>
-          <span data-tk="Mekdep" data-ru="Школа">Mekdep</span>
-        </div>
-        <div class="qcat-item" onclick="filterByCat('Döredijilik','')">
-          <div class="qcat-box qc-green">
-            <img src="img/q-doredijilik.png" alt="Döredijilik" onerror="this.style.display='none';this.nextElementSibling.style.display='inline';">
-            <span style="display:none;">🎨</span>
-          </div>
-          <span data-tk="Döredijilik" data-ru="Творчество">Döredijilik</span>
-        </div>
-        <div class="qcat-item" onclick="filterByCat('Kitap','')">
-          <div class="qcat-box qc-orange">
-            <img src="img/q-kitaplar.png" alt="Kitaplar" onerror="this.style.display='none';this.nextElementSibling.style.display='inline';">
-            <span style="display:none;">📚</span>
-          </div>
-          <span data-tk="Kitaplar" data-ru="Книги">Kitaplar</span>
-        </div>
-      </div>
+  </header>
 
-      <div class="hero-grid">
-        <div class="slider" onclick="handleSlideClick()">
-          <div class="slides" id="slideTrack">
-            <div class="slide">
-              <img src="img/slide1.jpg" alt="Banner 1" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-              <div class="sfallback">
-                <h3 data-tk="Okuw we ofis üçin ähli harytlar" data-ru="Всё для учёбы и офиса">Okuw we ofis üçin ähli harytlar</h3>
-                <p data-tk="Giň saýlaw, ýokary hil we amatly bahalar" data-ru="Широкий выбор, высокое качество и доступные цены">Giň saýlaw, ýokary hil we amatly bahalar</p>
-                <span class="s-cta" data-tk="Kategoriýalary görmek ›" data-ru="Смотреть категории ›">Kategoriýalary görmek ›</span>
+  <main class="container">
+    <section id="s-home" class="sec act">
+      <div id="homeTopBlocks">
+        <div class="quick-cats">
+          <div class="qcat-item" onclick="filterByCat('Ofis','')">
+            <div class="qcat-box qc-blue"><img src="img/ofis.jpg" alt="" onerror="this.remove();this.parentElement.innerText='🗂️'"></div>
+            <span data-tk="Ofis" data-ru="Офис">Ofis</span>
+          </div>
+          <div class="qcat-item" onclick="filterByCat('Mekdep','')">
+            <div class="qcat-box qc-purple"><img src="img/mekdep.jpg" alt="" onerror="this.remove();this.parentElement.innerText='🎒'"></div>
+            <span data-tk="Mekdep" data-ru="Школа">Mekdep</span>
+          </div>
+          <div class="qcat-item" onclick="filterByCat('Döredijilik','')">
+            <div class="qcat-box qc-green"><img src="img/doredijilik.jpg" alt="" onerror="this.remove();this.parentElement.innerText='🎨'"></div>
+            <span data-tk="Döredijilik" data-ru="Творчество">Döredijilik</span>
+          </div>
+          <div class="qcat-item" onclick="filterByCat('Kitap','')">
+            <div class="qcat-box qc-orange"><img src="img/kitaplar.jpg" alt="" onerror="this.remove();this.parentElement.innerText='📚'"></div>
+            <span data-tk="Kitaplar" data-ru="Книги">Kitaplar</span>
+          </div>
+        </div>
+
+        <div class="hero-grid">
+          <div class="slider" onclick="handleSlideClick()">
+            <div class="slides" id="slideTrack">
+              <div class="slide">
+                <img src="img/slide1.jpg" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                <div class="sfallback">
+                  <h3 data-tk="ÇALT WE YGTYBARLY ELTIP BERMEK" data-ru="БЫСТРАЯ И НАДЁЖНАЯ ДОСТАВКА">ÇALT WE YGTYBARLY ELTIP BERMEK</h3>
+                  <p data-tk="Arkadag şäheri boýunça 200 m-den ýokary sargytlar mugt!" data-ru="По г. Аркадаг заказы свыше 200 м бесплатно!">Arkadag şäheri boýunça 200 m-den ýokary sargytlar mugt!</p>
+                  <span class="s-cta" data-tk="Kategoriýalary gör →" data-ru="Смотреть категории →">Kategoriýalary gör →</span>
+                </div>
+              </div>
+              <div class="slide">
+                <img src="img/slide2.jpg" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                <div class="sfallback">
+                  <h3 data-tk="ELTIP BERMEK ŞERTLERI" data-ru="УСЛОВИЯ ДОСТАВКИ">ELTIP BERMEK ŞERTLERI</h3>
+                  <p data-tk="Arkadag, Gökdepe, Aşgabat, Änew we Bäherden" data-ru="Аркадаг, Геокдепе, Ашхабад, Аннау и Бахерден">Arkadag, Gökdepe, Aşgabat, Änew we Bäherden</p>
+                  <span class="s-cta" data-tk="Giňişleýin →" data-ru="Подробнее →">Giňişleýin →</span>
+                </div>
+              </div>
+              <div class="slide">
+                <img src="img/slide3.jpg" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                <div class="sfallback">
+                  <h3 data-tk="DÜNÝÄ BRENDLERI BIR ÝERDE" data-ru="МИРОВЫЕ БРЕНДЫ В ОДНОМ МЕСТЕ">DÜNÝÄ BRENDLERI BIR ÝERDE</h3>
+                  <p data-tk="Double A, Dolphin, Pensan, Hatber, Maped, Casio..." data-ru="Double A, Dolphin, Pensan, Hatber, Maped, Casio...">Double A, Dolphin, Pensan, Hatber, Maped, Casio...</p>
+                  <span class="s-cta" data-tk="Brendleri saýla →" data-ru="Выбрать бренд →">Brendleri saýla →</span>
+                </div>
               </div>
             </div>
-            <div class="slide">
-              <img src="img/slide2.jpg" alt="Banner 2" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-              <div class="sfallback">
-                <h3 data-tk="Çalt we ygtybarly eltip bermek" data-ru="Быстрая и надёжная доставка">Çalt we ygtybarly eltip bermek</h3>
-                <p data-tk="Sargydyňyzy gysga wagtda gapyňyza eltip berýäris" data-ru="Доставим ваш заказ прямо до двери в кратчайшие сроки">Sargydyňyzy gysga wagtda gapyňyza eltip berýäris</p>
-                <span class="s-cta" data-tk="Eltip bermek nyrhlary ›" data-ru="Тарифы доставки ›">Eltip bermek nyrhlary ›</span>
-              </div>
-            </div>
-            <div class="slide">
-              <img src="img/slide3.jpg" alt="Banner 3" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-              <div class="sfallback">
-                <h3 data-tk="Dünýä belli brendler" data-ru="Всемирно известные бренды">Dünýä belli brendler</h3>
-                <p data-tk="Brendleri görmek üçin basyň ›" data-ru="Нажмите, чтобы посмотреть бренды ›">Brendleri görmek üçin basyň ›</p>
-                <span class="s-cta" data-tk="Brendleri görmek ›" data-ru="Смотреть бренды ›">Brendleri görmek ›</span>
-              </div>
+            <div class="sdots">
+              <span class="sdot act" onclick="event.stopPropagation();goSlide(0)"></span>
+              <span class="sdot" onclick="event.stopPropagation();goSlide(1)"></span>
+              <span class="sdot" onclick="event.stopPropagation();goSlide(2)"></span>
             </div>
           </div>
-          <div class="sdots">
-            <span class="sdot act" onclick="event.stopPropagation();goSlide(0)"></span>
-            <span class="sdot" onclick="event.stopPropagation();goSlide(1)"></span>
-            <span class="sdot" onclick="event.stopPropagation();goSlide(2)"></span>
+        </div>
+
+        <div class="promo-showcase" id="promoSection" style="display:none">
+          <div class="promo-hdr">
+            <div class="promo-title-wrap">
+              <span class="promo-pill-tag">🔥 AKSIÝA</span>
+              <h3 data-tk="Arzanladyşdaky harytlar" data-ru="Товары со скидкой">Arzanladyşdaky harytlar</h3>
+            </div>
+            <button class="promo-all-btn" id="btnAllPromos" data-tk="Ählisi →" data-ru="Все →">Ählisi →</button>
           </div>
+          <div class="promo-scroll" id="promoScrollGrid"></div>
         </div>
       </div>
-      <div class="promo-showcase" id="promoSection" style="display:none">
-        <div class="promo-hdr">
-          <div class="promo-title-wrap">
-            <span class="promo-pill-tag" data-tk="ÝÖRITE TEKLIP" data-ru="СПЕЦПРЕДЛОЖЕНИЕ">ÝÖRITE TEKLIP</span>
-            <h3 data-tk="Arzanladyşdaky harytlar" data-ru="Товары по акции">Arzanladyşdaky harytlar</h3>
-          </div>
-          <button class="promo-all-btn" id="btnAllPromos" data-tk="Ählisini gör ›" data-ru="Смотреть все ›">Ählisini gör ›</button>
+
+      <div class="cat-banner" id="catBanner">
+        <div class="cat-banner-l" id="catBannerTitle"></div>
+        <button class="ctrl-btn" id="btnExitCat">✕</button>
+      </div>
+
+      <div class="toolbar-row">
+        <div class="tool-btns">
+          <button class="ctrl-btn" id="btnSort">
+            <svg viewBox="0 0 24 24"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="14" y2="12"/><line x1="4" y1="18" x2="9" y2="18"/></svg>
+            <span data-tk="Tertiple" data-ru="Сортировка">Tertiple</span>
+          </button>
+          <button class="ctrl-btn" id="btnFilt">
+            <svg viewBox="0 0 24 24"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+            <span data-tk="Filtr" data-ru="Фильтр">Filtr</span>
+            <span class="f-badge" id="fBadge" style="display:none">•</span>
+          </button>
         </div>
-        <div class="promo-scroll" id="promoScrollGrid"></div>
-      </div>
-    </div>
-
-    <div class="cat-banner" id="catBanner">
-      <div class="cat-banner-l" id="catBannerTitle"></div>
-      <button class="ctrl-btn" id="btnExitCat" data-tk="✕ Arassala" data-ru="✕ Сбросить">✕ Arassala</button>
-    </div>
-
-    <div class="toolbar-row">
-      <div class="tool-btns">
-        <button class="ctrl-btn" id="btnSort">
-          <svg viewBox="0 0 24 24"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="14" y2="12"/><line x1="4" y1="18" x2="9" y2="18"/></svg>
-          <span data-tk="Tertiple" data-ru="Сортировка">Tertiple</span>
-        </button>
-        <button class="ctrl-btn" id="btnFilt">
-          <svg viewBox="0 0 24 24"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
-          <span data-tk="Filtr" data-ru="Фильтр">Filtr</span>
-          <span class="f-badge" id="fBadge" style="display:none">•</span>
-        </button>
-      </div>
-      <label class="chk-lbl-inline">
-        <input type="checkbox" id="hideZero">
-        <span data-tk="Diňe bar bolanlar" data-ru="Только в наличии">Diňe bar bolanlar</span>
-      </label>
-    </div>
-
-    <div class="pgrid" id="pgrid"></div>
-
-    <div id="loadMoreWrap" style="display:none;max-width:420px;margin:20px auto 0">
-      <button class="btn2" id="btnLoadMore">Ýene görkez</button>
-    </div>
-  </section>
-
-  <section class="sec" id="s-menu">
-    <div id="catSubHeader" style="display:none;align-items:center;justify-content:space-between;gap:10px;margin-bottom:16px;flex-wrap:wrap">
-      <button class="ctrl-btn" id="btnCatBack" data-tk="‹ Kategoriýalar" data-ru="‹ Категории">‹ Kategoriýalar</button>
-      <b id="catSubTitle" style="font-size:17px;color:var(--p)"></b>
-      <button class="ctrl-btn" id="btnCatAllItems" style="background:var(--p);color:#fff;border-color:var(--p)" data-tk="Ähli harytlary görkez ›" data-ru="Показать все товары ›">Ähli harytlary görkez ›</button>
-    </div>
-    <div class="cat-colorful-grid" id="cgrid2"></div>
-  </section>
-  <section class="sec" id="s-cart">
-    <div style="display:flex;justify-content:space-between;align-items:center;max-width:860px;margin:0 auto 14px">
-      <h2 class="sec-h2" data-tk="Sebet" data-ru="Корзина">Sebet</h2>
-      <button class="ctrl-btn" id="btnClearCart" style="display:none;color:var(--err)" data-tk="🗑️ Arassala" data-ru="🗑️ Очистить">🗑️ Arassala</button>
-    </div>
-
-    <div id="cartEmptyWrap"></div>
-
-    <div class="cart-store-card" id="cartMainCard" style="display:none">
-      <div class="cart-store-hdr">
-        <b style="color:var(--p);font-size:15px" data-tk="Sargyt sanawy" data-ru="Список заказа">Sargyt sanawy</b>
-        <span class="free-badge" id="freeShipPill">🚚 10.00 m</span>
+        <label class="chk-lbl-inline">
+          <input type="checkbox" id="hideZero">
+          <span data-tk="Diňe bar bolanlar" data-ru="Только в наличии">Diňe bar bolanlar</span>
+        </label>
       </div>
 
-      <div class="ship-prog-box">
-        <div class="ship-prog-txt" id="shipProgTxt"></div>
-        <div class="ship-prog-bar"><div class="ship-prog-fill" id="shipProgFill"></div></div>
+      <div class="pgrid" id="pgrid"></div>
+      <div id="loadMoreWrap" style="display:none;max-width:320px;margin:18px auto 0">
+        <button class="btn2" id="btnLoadMore">Ýene görkez</button>
       </div>
+    </section>
 
-      <div style="margin-bottom:14px">
-        <label class="flabel" data-tk="Eltip bermek üçin şäheri saýlaň:" data-ru="Выберите город доставки:">Eltip bermek üçin şäheri saýlaň:</label>
-        <div class="csel-wrap" id="cityDropWrap">
-          <button type="button" class="csel-btn" id="cityDropBtn" onclick="toggleCityDrop(event)">
-            <span id="cityDropText">Arkadag şäheri (200 m-den ýokary mugt / 10 m)</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+    <section id="s-menu" class="sec">
+      <div class="stitle">
+        <span class="sec-h2" data-tk="Kategoriýalar" data-ru="Категории">Kategoriýalar</span>
+      </div>
+      <div id="catSubHeader" style="display:none;justify-content:space-between;align-items:center;margin-bottom:12px;gap:8px">
+        <button class="ctrl-btn" id="btnCatBack">‹ <span data-tk="Yza" data-ru="Назад">Yza</span></button>
+        <b id="catSubTitle" style="font-size:15px;color:var(--p);flex:1;text-align:center"></b>
+        <button class="ctrl-btn" id="btnCatAllItems" data-tk="Ählisi" data-ru="Все">Ählisi</button>
+      </div>
+      <div class="cat-colorful-grid" id="cgrid2"></div>
+    </section>
+    <section id="s-cart" class="sec">
+      <div class="stitle">
+        <span class="sec-h2" data-tk="Sebet" data-ru="Корзина">Sebet</span>
+        <button class="ctrl-btn" id="btnClearCart" style="display:none" data-tk="Arassala" data-ru="Очистить">Arassala</button>
+      </div>
+      <div id="cartEmptyWrap"></div>
+      <div class="cart-store-card" id="cartMainCard" style="display:none">
+        <div class="cart-store-hdr">
+          <b style="font-size:15px">AÝ-ÇYZUW</b>
+          <span class="free-badge" id="freeShipPill">🚚 10.00 m</span>
+        </div>
+
+        <div class="ship-prog-box">
+          <div class="ship-prog-txt" id="shipProgTxt">Arkadag şäherine mugt eltip bermek üçin ýene 200.00 m goşuň</div>
+          <div class="ship-prog-bar"><div class="ship-prog-fill" id="shipProgFill" style="width:0%"></div></div>
+        </div>
+
+        <label class="flabel" data-tk="Eltip bermek şäheri:" data-ru="Город доставки:">Eltip bermek şäheri:</label>
+        <input type="hidden" id="citySel" value="arkadag">
+        <div class="csel-wrap" id="cityDropWrap" style="margin-bottom:12px">
+          <button type="button" class="csel-btn" onclick="toggleCityDrop(event)">
+            <span id="cityDropText">Arkadag şäheri (200 m+ mugt / 10 m)</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
           </button>
           <div class="csel-list" id="cityDropList">
-            <div class="csel-opt act" data-val="arkadag" onclick="selectCityOpt('arkadag',this)"><span>Arkadag şäheri (200 m-den ýokary mugt)</span><b>10 m / 0 m</b></div>
-            <div class="csel-opt" data-val="gokdepe" onclick="selectCityOpt('gokdepe',this)"><span>Gökdepe</span><b>50 m</b></div>
-            <div class="csel-opt" data-val="ashgabat" onclick="selectCityOpt('ashgabat',this)"><span>Aşgabat şäheri</span><b>70 m</b></div>
-            <div class="csel-opt" data-val="anew" onclick="selectCityOpt('anew',this)"><span>Änew</span><b>100 m</b></div>
-            <div class="csel-opt" data-val="baherden" onclick="selectCityOpt('baherden',this)"><span>Bäherden</span><b>100 m</b></div>
+            <div class="csel-opt act" onclick="selectCityOpt('arkadag',this)"><span>Arkadag şäheri</span><b>200 m+ mugt / 10 m</b></div>
+            <div class="csel-opt" onclick="selectCityOpt('gokdepe',this)"><span>Gökdepe</span><b>50 m</b></div>
+            <div class="csel-opt" onclick="selectCityOpt('ashgabat',this)"><span>Aşgabat şäheri</span><b>70 m</b></div>
+            <div class="csel-opt" onclick="selectCityOpt('anew',this)"><span>Änew</span><b>100 m</b></div>
+            <div class="csel-opt" onclick="selectCityOpt('baherden',this)"><span>Bäherden</span><b>100 m</b></div>
           </div>
         </div>
-        <input type="hidden" id="citySel" value="arkadag">
-      </div>
 
-      <div id="clist"></div>
+        <div id="clist"></div>
 
-      <div class="cart-summary">
-        <div class="sum-row"><span data-tk="Harytlar:" data-ru="Товары:">Harytlar:</span><b id="sumSub">0.00 m</b></div>
-        <div class="sum-row"><span data-tk="Eltip bermek:" data-ru="Доставка:">Eltip bermek:</span><b id="sumDel">0.00 m</b></div>
-        <div class="sum-row tot"><span data-tk="Jemi töleg:" data-ru="Итого к оплате:">Jemi töleg:</span><span id="sumTot">0.00 m</span></div>
-      </div>
-
-      <button class="btn1" id="btnOpenCheckout" style="margin-top:14px" data-tk="Sargydy resmileşdir ›" data-ru="Оформить заказ ›">Sargydy resmileşdir ›</button>
-    </div>
-  </section>
-
-  <section class="sec" id="s-fav">
-    <div class="stitle"><span data-tk="Halanan harytlar" data-ru="Избранные товары">Halanan harytlar</span></div>
-    <div class="pgrid" id="fgrid"></div>
-  </section>
-  <section class="sec" id="s-prof" style="padding-top: 18px;">
-    <div class="stitle"><span data-tk="Şahsy otag" data-ru="Личный кабинет">Şahsy otag</span></div>
-    <div class="prof-grid-wrap">
-      <div class="plist">
-        <div class="pitem" id="goOrd">
-          <div class="pitem-l">
-            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-            <span data-tk="Meniň sargytlarym" data-ru="Мои заказы">Meniň sargytlarym</span>
-          </div>
-          <span class="p-arr">›</span>
-        </div>
-        <div class="pitem" id="goAddr">
-          <div class="pitem-l">
-            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            <span data-tk="Eltip bermek salgysy" data-ru="Адрес доставки">Eltip bermek salgysy</span>
-          </div>
-          <span class="p-arr">›</span>
-        </div>
-        <div class="pitem" id="goLang">
-          <div class="pitem-l">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-            <span data-tk="Dil: Türkmençe / Русский" data-ru="Язык: Русский / Türkmençe">Dil: Türkmençe / Русский</span>
-          </div>
-          <span class="p-arr">›</span>
-        </div>
-        <div class="pitem" id="goDark">
-          <div class="pitem-l">
-            <svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-            <span data-tk="Gije / Gündiz tertibi" data-ru="Тёмная / Светлая тема">Gije / Gündiz tertibi</span>
-          </div>
-          <span class="p-arr">›</span>
-        </div>
-        <div class="pitem" id="goInstallApp" style="display:none">
-          <div class="pitem-l">
-            <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-            <span data-tk="Telefon ekranyna goş (App)" data-ru="Установить на экран (App)">Telefon ekranyna goş (App)</span>
-          </div>
-          <span class="p-arr">›</span>
-        </div>
-        <div class="pitem" id="goCall">
-          <div class="pitem-l">
-            <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            <span data-tk="Jaň etmek" data-ru="Позвонить">Jaň etmek</span>
-          </div>
-          <span class="p-arr">›</span>
-        </div>
-        <div class="pitem" id="goSms">
-          <div class="pitem-l">
-            <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-            <span data-tk="SMS ýazmak" data-ru="Написать SMS">SMS ýazmak</span>
-          </div>
-          <span class="p-arr">›</span>
+        <div class="cart-summary">
+          <div class="sum-row"><span data-tk="Harytlar:" data-ru="Товары:">Harytlar:</span><b id="sumSub">0.00 m</b></div>
+          <div class="sum-row"><span data-tk="Eltip bermek:" data-ru="Доставка:">Eltip bermek:</span><b id="sumDel">0.00 m</b></div>
+          <div class="sum-row tot"><span data-tk="Jemi:" data-ru="Итого:">Jemi:</span><span id="sumTot">0.00 m</span></div>
+          <button class="btn1" id="btnOpenCheckout" style="margin-top:12px" data-tk="Sargydy resmileşdir" data-ru="Оформить заказ">Sargydy resmileşdir</button>
         </div>
       </div>
+    </section>
 
-      <div class="store-info-card">
-        <div class="si-head">
-          <div>
-            <div class="si-title-lux" data-tk="Dükan barada maglumat" data-ru="Информация о магазине">Dükan barada maglumat</div>
-            <div class="si-sub" data-tk="Mekdep, ofis we döredijilik harytlary merkezi" data-ru="Центр школьных, офисных и творческих товаров">Mekdep, ofis we döredijilik harytlary merkezi</div>
-          </div>
-          <span class="si-badge-pro">OFFICIAL STORE</span>
+    <section id="s-fav" class="sec">
+      <div class="stitle"><span class="sec-h2" data-tk="Halanan harytlar" data-ru="Избранное">Halanan harytlar</span></div>
+      <div class="pgrid" id="fgrid"></div>
+    </section>
+
+    <section id="s-prof" class="sec">
+      <div class="stitle"><span class="sec-h2" data-tk="Şahsy otag" data-ru="Личный кабинет">Şahsy otag</span></div>
+      <div class="prof-grid-wrap">
+        <div class="plist">
+          <div class="pitem" id="goOrd"><div class="pitem-l"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg><span data-tk="Meniň sargytlarym" data-ru="Мои заказы">Meniň sargytlarym</span></div><span class="p-arr">›</span></div>
+          <div class="pitem" id="goAddr"><div class="pitem-l"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span data-tk="Eltip bermek salgysy" data-ru="Адрес доставки">Eltip bermek salgysy</span></div><span class="p-arr">›</span></div>
+          <div class="pitem" id="goLang"><div class="pitem-l"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><span data-tk="Dil: Türkmençe / Русский" data-ru="Язык: Русский / Türkmençe">Dil: Türkmençe / Русский</span></div><span class="p-arr">›</span></div>
+          <div class="pitem" id="goDark"><div class="pitem-l"><svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg><span data-tk="Gije / Gündiz tertibi" data-ru="Ночной / Дневной режим">Gije / Gündiz tertibi</span></div><span class="p-arr">›</span></div>
+          <div class="pitem" id="goCall"><div class="pitem-l"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span data-tk="Jaň etmek" data-ru="Позвонить">Jaň etmek</span></div><span class="p-arr">›</span></div>
+          <div class="pitem" id="goSms"><div class="pitem-l"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span data-tk="SMS ýazmak" data-ru="Написать SMS">SMS ýazmak</span></div><span class="p-arr">›</span></div>
+          <div class="pitem" id="goInstallApp" style="display:none"><div class="pitem-l"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg><span data-tk="Programmany ekrana goş" data-ru="Установить приложение">Programmany ekrana goş</span></div><span class="p-arr">›</span></div>
         </div>
 
-        <div class="si-item">
-          <div class="si-ico">📍</div>
-          <div class="si-body">
-            <div class="si-lbl" data-tk="Salgymyz" data-ru="Наш адрес">Salgymyz</div>
-            <div class="si-val" data-tk="Arkadag şäheri, Gökdere söwda merkezi, №120 dükan" data-ru="г. Аркадаг, торговый центр «Гёкдере», магазин №120">Arkadag şäheri, Gökdere söwda merkezi, №120 dükan</div>
+        <div class="store-info-card">
+          <div class="si-head">
+            <div>
+              <div class="si-title-lux" data-tk="Dükan barada maglumat" data-ru="Информация о магазине">Dükan barada maglumat</div>
+              <div class="si-sub" data-tk="Mekdep, ofis we döredijilik harytlary merkezi" data-ru="Центр школьных, офисных и творческих товаров">Mekdep, ofis we döredijilik harytlary merkezi</div>
+            </div>
+            <span class="si-badge-pro">OFFICIAL STORE</span>
           </div>
-        </div>
-
-        <div class="si-item">
-          <div class="si-ico">📞</div>
-          <div class="si-body">
-            <div class="si-lbl" data-tk="Telefon belgimiz" data-ru="Номер телефона">Telefon belgimiz</div>
-            <a class="si-val si-link" href="tel:+99365637644">+993 65 63-76-44</a>
-          </div>
-        </div>
-
-        <div class="si-item">
-          <div class="si-ico">🕒</div>
-          <div class="si-body">
-            <div class="si-lbl" data-tk="Iş wagty" data-ru="Режим работы">Iş wagty</div>
-            <div class="si-val" data-tk="Her gün 09:00 – 21:00 (Dynç günsüz)" data-ru="Ежедневно 09:00 – 21:00 (Без выходных)">Her gün 09:00 – 21:00 (Dynç günsüz)</div>
-          </div>
-        </div>
-
-        <div class="si-item">
-          <div class="si-ico">🚚</div>
-          <div class="si-body">
-            <div class="si-lbl" data-tk="Eltip bermek hyzmaty" data-ru="Служба доставки">Eltip bermek hyzmaty</div>
-            <div class="si-val" data-tk="Arkadag şäheri (200 m-den ýokary mugt), Gökdepe, Aşgabat, Änew, Bäherden" data-ru="г. Аркадаг (от 200 м бесплатно), Гёкдепе, Ашхабад, Аннау, Бахерден">Arkadag şäheri (200 m-den ýokary mugt), Gökdepe, Aşgabat, Änew, Bäherden</div>
-          </div>
-        </div>
-
-        <div class="si-item" style="border:none;padding-bottom:0">
-          <div class="si-ico">✉️</div>
-          <div class="si-body">
-            <div class="si-lbl" data-tk="Elektron poçta" data-ru="Электронная почта">Elektron poçta</div>
-            <a class="si-val si-link" href="mailto:aycyzuw.tm.arkadag@gmail.com">aycyzuw.tm.arkadag@gmail.com</a>
-          </div>
+          <div class="si-item"><div class="si-ico">📍</div><div class="si-body"><div class="si-lbl" data-tk="Salgymyz" data-ru="Наш адрес">Salgymyz</div><div class="si-val">Arkadag şäheri, Gökdere söwda merkezi, №120 dükan</div></div></div>
+          <div class="si-item"><div class="si-ico">📞</div><div class="si-body"><div class="si-lbl" data-tk="Telefon belgimiz" data-ru="Наш телефон">Telefon belgimiz</div><div class="si-val"><a href="tel:+99365637644" class="si-link">+993 65 63-76-44</a></div></div></div>
+          <div class="si-item"><div class="si-ico">🕒</div><div class="si-body"><div class="si-lbl" data-tk="Iş wagty" data-ru="Режим работы">Iş wagty</div><div class="si-val" data-tk="Her gün 09:00 – 21:00 (Dynç günsüz)" data-ru="Ежедневно 09:00 – 21:00 (Без выходных)">Her gün 09:00 – 21:00 (Dynç günsüz)</div></div></div>
+          <div class="si-item"><div class="si-ico">🚚</div><div class="si-body"><div class="si-lbl" data-tk="Eltip bermek hyzmaty" data-ru="Служба доставки">Eltip bermek hyzmaty</div><div class="si-val">Arkadag şäheri (200 m-den ýokary mugt), Gökdepe, Aşgabat, Änew, Bäherden</div></div></div>
+          <div class="si-item" style="border-bottom:none"><div class="si-ico">✉️</div><div class="si-body"><div class="si-lbl" data-tk="Elektron poçta" data-ru="Электронная почта">Elektron poçta</div><div class="si-val">aycyzuw.tm.arkadag@gmail.com</div></div></div>
         </div>
       </div>
-    </div>
-
-    <footer class="lux-footer">
-      <div class="lux-f-line"></div>
-      <div class="lux-f-content">
-        <div class="lux-f-slogan" data-tk="Ýokary hil • Amatly baha • Ygtybarly hyzmat" data-ru="Высокое качество • Доступные цены • Надёжный сервис">Ýokary hil • Amatly baha • Ygtybarly hyzmat</div>
-        <div class="lux-f-copy" data-tk="© 2026 AÝ-ÇYZUW. Ähli hukuklar goralan." data-ru="© 2026 AÝ-ÇYZUW. Все права защищены.">© 2026 AÝ-ÇYZUW. Ähli hukuklar goralan.</div>
-      </div>
-    </footer>
-    <div class="adm-box" id="adminPanel" style="display:none">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
-        <b style="color:var(--p);font-size:17px">⚙️ Admin Dolandyryş Merkezi</b>
-        <button class="citem-del" id="btnLogout">✕</button>
-      </div>
-
-      <div class="adm-tabs">
-        <button class="adm-tab act" onclick="switchAdmTab('stats', this)">📊 Statistika</button>
-        <button class="adm-tab" onclick="switchAdmTab('orders', this)">🛍️ Sargytlar</button>
-        <button class="adm-tab" onclick="switchAdmTab('prods', this)">🏷️ Haryt & Aksiýa</button>
-        <button class="adm-tab" onclick="switchAdmTab('low', this)">⚠️ Azalanlar</button>
-        <button class="adm-tab" onclick="switchAdmTab('excel', this)">📥 Excel & Sazlama</button>
-      </div>
-
-      <div class="adm-pane act" id="adm-pane-stats">
-        <div class="stats-grid">
-          <div class="stat-box"><span class="st-lbl">Şu günki myhmanlar</span><b class="st-val" id="stTodayViews">0</b></div>
-          <div class="stat-box"><span class="st-lbl">Şu günki sargytlar</span><b class="st-val" id="stTodayOrders">0</b></div>
-          <div class="stat-box"><span class="st-lbl">Şu günki söwda</span><b class="st-val" id="stTodayRev">0.00 m</b></div>
-          <div class="stat-box"><span class="st-lbl">Jemi myhmanlar</span><b class="st-val" id="stTotalViews">0</b></div>
-        </div>
-        <label class="flabel" style="margin-top:14px">🔍 Iň köp gözlenen sözler (Top 10):</label>
-        <div id="stTopSearches" class="adm-sub-card">Ýüklenýär...</div>
-        <label class="flabel" style="margin-top:14px">📅 Soňky 7 günüň hasabaty:</label>
-        <div id="stHistoryList" class="adm-sub-card">Ýüklenýär...</div>
-      </div>
-
-      <div class="adm-pane" id="adm-pane-orders" style="display:none">
+      <div class="adm-box" id="adminPanel" style="display:none">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
-          <span style="font-size:12.5px;color:var(--m)">Saýtdan gelen ähli sargytlar:</span>
-          <button class="ctrl-btn" onclick="loadAdminServerData()" style="height:32px;font-size:12px">🔄 Täzele</button>
+          <b style="color:var(--p);font-size:16px">⚙️ Admin Dolandyryş</b>
+          <button class="ctrl-btn" id="btnLogout">Çykyş</button>
         </div>
-        <div id="admLiveOrdersList" style="max-height:440px;overflow-y:auto"></div>
-      </div>
+        <div class="adm-tabs">
+          <button class="adm-tab act" onclick="switchAdmTab('stats',this)">📊 Statistika</button>
+          <button class="adm-tab" onclick="switchAdmTab('orders',this)">🛒 Sargytlar</button>
+          <button class="adm-tab" onclick="switchAdmTab('stock',this)">📦 Harytlar</button>
+          <button class="adm-tab" onclick="switchAdmTab('low',this)">⚠️ Azalanlar</button>
+          <button class="adm-tab" onclick="switchAdmTab('import',this)">📥 Excel / Baza</button>
+          <button class="adm-tab" onclick="switchAdmTab('settings',this)">🔧 Sazlamalar</button>
+        </div>
 
-      <div class="adm-pane" id="adm-pane-prods" style="display:none">
-        <div id="admStat" style="font-size:12.5px;color:var(--ok);font-weight:700;margin-bottom:8px"></div>
-        <input type="text" id="admProdSearch" placeholder="Harydyň adyny ýa-da barkodyny ýazyň..." oninput="renderStockList()">
-        <div style="font-size:12px;color:var(--m);margin-bottom:8px">💡 Bahany üýtgetmek ýa-da <b>Arzanladyş (Aksiýa)</b> goýmak üçin harydyň üstüne basyň.</div>
-        <div id="stockList" style="max-height:400px;overflow-y:auto"></div>
-      </div>
+        <div class="adm-pane" id="adm-pane-stats">
+          <div class="stats-grid" style="margin-bottom:10px">
+            <div class="stat-box"><span class="st-lbl">Şu günki myhman</span><b class="st-val" id="stTodayViews">0</b></div>
+            <div class="stat-box"><span class="st-lbl">Şu günki sargyt</span><b class="st-val" id="stTodayOrders">0</b></div>
+            <div class="stat-box"><span class="st-lbl">Şu günki söwda</span><b class="st-val" id="stTodayRev">0.00 m</b></div>
+            <div class="stat-box"><span class="st-lbl">Jemi myhman</span><b class="st-val" id="stTotalViews">0</b></div>
+          </div>
+          <div class="adm-sub-card" style="margin-bottom:8px"><b>🔍 Köp gözlenenler:</b><div id="stTopSearches" style="margin-top:6px"></div></div>
+          <div class="adm-sub-card"><b>📅 Soňky 7 gün:</b><div id="stHistoryList" style="margin-top:6px"></div></div>
+        </div>
 
-      <div class="adm-pane" id="adm-pane-low" style="display:none">
-        <label class="flabel">Kategoriýa (Bölüm) saýlaň:</label>
-        <select id="admLowCatSel" onchange="renderLowStockReport()"></select>
-        <div style="display:flex;gap:8px;margin-bottom:10px">
-          <select id="admLowMaxQty" onchange="renderLowStockReport()" style="margin:0">
-            <option value="0">Diňe gutaranlar (0 sany)</option>
-            <option value="1" selected>0 we 1 sany galanlar</option>
-            <option value="3">3 we ondan az galanlar</option>
+        <div class="adm-pane" id="adm-pane-orders" style="display:none">
+          <div id="admLiveOrdersList"></div>
+        </div>
+
+        <div class="adm-pane" id="adm-pane-stock" style="display:none">
+          <input type="text" id="admProdSearch" placeholder="Haryt ady ýa-da kody boýunça gözleg..." onkeyup="renderStockList()">
+          <div id="stockList" style="max-height:360px;overflow-y:auto"></div>
+        </div>
+
+        <div class="adm-pane" id="adm-pane-low" style="display:none">
+          <select id="admLowCatSel" onchange="renderLowStockReport()"></select>
+          <select id="admLowMaxQty" onchange="renderLowStockReport()">
+            <option value="0">0 sany (Gutaranlar)</option>
+            <option value="2" selected>2 we ondan az</option>
+            <option value="5">5 we ondan az</option>
           </select>
-          <button class="btn1" id="btnCopyLowStock" style="margin:0;white-space:nowrap">📋 Sanawy kopiýala</button>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+            <b id="admLowCount" style="font-size:12.5px"></b>
+            <button class="ctrl-btn" id="btnCopyLowStock">📋 Kopiýala</button>
+          </div>
+          <div id="admLowList" style="max-height:320px;overflow-y:auto"></div>
         </div>
-        <div id="admLowCount" style="font-size:13px;font-weight:800;color:var(--err);margin-bottom:8px"></div>
-        <div id="admLowList" style="max-height:380px;overflow-y:auto"></div>
-      </div>
 
-      <div class="adm-pane" id="adm-pane-excel" style="display:none">
-        <label class="flabel">📂 Excel faýlyny (.xlsx, .xls, .csv) göni ýüklemek:</label>
-        <div class="excel-drop-box" onclick="document.getElementById('excelFileInp').click()">
-          <span>📄 Excel faýl saýlamak üçin şu ýere basyň</span>
-          <small style="display:block;color:var(--m);margin-top:4px">Sütün tertibi: Kod (Barkod) | Ady | Sany | Bahasy</small>
+        <div class="adm-pane" id="adm-pane-import" style="display:none">
+          <p id="admStat" style="font-size:12.5px;font-weight:700;margin-bottom:8px"></p>
+          <label class="excel-drop-box" style="display:block;margin-bottom:10px">
+            📂 Excel faýl saýlaň (.xlsx, .xls)
+            <input type="file" id="excelFileInp" accept=".xlsx,.xls,.csv" style="display:none">
+          </label>
+          <textarea id="pasteBox" rows="4" placeholder="Excel-den göni kopiýalap şu ýere goýuň (Kod | Ady | Sany | Bahasy)..."></textarea>
+          <button class="btn1" id="btnImport">Maglumatlary ýükle</button>
+          <button class="btn2" id="btnCopyGit">📋 baza.js üçin kopiýala</button>
+          <button class="btn2" id="btnClear" style="color:var(--err)">🗑️ Lokal keşi arassala</button>
         </div>
-        <input type="file" id="excelFileInp" accept=".xlsx,.xls,.csv" style="display:none">
 
-        <label class="flabel" style="margin-top:12px">Ýa-da Excel setirlerini kopiýalap goýuň:</label>
-        <textarea id="pasteBox" rows="3" placeholder="Excel setirlerini şu ýere goýuň..."></textarea>
-        <button class="btn1" id="btnImport">📥 Bazany täzele we Serwerde sakla</button>
-        <button class="btn2" id="btnCopyGit">📋 baza.js üçin kopiýala</button>
-        <button class="btn2" id="btnClear" style="color:var(--err)">🗑️ Lokal keşi arassala</button>
-
-        <div style="margin-top:14px;padding-top:12px;border-top:1px dashed var(--b)">
-          <label class="flabel">Sargyt Poçta 1 (Esasy Gmail):</label>
-          <input type="email" id="admMail1">
-          <label class="flabel">Sargyt Poçta 2 (CC):</label>
-          <input type="email" id="admMail2">
-          <label class="flabel">Telefon / SMS belgi:</label>
-          <input type="text" id="admSms">
-          <button class="btn1" id="btnSaveMail">💾 Sazlamalary ýatda sakla</button>
+        <div class="adm-pane" id="adm-pane-settings" style="display:none">
+          <label class="flabel">Esasy Email:</label><input type="email" id="admMail1">
+          <label class="flabel">Goşmaça Email (CC):</label><input type="email" id="admMail2">
+          <label class="flabel">Telefon / SMS belgi:</label><input type="text" id="admSms">
+          <button class="btn1" id="btnSaveMail">Ýatda sakla</button>
         </div>
       </div>
-    </div>
-  </section>
 
-  <section class="sec" id="s-orders">
-    <div style="display:flex;align-items:center;gap:10px;max-width:640px;margin:0 auto 14px">
-      <button class="det-back" id="backProf">‹</button>
-      <h2 class="sec-h2" data-tk="Sargytlarym" data-ru="Мои заказы">Sargytlarym</h2>
-    </div>
-    <div id="olist" style="max-width:640px;margin:0 auto"></div>
-  </section>
-</main>
-<div class="det-page" id="detPage">
-  <div class="det-top">
-    <button class="det-back" id="detBack">‹</button>
-    <div class="det-title-bar" id="detTopTitle"></div>
-    <button class="det-ico-btn" id="detTopFav"></button>
-    <button class="det-ico-btn" id="detTopShare"></button>
-  </div>
-  <div class="det-gallery-col">
-    <div class="det-img-box" id="detImgBoxClick">
-      <div id="detPromoBadge" class="det-promo-tag" style="display:none"></div>
-      <div id="detImgWrap" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center"></div>
-      <span class="zoom-hint">🔍</span>
-    </div>
-    <div class="det-thumbs" id="detThumbs" style="display:none"></div>
-  </div>
-  <div class="det-info">
-    <div class="det-prow">
-      <div class="det-prc-wrap">
-        <span class="det-prc" id="detPrc"></span>
-        <span class="det-old-prc" id="detOldPrc" style="display:none"></span>
+      <footer class="lux-footer">
+        <div class="lux-f-line"></div>
+        <div class="lux-f-slogan">ÝOKARY HIL • AMATLY BAHA • YGTYBARLY HYZMAT</div>
+        <div class="lux-f-copy">© 2026 AÝ-ÇYZUW. Ähli hukuklar goralan.</div>
+      </footer>
+    </section>
+
+    <section id="s-orders" class="sec">
+      <div class="stitle">
+        <span class="sec-h2" data-tk="Meniň sargytlarym" data-ru="Мои заказы">Meniň sargytlarym</span>
+        <button class="ctrl-btn" id="backProf">‹ <span data-tk="Profil" data-ru="Профиль">Profil</span></button>
       </div>
-      <div class="det-stats">
-        <span class="stat-item"></span>
-        <span class="stat-item"></span>
+      <div id="olist" style="max-width:620px;margin:0 auto"></div>
+    </section>
+
+  </main>
+  <nav class="nav">
+    <button class="nbtn act" data-t="home">
+      <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      <span data-tk="Baş sahypa" data-ru="Главная">Baş sahypa</span>
+    </button>
+    <button class="nbtn" data-t="menu">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      <span data-tk="Kategoriýalar" data-ru="Категории">Kategoriýalar</span>
+    </button>
+    <button class="nbtn" data-t="cart" id="navCartBtn">
+      <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+      <span class="cbdg" id="cnt">0</span>
+      <span id="navCartLbl" data-tk="Sebet" data-ru="Корзина">Sebet</span>
+    </button>
+    <button class="nbtn" data-t="fav">
+      <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      <span data-tk="Halanan" data-ru="Избранное">Halanan</span>
+    </button>
+    <button class="nbtn" data-t="prof">
+      <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <span data-tk="Profil" data-ru="Профиль">Profil</span>
+    </button>
+  </nav>
+
+  <div class="det-page" id="detPage">
+    <div class="det-top">
+      <button class="det-back" id="detBack">‹</button>
+      <div class="det-title-bar" id="detTopTitle"></div>
+      <button class="det-ico-btn" id="detTopFav"></button>
+      <button class="det-ico-btn" id="detTopShare"></button>
+    </div>
+    <div class="det-gallery-col">
+      <div class="det-img-box" id="detImgBoxClick">
+        <span class="det-promo-tag" id="detPromoBadge" style="display:none"></span>
+        <div id="detImgWrap"></div>
+        <span class="zoom-hint">🔍</span>
+      </div>
+      <div class="det-thumbs" id="detThumbs" style="display:none"></div>
+    </div>
+    <div class="det-info">
+      <div class="det-prow">
+        <div class="det-prc-wrap">
+          <span class="det-prc" id="detPrc"></span>
+          <span class="det-old-prc" id="detOldPrc" style="display:none"></span>
+        </div>
+        <div class="det-stats">
+          <span class="stat-item"></span>
+          <span class="stat-item"></span>
+        </div>
+      </div>
+      <div class="det-name" id="detName"></div>
+      <div class="det-desc" id="detDesc"></div>
+      <div class="det-act-box" id="detBarWrap"></div>
+    </div>
+    <div class="det-spec">
+      <div class="spec-row"><span style="color:var(--m)" data-tk="Bölüm:" data-ru="Категория:">Bölüm:</span><b id="detCat"></b></div>
+      <div class="spec-row" style="border:none"><span style="color:var(--m)" data-tk="Kiçi bölüm:" data-ru="Подкатегория:">Kiçi bölüm:</span><b id="detSub"></b></div>
+    </div>
+    <div class="det-sim">
+      <div class="stitle"><span style="font-size:16px" data-tk="Meňzeş harytlar" data-ru="Похожие товары">Meňzeş harytlar</span></div>
+      <div class="sim-scroll" id="detSim"></div>
+    </div>
+  </div>
+  <div class="zoom-modal" id="zoomModal">
+    <button class="zoom-close" id="closeZoom">✕</button>
+    <button class="zoom-nav prev" id="zoomPrev">‹</button>
+    <img id="zoomImg" src="" alt="">
+    <button class="zoom-nav next" id="zoomNext">›</button>
+    <div class="zoom-counter" id="zoomCounter"></div>
+  </div>
+
+  <div class="chk-page" id="chkPage">
+    <div class="det-top">
+      <button class="det-back" id="chkBack">‹</button>
+      <div class="det-title-bar" data-tk="Sargydy resmileşdirmek" data-ru="Оформление заказа">Sargydy resmileşdirmek</div>
+    </div>
+    <div class="chk-box">
+      <div class="chk-sec-title" data-tk="Alyjynyň maglumatlary" data-ru="Данные получателя">Alyjynyň maglumatlary</div>
+      <label class="flabel" data-tk="Adyňyz we familiýaňyz:" data-ru="Имя и фамилия:">Adyňyz we familiýaňyz:</label>
+      <input type="text" id="nm" placeholder="Mysal: Aman Amanow">
+      <label class="flabel" data-tk="Telefon belgiňiz:" data-ru="Ваш телефон:">Telefon belgiňiz:</label>
+      <div class="ph-field" id="phFieldWrap">
+        <span class="ph-prefix">+993</span>
+        <input type="tel" id="ph" placeholder="65 000000" oninput="validateTmPhone(false)">
+        <span class="ph-err-ico">!</span>
+      </div>
+      <div class="ph-err-txt" data-tk="Dogry belgi giriziň (61-65 ýa-da 71)" data-ru="Введите корректный номер (61-65 или 71)">Dogry belgi giriziň (61-65 ýa-da 71)</div>
+      <label class="flabel" data-tk="Eltip bermek salgysy:" data-ru="Адрес доставки:">Eltip bermek salgysy:</label>
+      <input type="text" id="ad" placeholder="Köçe, jaý, öý belgisi...">
+      <label class="flabel" data-tk="Bellik (hökmany däl):" data-ru="Комментарий (необязательно):">Bellik (hökmany däl):</label>
+      <input type="text" id="nt" placeholder="Goşmaça bellik...">
+      <div class="chk-sec-title" style="margin-top:12px" data-tk="Töleg görnüşi" data-ru="Способ оплаты">Töleg görnüşi</div>
+      <div class="pay-card">
+        <div>
+          <b data-tk="Nagt töleg (Gowşurylanda)" data-ru="Наличными при получении">Nagt töleg (Gowşurylanda)</b>
+          <span data-tk="Haryt gowşurylandan soň nagt görnüşinde tölenýär" data-ru="Оплата наличными курьеру при доставке">Haryt gowşurylandan soň nagt görnüşinde tölenýär</span>
+        </div>
+        <div class="radio-dot"></div>
       </div>
     </div>
-    <div class="det-name" id="detName"></div>
-    <div class="det-desc" id="detDesc"></div>
-    <div class="det-act-box" id="detBarWrap"></div>
-  </div>
-  <div class="det-spec">
-    <div class="spec-row"><span style="color:var(--m)" data-tk="Kategoriýa:" data-ru="Категория:">Kategoriýa:</span><b id="detCat"></b></div>
-    <div class="spec-row" style="border:none"><span style="color:var(--m)" data-tk="Bölüm:" data-ru="Раздел:">Bölüm:</span><b id="detSub"></b></div>
-  </div>
-  <div class="det-sim">
-    <div class="stitle"><span data-tk="Meňzeş harytlar" data-ru="Похожие товары">Meňzeş harytlar</span></div>
-    <div class="sim-scroll" id="detSim"></div>
-  </div>
-</div>
 
-<div class="det-page" id="brandsPage">
-  <div class="det-top">
-    <button class="det-back" onclick="document.getElementById('brandsPage').classList.remove('open')">‹</button>
-    <div class="det-title-bar" data-tk="Dünýä belli brendler" data-ru="Всемирно известные бренды">Dünýä belli brendler</div>
-  </div>
-  <div class="container" style="padding:16px">
-    <div class="brand-cubes-grid" id="brandsGridBox"></div>
-  </div>
-</div>
-
-<div class="chk-page" id="chkPage">
-  <div class="det-top">
-    <button class="det-back" id="chkBack">‹</button>
-    <div class="det-title-bar" data-tk="Sargyt et" data-ru="Оформление заказа">Sargyt et</div>
-  </div>
-
-  <div class="chk-box">
-    <div class="chk-sec-title" data-tk="Töleg şekili" data-ru="Способ оплаты">Töleg şekili</div>
-    <div class="pay-card">
-      <div>
-        <b data-tk="Nagt" data-ru="Наличными">Nagt</b>
-        <span data-tk="Sargydy alan wagtyňyz nagt hasaplaşmak" data-ru="Оплата наличными при получении заказа">Sargydy alan wagtyňyz nagt hasaplaşmak</span>
+    <div class="invoice-paper">
+      <div class="inv-head">
+        <div class="inv-brand">AÝ-<span>ÇYZUW</span></div>
+        <div style="text-align:right;font-size:12px"><b id="invNum">FAKTURA № 00101</b><br><span id="invDate" style="color:var(--m)"></span></div>
       </div>
-      <div class="radio-dot"></div>
+      <div class="inv-divider"></div>
+      <div id="invItemsList"></div>
+      <div class="inv-divider"></div>
+      <div class="inv-row"><span>Harytlar:</span><b id="invSub">0.00 m</b></div>
+      <div class="inv-row"><span>Eltip bermek:</span><b id="invDel">0.00 m</b></div>
+      <div class="inv-row grand"><span>JEMI:</span><span id="invGrand">0.00 m</span></div>
     </div>
-  </div>
 
-  <div class="chk-box">
-    <label class="flabel" data-tk="Doly adyňyz *" data-ru="Ваше полное имя *">Doly adyňyz *</label>
-    <input type="text" id="nm" placeholder="Meselem: Aman Amanow">
-
-    <label class="flabel" data-tk="Telefon belgiňiz *" data-ru="Ваш номер телефона *">Telefon belgiňiz *</label>
-    <div class="ph-field" id="phFieldWrap">
-      <span class="ph-prefix">+993</span>
-      <input type="tel" id="ph" maxlength="9" placeholder="65 637644" oninput="validateTmPhone(false)">
-      <span class="ph-err-ico" id="phErrIco">!</span>
-    </div>
-    <div class="ph-err-txt" id="phErrTxt" data-tk="Dogry telefon belgi girizmegiňizi haýyş edýäris! (6x xxxxxx)" data-ru="Пожалуйста, введите правильный номер телефона! (6x xxxxxx)">Dogry telefon belgi girizmegiňizi haýyş edýäris! (6x xxxxxx)</div>
-
-    <label class="flabel" data-tk="Salgyňyz (köçe, jaý, öý) *" data-ru="Адрес (улица, дом, кв.) *">Salgyňyz (köçe, jaý, öý) *</label>
-    <input type="text" id="ad" placeholder="Köçe, jaý, öý belgisi...">
-
-    <label class="flabel" data-tk="Bellik" data-ru="Примечание">Bellik</label>
-    <input type="text" id="nt" placeholder="Islege görä...">
-  </div>
-
-  <div class="invoice-paper">
-    <div class="inv-head">
-      <div class="inv-brand">AÝ-<span>ÇYZUW</span></div>
-      <div style="text-align:right;font-size:12px">
-        <b id="invNum">FAKTURA № 00101</b><br>
-        <span id="invDate" style="color:var(--m)"></span>
-      </div>
-    </div>
-    <div class="inv-divider"></div>
-    <div id="invItemsList"></div>
-    <div class="inv-divider"></div>
-    <div class="inv-row"><span data-tk="Harytlar:" data-ru="Товары:">Harytlar:</span><b id="invSub">0.00 m</b></div>
-    <div class="inv-row"><span data-tk="Eltip bermek:" data-ru="Доставка:">Eltip bermek:</span><b id="invDel">0.00 m</b></div>
-    <div class="inv-row grand"><span data-tk="JEMI TÖLEG:" data-ru="ИТОГО:">JEMI TÖLEG:</span><span id="invGrand">0.00 m</span></div>
-  </div>
-
-  <div class="chk-foot">
-    <div style="max-width:560px;margin:0 auto">
+    <div class="chk-foot">
       <button class="btn1" id="btnOrd" data-tk="✅ Sargyt et" data-ru="✅ Оформить заказ">✅ Sargyt et</button>
     </div>
   </div>
-</div>
-<div class="modal" id="admEditProdModal">
-  <div class="mbox">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-      <b style="font-size:16px;color:var(--p)">✏️ Harydy we Aksiýany üýtget</b>
-      <button class="citem-del cls" data-m="admEditProdModal">✕</button>
-    </div>
-    <div id="editProdTitle" style="font-size:13.5px;font-weight:700;margin-bottom:10px;color:var(--t)"></div>
-    <label class="flabel">Ammardaky sany:</label>
-    <input type="number" id="edProdStock" min="0">
-    <label class="flabel">Häzirki satuw bahasy (manat):</label>
-    <input type="number" id="edProdPrice" step="0.01" min="0">
-    <label class="flabel">🏷️ Köne baha — Aksiýa üçin (Eger aksiýa ýok bolsa 0 ýazyň):</label>
-    <input type="number" id="edProdOldPrice" step="0.01" min="0" placeholder="Mysal: 50">
-    <button class="btn1" id="btnSaveProdEdit">💾 Ýatda sakla (Ähli müşderilerde täzelener)</button>
-    <button class="btn2 cls" data-m="admEditProdModal">Ýap</button>
-  </div>
-</div>
+  <div class="modal" id="sm"><div class="mbox">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><b data-tk="Tertiplemek" data-ru="Сортировка">Tertiplemek</b><button class="ctrl-btn cls" data-m="sm">✕</button></div>
+    <div class="srt-card" id="srtDef"><div class="srt-ico">★</div><b data-tk="Başlangyç tertip" data-ru="По умолчанию">Başlangyç tertip</b></div>
+    <div class="srt-card" id="srt1"><div class="srt-ico">↑</div><b data-tk="Arzandan gymmada" data-ru="Сначала дешёвые">Arzandan gymmada</b></div>
+    <div class="srt-card" id="srt2"><div class="srt-ico">↓</div><b data-tk="Gymmatdan arzana" data-ru="Сначала дорогие">Gymmatdan arzana</b></div>
+    <div class="srt-card" id="srtAz"><div class="srt-ico">A-Z</div><b data-tk="Elipbiý boýunça" data-ru="По алфавиту">Elipbiý boýunça</b></div>
+  </div></div>
 
-<div class="modal" id="delivModal">
-  <div class="mbox">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-      <b style="font-size:17px;color:var(--p)" data-tk="🚚 Eltip bermek hyzmaty" data-ru="🚚 Служба доставки">🚚 Eltip bermek hyzmaty</b>
-      <button class="citem-del cls" data-m="delivModal">✕</button>
-    </div>
-    <div style="background:rgba(22,163,74,0.1);border:1px solid rgba(22,163,74,0.25);padding:12px;border-radius:12px;margin-bottom:12px;font-size:13px;color:var(--ok);font-weight:700" data-tk="🎉 Arkadag şäheri boýunça 200 manatdan ýokary sargytlara eltip bermek MUGT!" data-ru="🎉 По г. Аркадаг при заказе от 200 манат доставка БЕСПЛАТНАЯ!">
-      🎉 Arkadag şäheri boýunça 200 manatdan ýokary sargytlara eltip bermek MUGT!
-    </div>
-    <div class="plist" style="margin-bottom:12px">
-      <div class="pitem" style="cursor:default"><span data-tk="Arkadag şäheri (200 m-den pes)" data-ru="г. Аркадаг (до 200 м)">Arkadag şäheri (200 m-den pes)</span><b style="color:var(--p)">10 m</b></div>
-      <div class="pitem" style="cursor:default"><span data-tk="Gökdepe" data-ru="Гёкдепе">Gökdepe</span><b style="color:var(--p)">50 m</b></div>
-      <div class="pitem" style="cursor:default"><span data-tk="Aşgabat şäheri" data-ru="г. Ашхабад">Aşgabat şäheri</span><b style="color:var(--p)">70 m</b></div>
-      <div class="pitem" style="cursor:default"><span data-tk="Änew" data-ru="Аннау">Änew</span><b style="color:var(--p)">100 m</b></div>
-      <div class="pitem" style="cursor:default"><span data-tk="Bäherden" data-ru="Бахерден">Bäherden</span><b style="color:var(--p)">100 m</b></div>
-    </div>
-    <button class="btn1 cls" data-m="delivModal" data-tk="Düşnükli" data-ru="Понятно">Düşnükli</button>
-  </div>
-</div>
+  <div class="modal" id="fm"><div class="mbox">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px"><b data-tk="Filtr" data-ru="Фильтр">Filtr</b><button class="ctrl-btn cls" data-m="fm">✕</button></div>
+    <input type="hidden" id="fcat"><input type="hidden" id="fsub">
+    <div class="flist-box" id="fListWrap"></div>
+    <label class="flabel" data-tk="Baha aralygy (manat):" data-ru="Диапазон цен (манат):">Baha aralygy (manat):</label>
+    <div class="price-range-row"><input type="number" id="fMinP" placeholder="Min"><span>—</span><input type="number" id="fMaxP" placeholder="Max"></div>
+    <label class="chk-lbl-inline" style="margin:10px 0"><input type="checkbox" id="fOnlyPromo"><span data-tk="Diňe aksiýadaky harytlar" data-ru="Только товары по акции">Diňe aksiýadaky harytlar</span></label>
+    <div id="brandFilterWrap" style="display:none"><label class="flabel">Brend:</label><div class="brand-chips" id="brandChips"></div></div>
+    <button class="btn1" id="btnApplyF" style="margin-top:12px" data-tk="Ulanmak" data-ru="Применить">Ulanmak</button>
+    <button class="btn2" id="btnResetF" data-tk="Arassala" data-ru="Сбросить">Arassala</button>
+  </div></div>
 
-<div class="modal" id="qtyModal">
-  <div class="mbox">
-    <b id="qtyItemTitle" style="display:block;margin-bottom:8px;font-size:14.5px"></b>
-    <input type="number" id="qtyInput" min="1" style="text-align:center;font-size:18px;font-weight:800">
+  <div class="modal" id="qtyModal"><div class="mbox">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><b id="qtyItemTitle" style="font-size:14px"></b><button class="ctrl-btn cls" data-m="qtyModal">✕</button></div>
+    <input type="number" id="qtyInput" min="1">
     <div class="qty-presets">
       <button class="qp-btn" onclick="setPresetQ(5)">5</button>
       <button class="qp-btn" onclick="setPresetQ(10)">10</button>
       <button class="qp-btn" onclick="setPresetQ(20)">20</button>
       <button class="qp-btn" onclick="setPresetQ(50)">50</button>
     </div>
-    <button class="btn1" id="btnConfirmQty" data-tk="Tassykla" data-ru="Подтвердить">Tassykla</button>
-    <button class="btn2 cls" data-m="qtyModal" data-tk="Ýap" data-ru="Закрыть">Ýap</button>
-  </div>
-</div>
+    <button class="btn1" id="btnConfirmQty">Tassykla</button>
+  </div></div>
 
-<div class="modal" id="sm">
-  <div class="mbox">
-    <b style="display:block;margin-bottom:10px;font-size:16px" data-tk="Tertiplemek" data-ru="Сортировка">Tertiplemek</b>
-    <div class="srt-card" id="srtDef"><div class="srt-ico">№</div><b data-tk="Başlangyç tertip" data-ru="По умолчанию">Başlangyç tertip</b></div>
-    <div class="srt-card" id="srt1"><div class="srt-ico">↑</div><b data-tk="Arzandan gymmada" data-ru="Сначала дешёвые">Arzandan gymmada</b></div>
-    <div class="srt-card" id="srt2"><div class="srt-ico">↓</div><b data-tk="Gymmatdan arzana" data-ru="Сначала дорогие">Gymmatdan arzana</b></div>
-    <div class="srt-card" id="srtAz"><div class="srt-ico">A-Z</div><b data-tk="Elipbiý boýunça" data-ru="По алфавиту">Elipbiý boýunça</b></div>
-    <button class="btn2 cls" data-m="sm" data-tk="Ýap" data-ru="Закрыть">Ýap</button>
-  </div>
-</div>
-
-<div class="modal" id="fm">
-  <div class="mbox">
-    <b style="display:block;margin-bottom:8px;font-size:16px" data-tk="Filtr" data-ru="Фильтр">Filtr</b>
-    <input type="hidden" id="fcat">
-    <input type="hidden" id="fsub">
-
-    <label style="display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:800;color:var(--err);margin-bottom:8px;cursor:pointer">
-      <input type="checkbox" id="fOnlyPromo" style="width:auto;margin:0">
-      <span data-tk="Diňe arzanladyşdaky (Aksiýa) harytlar" data-ru="Только товары по акции">Diňe arzanladyşdaky (Aksiýa) harytlar</span>
-    </label>
-
-    <label class="flabel" data-tk="Kategoriýa:" data-ru="Категория:">Kategoriýa:</label>
-    <div class="flist-box" id="fListWrap"></div>
-
-    <div id="brandFilterWrap" style="display:none;margin-bottom:8px">
-      <label class="flabel" data-tk="Brend:" data-ru="Бренд:">Brend:</label>
-      <div class="brand-chips" id="brandChips"></div>
-    </div>
-
-    <label class="flabel" data-tk="Baha aralygy (manat):" data-ru="Диапазон цен (манат):">Baha aralygy (manat):</label>
-    <div class="price-range-row">
-      <input type="number" id="fMinP" placeholder="Min">
-      <span>—</span>
-      <input type="number" id="fMaxP" placeholder="Max">
-    </div>
-
-    <button class="btn1" id="btnApplyF" style="margin-top:12px" data-tk="Görkez" data-ru="Применить">Görkez</button>
-    <button class="btn2" id="btnResetF" data-tk="Arassala" data-ru="Сбросить">Arassala</button>
-    <button class="btn2 cls" data-m="fm" data-tk="Ýap" data-ru="Закрыть">Ýap</button>
-  </div>
-</div>
-
-<div class="modal" id="addrModal">
-  <div class="mbox">
-    <b style="display:block;margin-bottom:8px;font-size:16px" data-tk="Hemişelik salgym" data-ru="Мой адрес">Hemişelik salgym</b>
+  <div class="modal" id="addrModal"><div class="mbox">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px"><b>Eltip bermek salgysy</b><button class="ctrl-btn cls" data-m="addrModal">✕</button></div>
     <input type="text" id="svNm" placeholder="Adyňyz">
-    <input type="tel" id="svPh" placeholder="65 637644">
+    <input type="tel" id="svPh" placeholder="Telefon belgiňiz">
     <input type="text" id="svAd" placeholder="Salgyňyz">
-    <button class="btn1" id="btnSaveAddr" data-tk="Ýatda sakla" data-ru="Сохранить">Ýatda sakla</button>
-    <button class="btn2 cls" data-m="addrModal" data-tk="Ýap" data-ru="Закрыть">Ýap</button>
-  </div>
-</div>
+    <button class="btn1" id="btnSaveAddr">Ýatda sakla</button>
+  </div></div>
 
-<div class="modal" id="admLogin">
-  <div class="mbox">
-    <b style="display:block;margin-bottom:8px;font-size:16px">🔐 Admin Giriş</b>
+  <div class="modal" id="admLogin"><div class="mbox">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px"><b>Admin girişi</b><button class="ctrl-btn cls" data-m="admLogin">✕</button></div>
     <input type="password" id="admPass" placeholder="Paroly giriziň...">
-    <button class="btn1" id="btnCheckAdm">Gir</button>
-    <button class="btn2 cls" data-m="admLogin">Ýap</button>
+    <button class="btn1" id="btnCheckAdm">Giriş</button>
+  </div></div>
+
+  <div class="modal" id="admEditProdModal"><div class="mbox">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px"><b id="editProdTitle" style="font-size:13.5px"></b><button class="ctrl-btn cls" data-m="admEditProdModal">✕</button></div>
+    <label class="flabel">Galyndy sany:</label><input type="number" id="edProdStock">
+    <label class="flabel">Täze baha (m):</label><input type="number" step="0.01" id="edProdPrice">
+    <label class="flabel">Öňki baha (Aksiýa üçin, ýok bolsa 0):</label><input type="number" step="0.01" id="edProdOldPrice">
+    <button class="btn1" id="btnSaveProdEdit">Ýatda sakla</button>
+  </div></div>
+
+  <div class="modal" id="delivModal"><div class="mbox">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px"><b>🚚 Eltip bermek nyrhlary</b><button class="ctrl-btn cls" data-m="delivModal">✕</button></div>
+    <p style="font-size:13.5px;line-height:1.6">
+      • <b>Arkadag şäheri:</b> 200 m-den ýokary mugt (200 m-den pes — 10 m)<br>
+      • <b>Gökdepe:</b> 50 m<br>
+      • <b>Aşgabat şäheri:</b> 70 m<br>
+      • <b>Änew we Bäherden:</b> 100 m
+    </p>
+  </div></div>
+
+  <div class="det-page" id="brandsPage">
+    <div class="det-top">
+      <button class="det-back" onclick="document.getElementById('brandsPage').classList.remove('open')">‹</button>
+      <div class="det-title-bar">Brendler</div>
+    </div>
+    <div style="padding:16px"><div class="brand-cubes-grid" id="brandsGridBox"></div></div>
   </div>
-</div>
 
-<div class="zoom-modal" id="zoomModal">
-  <button class="zoom-close" id="closeZoom">✕</button>
-  <button class="zoom-nav prev" id="zoomPrev">‹</button>
-  <img id="zoomImg" src="" alt="">
-  <button class="zoom-nav next" id="zoomNext">›</button>
-  <div class="zoom-counter" id="zoomCounter">1 / 1</div>
-</div>
-
-<div class="toast-msg" id="toastBox"></div>
-
-<script src="https://jsdelivr.net"></script>
-<script src="baza.js?v=32"></script>
-<script src="app.js?v=32"></script>
+  <script src="https://jsdelivr.net"></script>
+  <script src="baza.js?v=33"></script>
+  <script src="app.js?v=33"></script>
 </body>
 </html>

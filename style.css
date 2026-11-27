@@ -487,3 +487,25 @@ select:focus, textarea:focus, input:focus { border-color: var(--p); background: 
     z-index: 45 !important;
   }
 }
+@media (min-width: 769px) {
+  .hdr {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 50 !important;
+  }
+  .hdr-inner {
+    padding: 13px 540px 13px 24px !important;
+  }
+  .nav {
+    position: fixed !important;
+    top: 13px !important;
+    right: max(24px, calc((100vw - 1260px) / 2 + 24px)) !important;
+    bottom: auto !important;
+    left: auto !important;
+    border-top: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+    width: auto !important;
+    z-index: 55 !important;
+  }
+}
