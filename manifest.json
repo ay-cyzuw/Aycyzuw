@@ -1,21 +1,26 @@
 {
   "name": "AÝ-ÇYZUW — Kanselýariýa we Okuw Esbaplary",
   "short_name": "AÝ-ÇYZUW",
+  "description": "Arkadag şäheri boýunça kanselýariýa, mekdep, ofis we döredijilik harytlarynyň onlaýn dükany.",
+  "lang": "tk",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#f5f7fa",
   "theme_color": "#0f4c81",
-  "orientation": "portrait",
+  "orientation": "portrait-primary",
+  "categories": ["shopping", "education", "books"],
   "icons": [
     {
       "src": "img/logo.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "img/logo.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }

@@ -2,18 +2,25 @@
 <html lang="tk">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>AÝ-ÇYZUW — Kanselýariýa we Okuw Esbaplary</title>
+  <meta name="description" content="Arkadag şäheri boýunça kanselýariýa, mekdep, ofis we döredijilik harytlarynyň onlaýn dükany.">
+  <meta property="og:title" content="AÝ-ÇYZUW — Kanselýariýa we Okuw Esbaplary">
+  <meta property="og:description" content="Mekdep, ofis we döredijilik harytlary merkezi. Arkadag şäherine 200 m-den ýokary eltip bermek mugt!">
+  <meta property="og:image" content="img/logo.png">
+  <link rel="icon" type="image/png" href="img/logo.png">
+  <link rel="apple-touch-icon" href="img/logo.png">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#0f4c81">
-  <link rel="preconnect" href="https://googleapis.com">
-  <link rel="preconnect" href="https://gstatic.com" crossorigin>
-  <link href="https://googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=33">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=35">
 </head>
 <body>
 
   <div id="toastBox" class="toast-msg"></div>
+  <button id="scrollTopBtn" class="scroll-top-btn" title="Ýokaryk">↑</button>
 
   <header class="hdr">
     <div class="hdr-inner" id="desktopHdrInner">
@@ -22,15 +29,14 @@
           <img id="logoImg" src="img/logo.png" alt="AÝ-ÇYZUW">
           <div id="logoTxt">AÝ-<span>ÇYZUW</span></div>
         </div>
-        <div class="sbox" id="searchBoxMain">
+        <form class="sbox" id="searchBoxMain" onsubmit="event.preventDefault();document.getElementById('q').blur();">
           <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-          <input type="text" id="q" placeholder="Haryt ady ýa-da barkod boýunça gözleg..." autocomplete="off">
+          <input type="search" id="q" placeholder="Haryt ady ýa-da barkod boýunça gözleg..." autocomplete="off">
           <span class="clr-q" id="clrQ">✕</span>
-        </div>
+        </form>
       </div>
     </div>
   </header>
-
   <main class="container">
     <section id="s-home" class="sec act">
       <div id="homeTopBlocks">
@@ -54,7 +60,7 @@
         </div>
 
         <div class="hero-grid">
-          <div class="slider" onclick="handleSlideClick()">
+          <div class="slider" id="heroSlider" onclick="handleSlideClick()">
             <div class="slides" id="slideTrack">
               <div class="slide">
                 <img src="img/slide1.jpg" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
@@ -102,7 +108,10 @@
       </div>
 
       <div class="cat-banner" id="catBanner">
-        <div class="cat-banner-l" id="catBannerTitle"></div>
+        <div>
+          <div class="cat-banner-l" id="catBannerTitle"></div>
+          <div id="matchCountLbl" style="font-size:11.5px;color:var(--m);font-weight:600;margin-top:2px"></div>
+        </div>
         <button class="ctrl-btn" id="btnExitCat">✕</button>
       </div>
 
@@ -129,7 +138,6 @@
         <button class="btn2" id="btnLoadMore">Ýene görkez</button>
       </div>
     </section>
-
     <section id="s-menu" class="sec">
       <div class="stitle">
         <span class="sec-h2" data-tk="Kategoriýalar" data-ru="Категории">Kategoriýalar</span>
@@ -141,6 +149,7 @@
       </div>
       <div class="cat-colorful-grid" id="cgrid2"></div>
     </section>
+
     <section id="s-cart" class="sec">
       <div class="stitle">
         <span class="sec-h2" data-tk="Sebet" data-ru="Корзина">Sebet</span>
@@ -186,10 +195,12 @@
     </section>
 
     <section id="s-fav" class="sec">
-      <div class="stitle"><span class="sec-h2" data-tk="Halanan harytlar" data-ru="Избранное">Halanan harytlar</span></div>
+      <div class="stitle">
+        <span class="sec-h2" data-tk="Halanan harytlar" data-ru="Избранное">Halanan harytlar</span>
+        <button class="ctrl-btn" id="btnClearFavs" style="display:none" data-tk="Arassala" data-ru="Очистить">Arassala</button>
+      </div>
       <div class="pgrid" id="fgrid"></div>
     </section>
-
     <section id="s-prof" class="sec">
       <div class="stitle"><span class="sec-h2" data-tk="Şahsy otag" data-ru="Личный кабинет">Şahsy otag</span></div>
       <div class="prof-grid-wrap">
@@ -202,7 +213,6 @@
           <div class="pitem" id="goSms"><div class="pitem-l"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg><span data-tk="SMS ýazmak" data-ru="Написать SMS">SMS ýazmak</span></div><span class="p-arr">›</span></div>
           <div class="pitem" id="goInstallApp" style="display:none"><div class="pitem-l"><svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg><span data-tk="Programmany ekrana goş" data-ru="Установить приложение">Programmany ekrana goş</span></div><span class="p-arr">›</span></div>
         </div>
-
         <div class="store-info-card">
           <div class="si-head">
             <div>
@@ -244,11 +254,24 @@
         </div>
 
         <div class="adm-pane" id="adm-pane-orders" style="display:none">
+          <div style="display:flex;gap:8px;margin-bottom:10px">
+            <input type="text" id="admOrdSearch" placeholder="Müşderi ady, telefon ýa-da №..." onkeyup="renderAdminOrders()" style="margin:0;flex:1">
+            <select id="admOrdStatusF" onchange="renderAdminOrders()" style="margin:0;width:130px">
+              <option value="">Ählisi</option>
+              <option value="Täze">🆕 Täze</option>
+              <option value="Ýolda">🚚 Ýolda</option>
+              <option value="Gowşuryldy">✅ Gowşuryldy</option>
+            </select>
+          </div>
           <div id="admLiveOrdersList"></div>
         </div>
 
         <div class="adm-pane" id="adm-pane-stock" style="display:none">
-          <input type="text" id="admProdSearch" placeholder="Haryt ady ýa-da kody boýunça gözleg..." onkeyup="renderStockList()">
+          <div style="display:flex;gap:8px;margin-bottom:8px">
+            <input type="text" id="admProdSearch" placeholder="Haryt ady ýa-da kody boýunça gözleg..." onkeyup="renderStockList()" style="margin:0;flex:1">
+            <button class="ctrl-btn" id="btnOpenNewProd" style="background:var(--p);color:#fff">+ Täze</button>
+          </div>
+          <div id="admStockCount" style="font-size:11.5px;color:var(--m);margin-bottom:6px;font-weight:700"></div>
           <div id="stockList" style="max-height:360px;overflow-y:auto"></div>
         </div>
 
@@ -269,12 +292,13 @@
         <div class="adm-pane" id="adm-pane-import" style="display:none">
           <p id="admStat" style="font-size:12.5px;font-weight:700;margin-bottom:8px"></p>
           <label class="excel-drop-box" style="display:block;margin-bottom:10px">
-            📂 Excel faýl saýlaň (.xlsx, .xls)
+            📂 Excel faýl saýlaň (.xlsx, .xls, .csv)
             <input type="file" id="excelFileInp" accept=".xlsx,.xls,.csv" style="display:none">
           </label>
           <textarea id="pasteBox" rows="4" placeholder="Excel-den göni kopiýalap şu ýere goýuň (Kod | Ady | Sany | Bahasy)..."></textarea>
           <button class="btn1" id="btnImport">Maglumatlary ýükle</button>
-          <button class="btn2" id="btnCopyGit">📋 baza.js üçin kopiýala</button>
+          <button class="btn2" id="btnExportExcel">📊 Excel (.xlsx) görnüşinde göçürip al</button>
+          <button class="btn2" id="btnDownloadBaza">💾 baza.js faýlyny göçürip al</button>
           <button class="btn2" id="btnClear" style="color:var(--err)">🗑️ Lokal keşi arassala</button>
         </div>
 
@@ -282,7 +306,7 @@
           <label class="flabel">Esasy Email:</label><input type="email" id="admMail1">
           <label class="flabel">Goşmaça Email (CC):</label><input type="email" id="admMail2">
           <label class="flabel">Telefon / SMS belgi:</label><input type="text" id="admSms">
-          <button class="btn1" id="btnSaveMail">Ýatda sakla</button>
+          <button class="btn1" id="btnSaveMail">Serverde ýatda sakla</button>
         </div>
       </div>
 
@@ -300,7 +324,6 @@
       </div>
       <div id="olist" style="max-width:620px;margin:0 auto"></div>
     </section>
-
   </main>
   <nav class="nav">
     <button class="nbtn act" data-t="home">
@@ -330,6 +353,7 @@
     <div class="det-top">
       <button class="det-back" id="detBack">‹</button>
       <div class="det-title-bar" id="detTopTitle"></div>
+      <button class="det-ico-btn" id="detTopCart" title="Sebet">🛒<span class="det-cart-dot" id="detCartDot" style="display:none">0</span></button>
       <button class="det-ico-btn" id="detTopFav"></button>
       <button class="det-ico-btn" id="detTopShare"></button>
     </div>
@@ -353,10 +377,12 @@
         </div>
       </div>
       <div class="det-name" id="detName"></div>
+      <div id="detStockBadge" style="margin-top:6px;font-size:12px;font-weight:700"></div>
       <div class="det-desc" id="detDesc"></div>
       <div class="det-act-box" id="detBarWrap"></div>
     </div>
     <div class="det-spec">
+      <div class="spec-row"><span style="color:var(--m)" data-tk="Haryt kody (Barkod):" data-ru="Код товара (Штрихкод):">Haryt kody (Barkod):</span><b id="detCodeCopy" style="cursor:pointer;color:var(--p)" title="Kopiýalamak üçin basyň"></b></div>
       <div class="spec-row"><span style="color:var(--m)" data-tk="Bölüm:" data-ru="Категория:">Bölüm:</span><b id="detCat"></b></div>
       <div class="spec-row" style="border:none"><span style="color:var(--m)" data-tk="Kiçi bölüm:" data-ru="Подкатегория:">Kiçi bölüm:</span><b id="detSub"></b></div>
     </div>
@@ -365,14 +391,23 @@
       <div class="sim-scroll" id="detSim"></div>
     </div>
   </div>
-  <div class="zoom-modal" id="zoomModal">
-    <button class="zoom-close" id="closeZoom">✕</button>
-    <button class="zoom-nav prev" id="zoomPrev">‹</button>
-    <img id="zoomImg" src="" alt="">
-    <button class="zoom-nav next" id="zoomNext">›</button>
-    <div class="zoom-counter" id="zoomCounter"></div>
-  </div>
 
+  <div class="zoom-modal" id="zoomModal">
+    <div class="zoom-top-bar">
+      <div class="zoom-counter" id="zoomCounter"></div>
+      <div class="zoom-tools">
+        <button class="zoom-tool-btn" id="zoomOutBtn" title="Kiçelt">−</button>
+        <button class="zoom-tool-btn" id="zoomInBtn" title="Ulalt">+</button>
+        <button class="zoom-close" id="closeZoom">✕</button>
+      </div>
+    </div>
+    <button class="zoom-nav prev" id="zoomPrev">‹</button>
+    <div class="zoom-stage" id="zoomStage">
+      <img id="zoomImg" src="" alt="">
+    </div>
+    <button class="zoom-nav next" id="zoomNext">›</button>
+    <div class="zoom-tip" id="zoomTip">Ulaltmak üçin surata 2 gezek basyň ýa-da barmak bilen ýaýyň</div>
+  </div>
   <div class="chk-page" id="chkPage">
     <div class="det-top">
       <button class="det-back" id="chkBack">‹</button>
@@ -406,7 +441,7 @@
     <div class="invoice-paper">
       <div class="inv-head">
         <div class="inv-brand">AÝ-<span>ÇYZUW</span></div>
-        <div style="text-align:right;font-size:12px"><b id="invNum">FAKTURA № 00101</b><br><span id="invDate" style="color:var(--m)"></span></div>
+        <div style="text-align:right;font-size:12px"><b id="invNum">FAKTURA</b><br><span id="invDate" style="color:var(--m)"></span></div>
       </div>
       <div class="inv-divider"></div>
       <div id="invItemsList"></div>
@@ -414,12 +449,14 @@
       <div class="inv-row"><span>Harytlar:</span><b id="invSub">0.00 m</b></div>
       <div class="inv-row"><span>Eltip bermek:</span><b id="invDel">0.00 m</b></div>
       <div class="inv-row grand"><span>JEMI:</span><span id="invGrand">0.00 m</span></div>
+      <button type="button" class="btn2" id="btnCopyInvoice" style="margin-top:10px" data-tk="📋 Fakturany kopiýala" data-ru="📋 Копировать чек">📋 Fakturany kopiýala</button>
     </div>
 
     <div class="chk-foot">
       <button class="btn1" id="btnOrd" data-tk="✅ Sargyt et" data-ru="✅ Оформить заказ">✅ Sargyt et</button>
     </div>
   </div>
+
   <div class="modal" id="sm"><div class="mbox">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px"><b data-tk="Tertiplemek" data-ru="Сортировка">Tertiplemek</b><button class="ctrl-btn cls" data-m="sm">✕</button></div>
     <div class="srt-card" id="srtDef"><div class="srt-ico">★</div><b data-tk="Başlangyç tertip" data-ru="По умолчанию">Başlangyç tertip</b></div>
@@ -442,7 +479,7 @@
 
   <div class="modal" id="qtyModal"><div class="mbox">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><b id="qtyItemTitle" style="font-size:14px"></b><button class="ctrl-btn cls" data-m="qtyModal">✕</button></div>
-    <input type="number" id="qtyInput" min="1">
+    <input type="number" id="qtyInput" min="1" step="1">
     <div class="qty-presets">
       <button class="qp-btn" onclick="setPresetQ(5)">5</button>
       <button class="qp-btn" onclick="setPresetQ(10)">10</button>
@@ -474,6 +511,15 @@
     <button class="btn1" id="btnSaveProdEdit">Ýatda sakla</button>
   </div></div>
 
+  <div class="modal" id="admNewProdModal"><div class="mbox">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px"><b>➕ Täze haryt goşmak</b><button class="ctrl-btn cls" data-m="admNewProdModal">✕</button></div>
+    <label class="flabel">Haryt kody (Barkod):</label><input type="text" id="newProdId" placeholder="Mysal: 4601234567890">
+    <label class="flabel">Harydyň ady:</label><input type="text" id="newProdName" placeholder="Mysal: Ruçka şarikli gök">
+    <label class="flabel">Galyndy sany:</label><input type="number" id="newProdStock" value="10">
+    <label class="flabel">Bahasy (m):</label><input type="number" step="0.01" id="newProdPrice" placeholder="0.00">
+    <button class="btn1" id="btnCreateNewProd">Goş we ýatda sakla</button>
+  </div></div>
+
   <div class="modal" id="delivModal"><div class="mbox">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px"><b>🚚 Eltip bermek nyrhlary</b><button class="ctrl-btn cls" data-m="delivModal">✕</button></div>
     <p style="font-size:13.5px;line-height:1.6">
@@ -492,8 +538,8 @@
     <div style="padding:16px"><div class="brand-cubes-grid" id="brandsGridBox"></div></div>
   </div>
 
-  <script src="https://jsdelivr.net"></script>
-  <script src="baza.js?v=33"></script>
-  <script src="app.js?v=33"></script>
+  <script src="js/xlsx.full.min.js"></script>
+  <script src="baza.js?v=35"></script>
+  <script src="app.js?v=35"></script>
 </body>
 </html>

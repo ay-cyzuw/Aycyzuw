@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
 Disallow: /data/
-Sitemap: https://SIZIN-DOMENINIZ.tm/sitemap.php
+Disallow: /send.php
+Disallow: /baza_live.json
+Sitemap: https://aycyzuw.tm
