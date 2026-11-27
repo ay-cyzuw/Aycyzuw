@@ -463,3 +463,27 @@ select:focus, textarea:focus, input:focus { border-color: var(--p); background: 
   .chk-page .invoice-paper { grid-column: 2; grid-row: 2 / 4; margin: 0; max-width: 100%; }
   .chk-page .chk-foot { position: static; grid-column: 2; border-top: none; background: transparent; padding: 0; }
 }
+/* === TELEFONDA ÝOKARKY BAŞLYGY WE AŞAKY MENÝUNY ÖZ ÝERINE GEÇIRMEK === */
+@media (max-width: 768px) {
+  .hdr {
+    display: block !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 35 !important;
+  }
+  .top {
+    display: flex !important;
+    width: 100% !important;
+  }
+  .nav {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    top: auto !important;
+    display: flex !important;
+    background: var(--c) !important;
+    border-top: 1px solid var(--b) !important;
+    z-index: 45 !important;
+  }
+}
