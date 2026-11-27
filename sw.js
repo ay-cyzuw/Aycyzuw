@@ -1,4 +1,4 @@
-var CACHE_NAME = 'aycyzuw-v36';
+var CACHE_NAME = 'aycyzuw-v37';
 var ASSETS = [
   './',
   './index.html',

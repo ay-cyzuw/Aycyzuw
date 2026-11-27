@@ -1100,7 +1100,13 @@
 
     var showCnt = Math.min(displayLimit, matched.length);
     var frag = document.createDocumentFragment();
-    for (var k = 0; k < showCnt; k++) frag.appendChild(makeCard(matched[k]));
+        for (var k = 0; k < showCnt; k++) {
+      try {
+        frag.appendChild(makeCard(matched[k]));
+      } catch (err) {
+        console.error("Haryt ýalňyşy:", matched[k], err);
+      }
+    }
     pg.appendChild(frag);
 
     if (matched.length > displayLimit) {
